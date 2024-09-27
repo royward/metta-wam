@@ -700,7 +700,7 @@
 <body class="body_foreground body_background" style="font-size: normal;" >
 <pre class="ansi2html-content"
 >
-Script started on 2024-09-27 23:07:12+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
+Script started on 2024-09-27 23:29:10+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
 ^@P;HTML|
 ;           (set_option_value  prolog false)
 
@@ -870,7 +870,7 @@ Deterministic: ()
 >;; ANTI-REGRESSION.BC-COMP.01</h3>
 ; 
 ; EVAL TEST
-; took 0.002 secs. (1.76 milliseconds) 
+; took 0.002 secs. (1.91 milliseconds) 
 
   !(assertEqualToResult 
     (add-atom &kb 
@@ -910,7 +910,7 @@ Deterministic: ()
 >;; ANTI-REGRESSION.BC-COMP.02</h3>
 ; 
 ; EVAL TEST
-; took 0.001 secs. (1.30 milliseconds) 
+; took 0.001 secs. (1.26 milliseconds) 
 
   !(assertEqualToResult 
     (add-atom &kb 
@@ -956,7 +956,7 @@ Deterministic: ()
 >;; ANTI-REGRESSION.BC-COMP.03</h3>
 ; 
 ; EVAL TEST
-; took 0.001 secs. (1.35 milliseconds) 
+; took 0.001 secs. (1.36 milliseconds) 
 
   !(assertEqualToResult 
     (add-atom &kb 
@@ -1335,7 +1335,7 @@ Deterministic: ()
 >  106:0   |-<--(if (and (and (is-closed 2) (is-closed 3)) (< 2 3)) (: CPU (⍃ 2 3)) (empty)) </span>
 ; 
 ; EVAL TEST
-; took 0.149 secs. (148.68 milliseconds) 
+; took 0.151 secs. (150.61 milliseconds) 
 
   !(assertEqualToResult 
     (bc 
@@ -1600,7 +1600,7 @@ Deterministic: ()
 >   94:0   |-<--(if (and (and (is-closed 4) (is-closed 3)) (< 4 3)) (: CPU (⍃ 4 3)) (empty)) </span>
 ; 
 ; EVAL TEST
-; took 0.139 secs. (139.49 milliseconds) 
+; took 0.143 secs. (143.50 milliseconds) 
 
   !(assertEqualToResult 
     (bc 
@@ -2558,7 +2558,7 @@ Deterministic: ()
 >  323:1   |   |-<--(: ((rule (rule1 axiom)) CPU) (less 2 3)) </span>
 ; 
 ; EVAL TEST
-; took 1.161 secs. (1160.80 milliseconds) 
+; took 1.185 secs. (1185.05 milliseconds) 
 
   !(assertEqualToResult 
     (bc 
@@ -2582,7 +2582,7 @@ Deterministic: ()
 Deterministic: ()
 ()]
 <span class="ansi32"
->% 7,708,292 inferences, 1.566 CPU in 1.566 seconds (100% CPU, 4922051 Lips)
+>% 7,708,292 inferences, 1.599 CPU in 1.600 seconds (100% CPU, 4819343 Lips)
 </span>P;HTML|
 ;                         (= /home/runner/work/metta-wam/metta-wam/tests/baseline_compat/anti-regression/bc_comp.metta  0)
 <span class="ansi1"
@@ -2617,7 +2617,7 @@ Deterministic: ()
 P;HTML|
 ;           (set_option_value  compatio true)
 
-Script done on 2024-09-27 23:07:19+00:00 [COMMAND_EXIT_CODE="7"]
+Script done on 2024-09-27 23:29:17+00:00 [COMMAND_EXIT_CODE="7"]
 
 </pre>
 </body>
