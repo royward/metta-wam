@@ -30,7 +30,7 @@
 <body class="body_foreground body_background" style="font-size: normal;" >
 <pre class="ansi2html-content"
 >
-Script started on 2024-10-01 00:02:20+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
+Script started on 2024-10-04 21:31:41+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
 P;HTML|
 ;           (set_option_value  prolog false)
 
@@ -96,9 +96,9 @@ Script started on 2024-10-01 00:02:20+00:00 [TERM="xterm-256color" TTY="/dev/pts
 P;HTML|
 ;                                           (= 2  "Excessive result: (limit! 0 (sequential (1 2 3))))]")
 P;HTML|
-;                                           (= 2  "0.03user 0.01system 0:00.04elapsed 100%CPU (0avgtext+0avgdata 25128maxresident)k")
+;                                           (= 2  "0.03user 0.01system 0:00.04elapsed 100%CPU (0avgtext+0avgdata 24744maxresident)k")
 P;HTML|
-;                                           (= 2  "0inputs+0outputs (0major+2843minor)pagefaults 0swaps")
+;                                           (= 2  "0inputs+0outputs (0major+2839minor)pagefaults 0swaps")
 P;HTML|
 ;                                          (load_answer_file  /home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity/limit_tests.metta.answers /home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity/limit_tests.metta)
 
@@ -114,7 +114,7 @@ Script started on 2024-10-01 00:02:20+00:00 [TERM="xterm-256color" TTY="/dev/pts
 >;; HYPERON-METTALOG-SANITY.LIMIT-TESTS.01</h3>
 ; 
 ; EVAL TEST
-; took 0.000184 secs. (183.59 microseconds) 
+; took 0.000158 secs. (158.04 microseconds) 
 
   !(assertEqualToResult 
     (limit! 0 
@@ -138,7 +138,7 @@ Deterministic: ()
 >;; HYPERON-METTALOG-SANITY.LIMIT-TESTS.02</h3>
 ; 
 ; EVAL TEST
-; took 0.000235 secs. (235.26 microseconds) 
+; took 0.000286 secs. (286.00 microseconds) 
 
   !(assertEqualToResult 
     (limit! 2 
@@ -158,10 +158,10 @@ Deterministic: ()
 >  !(bind! &var 
     (new-state 0))
 
-</span>
+</span>[
 
 Deterministic: ()
-[()]
+()]
 <span class="ansi38-255165000"
 >  (= 
     (increment) 
@@ -178,7 +178,7 @@ Deterministic: ()
 >;; HYPERON-METTALOG-SANITY.LIMIT-TESTS.03</h3>
 ; 
 ; EVAL TEST
-; took 0.002 secs. (1.88 milliseconds) 
+; took 0.002 secs. (2.09 milliseconds) 
 
   !(assertEqualToResult 
     (limit! 2 
@@ -204,7 +204,7 @@ Deterministic: ()
 >;; HYPERON-METTALOG-SANITY.LIMIT-TESTS.04</h3>
 ; 
 ; EVAL TEST
-; took 0.000299 secs. (299.15 microseconds) 
+; took 0.000329 secs. (328.60 microseconds) 
 
   !(assertEqualToResult 
     (get-state! &var) 
@@ -222,9 +222,9 @@ Deterministic: ()
 <span class="ansi38-013099040"
 >  !(change-state! &var 0)
 
-</span>
+</span>[
 
-Deterministic: (State  0 $_3388)[
+Deterministic: (State  0 $_3388)
 
   (State  0 $_3388)]
 <span class="ansi38-013099040"
@@ -238,7 +238,7 @@ Deterministic: (State  0 $_3388)[
 >;; HYPERON-METTALOG-SANITY.LIMIT-TESTS.05</h3>
 ; 
 ; EVAL TEST
-; took 0.000290 secs. (290.40 microseconds) 
+; took 0.000336 secs. (335.72 microseconds) 
 
   !(assertEqualToResult 
     (get-state! &var) 
@@ -266,7 +266,7 @@ Deterministic: ()
 >;; HYPERON-METTALOG-SANITY.LIMIT-TESTS.06</h3>
 ; 
 ; EVAL TEST
-; took 0.005 secs. (4.91 milliseconds) 
+; took 0.005 secs. (5.33 milliseconds) 
 
   !(assertEqualToResult 
     (limit! 
@@ -293,7 +293,7 @@ Deterministic: ()
 >;; HYPERON-METTALOG-SANITY.LIMIT-TESTS.07</h3>
 ; 
 ; EVAL TEST
-; took 0.000320 secs. (320.21 microseconds) 
+; took 0.000322 secs. (322.31 microseconds) 
 
   !(assertEqualToResult 
     (get-state! &var) 
@@ -308,7 +308,7 @@ Deterministic: ()
 Deterministic: ()
 ()]
 <span class="ansi32"
->% 281,603 inferences, 0.076 CPU in 0.076 seconds (100% CPU, 3706144 Lips)
+>% 281,720 inferences, 0.079 CPU in 0.079 seconds (100% CPU, 3570558 Lips)
 </span>P;HTML|
 ;                         (= /home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity/limit_tests.metta  0)
 <span class="ansi1"
@@ -343,7 +343,7 @@ Deterministic: ()
 P;HTML|
 ;           (set_option_value  compatio true)
 
-Script done on 2024-10-01 00:02:25+00:00 [COMMAND_EXIT_CODE="7"]
+Script done on 2024-10-04 21:31:46+00:00 [COMMAND_EXIT_CODE="7"]
 
 </pre>
 </body>
