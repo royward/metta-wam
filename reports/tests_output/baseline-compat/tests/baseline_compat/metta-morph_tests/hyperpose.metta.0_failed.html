@@ -35,7 +35,7 @@
 <body class="body_foreground body_background" style="font-size: normal;" >
 <pre class="ansi2html-content"
 >
-Script started on 2024-10-04 21:35:07+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
+Script started on 2024-10-04 22:36:36+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
 P;HTML|
 ;           (set_option_value  prolog false)
 
@@ -135,7 +135,7 @@ Script started on 2024-10-04 21:35:07+00:00 [TERM="xterm-256color" TTY="/dev/pts
 >;; METTA-MORPH-TESTS.HYPERPOSE.01</h3>
 ; 
 ; EVAL TEST
-; took 0.000289 secs. (289.27 microseconds) 
+; took 0.000284 secs. (284.45 microseconds) 
 
   !(assertEqual 
     (hyperpose (1 2)) 
@@ -160,7 +160,7 @@ Deterministic: ()
 >;; METTA-MORPH-TESTS.HYPERPOSE.02</h3>
 ; 
 ; EVAL TEST
-; took 0.000610 secs. (609.57 microseconds) 
+; took 0.000593 secs. (592.62 microseconds) 
 
   !(assertEqual 
     (hyperpose (1 (If (== 1 2) 1))) 
@@ -185,7 +185,7 @@ Deterministic: ()
 >;; METTA-MORPH-TESTS.HYPERPOSE.03</h3>
 ; 
 ; EVAL TEST
-; took 0.000555 secs. (554.58 microseconds) 
+; took 0.000585 secs. (584.52 microseconds) 
 
   !(assertEqual 
     (hyperpose ((If (== 1 2) 1) 1)) 
@@ -210,7 +210,7 @@ Deterministic: ()
 >;; METTA-MORPH-TESTS.HYPERPOSE.04</h3>
 ; 
 ; EVAL TEST
-; took 0.000288 secs. (288.20 microseconds) 
+; took 0.000298 secs. (297.89 microseconds) 
 
   !(assertEqual 
     (hyperpose (1 2 3)) 
@@ -235,7 +235,7 @@ Deterministic: ()
 >;; METTA-MORPH-TESTS.HYPERPOSE.05</h3>
 ; 
 ; EVAL TEST
-; took 0.000556 secs. (556.22 microseconds) 
+; took 0.000587 secs. (587.19 microseconds) 
 
   !(assertEqual 
     (hyperpose ((If (== 1 2) 1) 2 3)) 
@@ -260,7 +260,7 @@ Deterministic: ()
 >;; METTA-MORPH-TESTS.HYPERPOSE.06</h3>
 ; 
 ; EVAL TEST
-; took 0.000572 secs. (571.95 microseconds) 
+; took 0.000596 secs. (596.46 microseconds) 
 
   !(assertEqual 
     (hyperpose (1 (If (== 1 2) 1) 3)) 
@@ -285,7 +285,7 @@ Deterministic: ()
 >;; METTA-MORPH-TESTS.HYPERPOSE.07</h3>
 ; 
 ; EVAL TEST
-; took 0.000569 secs. (569.11 microseconds) 
+; took 0.000479 secs. (478.53 microseconds) 
 
   !(assertEqual 
     (hyperpose (1 2 (If (== 1 2) 1))) 
@@ -310,7 +310,7 @@ Deterministic: ()
 >;; METTA-MORPH-TESTS.HYPERPOSE.08</h3>
 ; 
 ; EVAL TEST
-; took 0.000814 secs. (814.44 microseconds) 
+; took 0.000705 secs. (705.29 microseconds) 
 
   !(assertEqual 
     (hyperpose (1 (If (== 1 2) 1) (If (== 1 2) 1))) 
@@ -335,7 +335,7 @@ Deterministic: ()
 >;; METTA-MORPH-TESTS.HYPERPOSE.09</h3>
 ; 
 ; EVAL TEST
-; took 0.000331 secs. (331.30 microseconds) 
+; took 0.000251 secs. (250.98 microseconds) 
 
   !(assertEqual 
     (hyperpose (1 2 3 4)) 
@@ -360,7 +360,7 @@ Deterministic: ()
 >;; METTA-MORPH-TESTS.HYPERPOSE.10</h3>
 ; 
 ; EVAL TEST
-; took 0.001 secs. (1.19 milliseconds) 
+; took 0.001 secs. (1.08 milliseconds) 
 
   !(assertEqual 
     (hyperpose ((1 2) (3 4))) 
@@ -375,7 +375,7 @@ Deterministic: ()
 Deterministic: ()
 ()]
 <span class="ansi32"
->% 325,989 inferences, 0.081 CPU in 0.081 seconds (100% CPU, 4040285 Lips)
+>% 328,901 inferences, 0.081 CPU in 0.081 seconds (100% CPU, 4057023 Lips)
 </span>P;HTML|
 ;                         (= /home/runner/work/metta-wam/metta-wam/tests/baseline_compat/metta-morph_tests/hyperpose.metta  0)
 <span class="ansi1"
@@ -410,7 +410,7 @@ Deterministic: ()
 P;HTML|
 ;           (set_option_value  compatio true)
 
-Script done on 2024-10-04 21:35:12+00:00 [COMMAND_EXIT_CODE="7"]
+Script done on 2024-10-04 22:36:41+00:00 [COMMAND_EXIT_CODE="7"]
 
 </pre>
 </body>

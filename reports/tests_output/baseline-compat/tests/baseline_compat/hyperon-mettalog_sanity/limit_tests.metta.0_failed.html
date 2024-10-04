@@ -25,12 +25,30 @@
 .ansi38-013099040 { color: #0D6328; }
 .ansi38-013099040 { color: #0D6328; }
 .ansi38-013099040 { color: #0D6328; }
+.ansi38-255165000 { color: #FFA500; }
+.ansi38-255165000 { color: #FFA500; }
+.ansi38-013099040 { color: #0D6328; }
+.ansi38-013099040 { color: #0D6328; }
+.ansi38-013099040 { color: #0D6328; }
+.ansi38-013099040 { color: #0D6328; }
+.ansi38-013099040 { color: #0D6328; }
+.ansi38-013099040 { color: #0D6328; }
+.ansi38-013099040 { color: #0D6328; }
+.ansi38-013099040 { color: #0D6328; }
+.ansi38-255165000 { color: #FFA500; }
+.ansi38-255165000 { color: #FFA500; }
+.ansi38-013099040 { color: #0D6328; }
+.ansi38-013099040 { color: #0D6328; }
+.ansi38-013099040 { color: #0D6328; }
+.ansi38-013099040 { color: #0D6328; }
+.ansi38-013099040 { color: #0D6328; }
+.ansi38-013099040 { color: #0D6328; }
 </style>
 </head>
 <body class="body_foreground body_background" style="font-size: normal;" >
 <pre class="ansi2html-content"
 >
-Script started on 2024-10-04 21:31:41+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
+Script started on 2024-10-04 22:33:08+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
 P;HTML|
 ;           (set_option_value  prolog false)
 
@@ -96,7 +114,7 @@ Script started on 2024-10-04 21:31:41+00:00 [TERM="xterm-256color" TTY="/dev/pts
 P;HTML|
 ;                                           (= 2  "Excessive result: (limit! 0 (sequential (1 2 3))))]")
 P;HTML|
-;                                           (= 2  "0.03user 0.01system 0:00.04elapsed 100%CPU (0avgtext+0avgdata 24744maxresident)k")
+;                                           (= 2  "0.03user 0.00system 0:00.04elapsed 97%CPU (0avgtext+0avgdata 24872maxresident)k")
 P;HTML|
 ;                                           (= 2  "0inputs+0outputs (0major+2839minor)pagefaults 0swaps")
 P;HTML|
@@ -114,7 +132,7 @@ Script started on 2024-10-04 21:31:41+00:00 [TERM="xterm-256color" TTY="/dev/pts
 >;; HYPERON-METTALOG-SANITY.LIMIT-TESTS.01</h3>
 ; 
 ; EVAL TEST
-; took 0.000158 secs. (158.04 microseconds) 
+; took 0.000151 secs. (151.05 microseconds) 
 
   !(assertEqualToResult 
     (limit! 0 
@@ -138,7 +156,7 @@ Deterministic: ()
 >;; HYPERON-METTALOG-SANITY.LIMIT-TESTS.02</h3>
 ; 
 ; EVAL TEST
-; took 0.000286 secs. (286.00 microseconds) 
+; took 0.000248 secs. (247.71 microseconds) 
 
   !(assertEqualToResult 
     (limit! 2 
@@ -178,7 +196,7 @@ Deterministic: ()
 >;; HYPERON-METTALOG-SANITY.LIMIT-TESTS.03</h3>
 ; 
 ; EVAL TEST
-; took 0.002 secs. (2.09 milliseconds) 
+; took 0.002 secs. (1.88 milliseconds) 
 
   !(assertEqualToResult 
     (limit! 2 
@@ -204,7 +222,7 @@ Deterministic: ()
 >;; HYPERON-METTALOG-SANITY.LIMIT-TESTS.04</h3>
 ; 
 ; EVAL TEST
-; took 0.000329 secs. (328.60 microseconds) 
+; took 0.000315 secs. (315.36 microseconds) 
 
   !(assertEqualToResult 
     (get-state! &var) 
@@ -238,7 +256,7 @@ Deterministic: (State  0 $_3388)
 >;; HYPERON-METTALOG-SANITY.LIMIT-TESTS.05</h3>
 ; 
 ; EVAL TEST
-; took 0.000336 secs. (335.72 microseconds) 
+; took 0.000305 secs. (304.52 microseconds) 
 
   !(assertEqualToResult 
     (get-state! &var) 
@@ -266,7 +284,7 @@ Deterministic: ()
 >;; HYPERON-METTALOG-SANITY.LIMIT-TESTS.06</h3>
 ; 
 ; EVAL TEST
-; took 0.005 secs. (5.33 milliseconds) 
+; took 0.005 secs. (4.81 milliseconds) 
 
   !(assertEqualToResult 
     (limit! 
@@ -293,7 +311,7 @@ Deterministic: ()
 >;; HYPERON-METTALOG-SANITY.LIMIT-TESTS.07</h3>
 ; 
 ; EVAL TEST
-; took 0.000322 secs. (322.31 microseconds) 
+; took 0.000338 secs. (337.93 microseconds) 
 
   !(assertEqualToResult 
     (get-state! &var) 
@@ -307,15 +325,353 @@ Deterministic: ()
 </span>
 Deterministic: ()
 ()]
+;;;; limit preventing infinite recursion
+<span class="ansi38-255165000"
+>  (= 
+    (infinite) 1)
+</span><span class="ansi38-255165000"
+>  (= 
+    (infinite) 
+    (+ 
+      (infinite) 1))
+</span><span class="ansi38-013099040"
+>  !(assertEqualToResult 
+    (limit! 4 
+      (infinite)) 
+    (1 2 3 4))
+
+</span>[
+
+;<h3 id="HYPERON-METTALOG-SANITY.LIMIT-TESTS.08"
+>;; HYPERON-METTALOG-SANITY.LIMIT-TESTS.08</h3>
+; 
+; EVAL TEST
+; took 0.002 secs. (1.90 milliseconds) 
+
+  !(assertEqualToResult 
+    (limit! 4 
+      (infinite)) 
+    (1 2 3 4))
+
+<span class="ansi36"
+>  (loonit_success  
+    (equal_enough_for_test  
+      (1 2 3 4) 
+      (1 2 3 4)))
+</span>
+Deterministic: ()
+()]
+;;;; basic number-of with 1 result
+<span class="ansi38-013099040"
+>  !(assertEqualToResult 
+    (number-of (+ 1 2)) 
+    (1))
+
+</span>[
+
+;<h3 id="HYPERON-METTALOG-SANITY.LIMIT-TESTS.09"
+>;; HYPERON-METTALOG-SANITY.LIMIT-TESTS.09</h3>
+; 
+; EVAL TEST
+; took 0.000150 secs. (150.05 microseconds) 
+
+  !(assertEqualToResult 
+    (number-of (+ 1 2)) 
+    (1))
+
+<span class="ansi36"
+>  (loonit_success  
+    (equal_enough_for_test  
+      (1) 
+      (1)))
+</span>
+Deterministic: ()
+()]
+;;;; basic number-of with superpose
+<span class="ansi38-013099040"
+>  !(assertEqualToResult 
+    (number-of (superpose (1 2 3))) 
+    (3))
+
+</span>[
+
+;<h3 id="HYPERON-METTALOG-SANITY.LIMIT-TESTS.10"
+>;; HYPERON-METTALOG-SANITY.LIMIT-TESTS.10</h3>
+; 
+; EVAL TEST
+; took 0.000240 secs. (239.97 microseconds) 
+
+  !(assertEqualToResult 
+    (number-of (superpose (1 2 3))) 
+    (3))
+
+<span class="ansi36"
+>  (loonit_success  
+    (equal_enough_for_test  
+      (3) 
+      (3)))
+</span>
+Deterministic: ()
+()]
+;;;; number-of with limit
+<span class="ansi38-013099040"
+>  !(change-state! &var 0)
+
+</span>[
+
+Deterministic: (State  0 $_3382)
+
+  (State  0 $_3382)]
+<span class="ansi38-013099040"
+>  !(assertEqualToResult 
+    (number-of (limit! 2 (sequential ((increment) (increment) (increment))))) 
+    (2))
+
+</span>[
+
+;<h3 id="HYPERON-METTALOG-SANITY.LIMIT-TESTS.11"
+>;; HYPERON-METTALOG-SANITY.LIMIT-TESTS.11</h3>
+; 
+; EVAL TEST
+; took 0.002 secs. (2.02 milliseconds) 
+
+  !(assertEqualToResult 
+    (number-of (limit! 2 (sequential ((increment) (increment) (increment))))) 
+    (2))
+
+<span class="ansi36"
+>  (loonit_success  
+    (equal_enough_for_test  
+      (2) 
+      (2)))
+</span>
+Deterministic: ()
+()]
+<span class="ansi38-013099040"
+>  !(assertEqualToResult 
+    (get-state! &var) 
+    (2))
+
+</span>[
+
+;<h3 id="HYPERON-METTALOG-SANITY.LIMIT-TESTS.12"
+>;; HYPERON-METTALOG-SANITY.LIMIT-TESTS.12</h3>
+; 
+; EVAL TEST
+; took 0.000370 secs. (369.87 microseconds) 
+
+  !(assertEqualToResult 
+    (get-state! &var) 
+    (2))
+
+<span class="ansi36"
+>  (loonit_success  
+    (equal_enough_for_test  
+      (2) 
+      (2)))
+</span>
+Deterministic: ()
+()]
+<span class="ansi38-013099040"
+>  !(change-state! &var 0)
+
+</span>[
+
+Deterministic: (State  0 $_3382)
+
+  (State  0 $_3382)]
+<span class="ansi38-013099040"
+>  !(assertEqualToResult 
+    (number-of (limit! 4 (infinite))) 
+    (4))
+
+</span>[
+
+;<h3 id="HYPERON-METTALOG-SANITY.LIMIT-TESTS.13"
+>;; HYPERON-METTALOG-SANITY.LIMIT-TESTS.13</h3>
+; 
+; EVAL TEST
+; took 0.002 secs. (2.06 milliseconds) 
+
+  !(assertEqualToResult 
+    (number-of (limit! 4 (infinite))) 
+    (4))
+
+<span class="ansi36"
+>  (loonit_success  
+    (equal_enough_for_test  
+      (4) 
+      (4)))
+</span>
+Deterministic: ()
+()]
+;;;; number-of with variable
+<span class="ansi38-255165000"
+>  (= 
+    (test A) 
+    (input A))
+</span><span class="ansi38-255165000"
+>  (= 
+    (test B) 
+    (input B))
+</span><span class="ansi38-013099040"
+>  !(assertEqualToResult 
+    (number-of (test $x)) 
+    (2))
+
+</span>[
+
+;<h3 id="HYPERON-METTALOG-SANITY.LIMIT-TESTS.14"
+>;; HYPERON-METTALOG-SANITY.LIMIT-TESTS.14</h3>
+; 
+; EVAL TEST
+; took 0.000722 secs. (722.50 microseconds) 
+
+  !(assertEqualToResult 
+    (number-of (test $x)) 
+    (2))
+
+<span class="ansi36"
+>  (loonit_success  
+    (equal_enough_for_test  
+      (2) 
+      (2)))
+</span>
+Deterministic: ()
+()]
+;;;; offset! ignores first N results
+<span class="ansi38-013099040"
+>  !(assertEqualToResult 
+    (offset! 2 
+      (sequential (1 2 3 4))) 
+    (3 4))
+
+</span>[
+
+;<h3 id="HYPERON-METTALOG-SANITY.LIMIT-TESTS.15"
+>;; HYPERON-METTALOG-SANITY.LIMIT-TESTS.15</h3>
+; 
+; EVAL TEST
+; took 0.000300 secs. (300.09 microseconds) 
+
+  !(assertEqualToResult 
+    (offset! 2 
+      (sequential (1 2 3 4))) 
+    (3 4))
+
+<span class="ansi36"
+>  (loonit_success  
+    (equal_enough_for_test  
+      (3 4) 
+      (3 4)))
+</span>
+Deterministic: ()
+()]
+;;;; offset! first N results are still generated, just discarded
+<span class="ansi38-013099040"
+>  !(change-state! &var 0)
+
+</span>[
+
+Deterministic: (State  0 $_3382)
+
+  (State  0 $_3382)]
+<span class="ansi38-013099040"
+>  !(assertEqualToResult 
+    (offset! 2 
+      (sequential ((increment) (increment) (increment) (increment)))) 
+    (3 4))
+
+</span>[
+
+;<h3 id="HYPERON-METTALOG-SANITY.LIMIT-TESTS.16"
+>;; HYPERON-METTALOG-SANITY.LIMIT-TESTS.16</h3>
+; 
+; EVAL TEST
+; took 0.003 secs. (3.34 milliseconds) 
+
+  !(assertEqualToResult 
+    (offset! 2 
+      (sequential ((increment) (increment) (increment) (increment)))) 
+    (3 4))
+
+<span class="ansi36"
+>  (loonit_success  
+    (equal_enough_for_test  
+      (3 4) 
+      (3 4)))
+</span>
+Deterministic: ()
+()]
+;;;; offset! and limit!
+<span class="ansi38-013099040"
+>  !(assertEqualToResult 
+    (offset! 2 
+      (limit! 4 
+        (infinite))) 
+    (3 4))
+
+</span>[
+
+;<h3 id="HYPERON-METTALOG-SANITY.LIMIT-TESTS.17"
+>;; HYPERON-METTALOG-SANITY.LIMIT-TESTS.17</h3>
+; 
+; EVAL TEST
+; took 0.002 secs. (1.97 milliseconds) 
+
+  !(assertEqualToResult 
+    (offset! 2 
+      (limit! 4 
+        (infinite))) 
+    (3 4))
+
+<span class="ansi36"
+>  (loonit_success  
+    (equal_enough_for_test  
+      (3 4) 
+      (3 4)))
+</span>
+Deterministic: ()
+()]
+;;;; limit! and offset!
+<span class="ansi38-013099040"
+>  !(assertEqualToResult 
+    (limit! 4 
+      (offset! 2 
+        (infinite))) 
+    (3 4 5 6))
+
+</span>[
+
+;<h3 id="HYPERON-METTALOG-SANITY.LIMIT-TESTS.18"
+>;; HYPERON-METTALOG-SANITY.LIMIT-TESTS.18</h3>
+; 
+; EVAL TEST
+; took 0.003 secs. (3.22 milliseconds) 
+
+  !(assertEqualToResult 
+    (limit! 4 
+      (offset! 2 
+        (infinite))) 
+    (3 4 5 6))
+
+<span class="ansi36"
+>  (loonit_success  
+    (equal_enough_for_test  
+      (3 4 5 6) 
+      (3 4 5 6)))
+</span>
+Deterministic: ()
+()]
 <span class="ansi32"
->% 281,720 inferences, 0.079 CPU in 0.079 seconds (100% CPU, 3570558 Lips)
+>% 657,378 inferences, 0.144 CPU in 0.144 seconds (100% CPU, 4569385 Lips)
 </span>P;HTML|
 ;                         (= /home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity/limit_tests.metta  0)
 <span class="ansi1"
 >LoonIt Report
 </span>------------
 <span class="ansi32"
->Successes: 7
+>Successes: 18
 </span><span class="ansi32"
 >Failures: 0
 </span><br/> <a href="#" onclick="window.history.back(); return false;"
@@ -343,7 +699,7 @@ Deterministic: ()
 P;HTML|
 ;           (set_option_value  compatio true)
 
-Script done on 2024-10-04 21:31:46+00:00 [COMMAND_EXIT_CODE="7"]
+Script done on 2024-10-04 22:33:13+00:00 [COMMAND_EXIT_CODE="7"]
 
 </pre>
 </body>
