@@ -13,6 +13,7 @@
 .inv_foreground { color: #000000; }
 .inv_background { background-color: #AAAAAA; }
 .ansi1 { font-weight: bold; }
+.ansi31 { color: #aa0000; }
 .ansi32 { color: #00aa00; }
 .ansi36 { color: #00aaaa; }
 .ansi38-013099040 { color: #0D6328; }
@@ -48,7 +49,7 @@
 <body class="body_foreground body_background" style="font-size: normal;" >
 <pre class="ansi2html-content"
 >
-Script started on 2024-10-11 23:21:04+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
+Script started on 2024-10-15 01:46:21+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
 P;HTML|
 ;           (set_option_value  compat false)
 
@@ -400,7 +401,7 @@ Script started on 2024-10-11 23:21:04+00:00 [TERM="xterm-256color" TTY="/dev/pts
 >;; QUICK.D1-GADT.01</h3>
 ; 
 ; EVAL TEST
-; took 0.000240 secs. (239.61 microseconds) 
+; took 0.000230 secs. (229.88 microseconds) 
 
   !(assertEqual 
     (get-type 5) Number)
@@ -423,7 +424,7 @@ Deterministic: ()
 >;; QUICK.D1-GADT.02</h3>
 ; 
 ; EVAL TEST
-; took 0.000236 secs. (236.08 microseconds) 
+; took 0.000226 secs. (226.35 microseconds) 
 
   !(assertEqual 
     (get-type (+ 5 7)) Number)
@@ -448,7 +449,7 @@ Deterministic: ()
 >;; QUICK.D1-GADT.03</h3>
 ; 
 ; EVAL TEST
-; took 0.000194 secs. (194.02 microseconds) 
+; took 0.000206 secs. (205.66 microseconds) 
 
   !(assertEqual 
     (get-type +) 
@@ -474,7 +475,7 @@ Deterministic: ()
 >;; QUICK.D1-GADT.04</h3>
 ; 
 ; EVAL TEST
-; took 0.000322 secs. (322.37 microseconds) 
+; took 0.000295 secs. (295.01 microseconds) 
 
   !(assertEqualToResult 
     (get-type (+ 5 "4")) ())
@@ -496,7 +497,7 @@ Deterministic: ()
 >;; QUICK.D1-GADT.05</h3>
 ; 
 ; EVAL TEST
-; took 0.000213 secs. (213.20 microseconds) 
+; took 0.000216 secs. (216.06 microseconds) 
 
   !(assertEqualToResult 
     (get-type (+ -)) ())
@@ -521,7 +522,7 @@ Deterministic: ()
 >;; QUICK.D1-GADT.06</h3>
 ; 
 ; EVAL TEST
-; took 0.000153 secs. (153.35 microseconds) 
+; took 0.000183 secs. (182.97 microseconds) 
 
   !(assertEqual 
     (get-type Either) Type)
@@ -554,7 +555,7 @@ Deterministic: ()
 >;; QUICK.D1-GADT.07</h3>
 ; 
 ; EVAL TEST
-; took 0.000213 secs. (213.25 microseconds) 
+; took 0.000231 secs. (230.98 microseconds) 
 
   !(assertEqual 
     (get-type (Left 5)) Either)
@@ -586,7 +587,7 @@ Deterministic: ()
 >;; QUICK.D1-GADT.08</h3>
 ; 
 ; EVAL TEST
-; took 0.000303 secs. (302.92 microseconds) 
+; took 0.000300 secs. (300.07 microseconds) 
 
   !(assertEqual 
     (get-type (isLeft (Right 5))) Bool)
@@ -610,7 +611,7 @@ Deterministic: ()
 >;; QUICK.D1-GADT.09</h3>
 ; 
 ; EVAL TEST
-; took 0.000217 secs. (216.73 microseconds) 
+; took 0.000228 secs. (227.62 microseconds) 
 
   !(assertEqualToResult 
     (get-type (isLeft 5)) ())
@@ -648,7 +649,7 @@ Deterministic: ()
 >;; QUICK.D1-GADT.10</h3>
 ; 
 ; EVAL TEST
-; took 0.000602 secs. (602.27 microseconds) 
+; took 0.000592 secs. (591.94 microseconds) 
 
   !(assertEqual 
     (get-type (LeftP 5)) 
@@ -681,7 +682,7 @@ Deterministic: ()
 >;; QUICK.D1-GADT.11</h3>
 ; 
 ; EVAL TEST
-; took 0.000968 secs. (967.99 microseconds) 
+; took 0.000978 secs. (977.51 microseconds) 
 
   !(assertEqual 
     (get-type (pair (LeftP 5) "String")) 
@@ -724,7 +725,7 @@ Deterministic: ()
 >;; QUICK.D1-GADT.12</h3>
 ; 
 ; EVAL TEST
-; took 0.000753 secs. (753.18 microseconds) 
+; took 0.000781 secs. (780.85 microseconds) 
 
   !(assertEqual 
     (get-type (Cons 5 (Cons 6 Nil))) 
@@ -748,7 +749,7 @@ Deterministic: ()
 >;; QUICK.D1-GADT.13</h3>
 ; 
 ; EVAL TEST
-; took 0.000332 secs. (332.18 microseconds) 
+; took 0.000364 secs. (363.82 microseconds) 
 
   !(assertEqualToResult 
     (get-type (Cons 5 (Cons "6" Nil))) ())
@@ -776,7 +777,7 @@ Deterministic: ()
 >;; QUICK.D1-GADT.14</h3>
 ; 
 ; EVAL TEST
-; took 0.000642 secs. (642.05 microseconds) 
+; took 0.000655 secs. (654.71 microseconds) 
 
   !(assertEqual 
     (let 
@@ -792,7 +793,7 @@ Deterministic: ()
 Deterministic: ()
 ()]
 <span class="ansi32"
->% 491,715 inferences, 0.103 CPU in 0.103 seconds (100% CPU, 4772778 Lips)
+>% 491,715 inferences, 0.105 CPU in 0.105 seconds (100% CPU, 4700981 Lips)
 </span>P;HTML|
 ;                         (= /home/runner/work/metta-wam/metta-wam/tests/baseline_compat/quick/d1_gadt.metta  0)
 <span class="ansi1"
@@ -926,8 +927,13 @@ Deterministic: ()
 ;           (set_option_value  test true)
 P;HTML|
 ;           (maybe_halt  7)
-
-Script done on 2024-10-11 23:21:10+00:00 [COMMAND_EXIT_CODE="7"]
+<span class="ansi31"
+>  (in  
+    (maybe_halt  7) 
+    (unwind  
+      (halt  7)))
+</span>
+Script done on 2024-10-15 01:46:26+00:00 [COMMAND_EXIT_CODE="7"]
 
 </pre>
 </body>

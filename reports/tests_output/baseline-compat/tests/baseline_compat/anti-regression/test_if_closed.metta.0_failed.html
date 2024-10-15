@@ -13,6 +13,7 @@
 .inv_foreground { color: #000000; }
 .inv_background { background-color: #AAAAAA; }
 .ansi1 { font-weight: bold; }
+.ansi31 { color: #aa0000; }
 .ansi32 { color: #00aa00; }
 .ansi36 { color: #00aaaa; }
 .ansi38-255165000 { color: #FFA500; }
@@ -62,7 +63,7 @@
 <body class="body_foreground body_background" style="font-size: normal;" >
 <pre class="ansi2html-content"
 >
-Script started on 2024-10-11 23:07:54+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
+Script started on 2024-10-15 01:33:13+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
 P;HTML|
 ;           (set_option_value  compat false)
 
@@ -453,7 +454,7 @@ Script started on 2024-10-11 23:07:54+00:00 [TERM="xterm-256color" TTY="/dev/pts
 >;; ANTI-REGRESSION.TEST-IF-CLOSED.01</h3>
 ; 
 ; EVAL TEST
-; took 0.001 secs. (1.25 milliseconds) 
+; took 0.001 secs. (1.29 milliseconds) 
 
   !(assertEqualToResult 
     (is-variable $x) 
@@ -484,7 +485,7 @@ Deterministic: ()
 >;; ANTI-REGRESSION.TEST-IF-CLOSED.02</h3>
 ; 
 ; EVAL TEST
-; took 0.000949 secs. (948.86 microseconds) 
+; took 0.000985 secs. (984.96 microseconds) 
 
   !(assertEqualToResult 
     (is-variable 1) 
@@ -515,7 +516,7 @@ Deterministic: ()
 >;; ANTI-REGRESSION.TEST-IF-CLOSED.03</h3>
 ; 
 ; EVAL TEST
-; took 0.000894 secs. (894.35 microseconds) 
+; took 0.000998 secs. (997.78 microseconds) 
 
   !(assertEqualToResult 
     (is-expression $x) 
@@ -546,7 +547,7 @@ Deterministic: ()
 >;; ANTI-REGRESSION.TEST-IF-CLOSED.04</h3>
 ; 
 ; EVAL TEST
-; took 0.001 secs. (1.31 milliseconds) 
+; took 0.001 secs. (1.39 milliseconds) 
 
   !(assertEqualToResult 
     (is-expression (⍃ 4 3)) 
@@ -577,7 +578,7 @@ Deterministic: ()
 >;; ANTI-REGRESSION.TEST-IF-CLOSED.05</h3>
 ; 
 ; EVAL TEST
-; took 0.001 secs. (1.22 milliseconds) 
+; took 0.001 secs. (1.30 milliseconds) 
 
   !(assertEqualToResult 
     (is-expression (⍃ 4 $x)) 
@@ -608,7 +609,7 @@ Deterministic: ()
 >;; ANTI-REGRESSION.TEST-IF-CLOSED.06</h3>
 ; 
 ; EVAL TEST
-; took 0.000927 secs. (927.46 microseconds) 
+; took 0.000965 secs. (965.33 microseconds) 
 
   !(assertEqualToResult 
     (is-expression 4) 
@@ -639,7 +640,7 @@ Deterministic: ()
 >;; ANTI-REGRESSION.TEST-IF-CLOSED.07</h3>
 ; 
 ; EVAL TEST
-; took 0.001 secs. (1.17 milliseconds) 
+; took 0.001 secs. (1.30 milliseconds) 
 
   !(assertEqualToResult 
     (is-closed $x) 
@@ -670,7 +671,7 @@ Deterministic: ()
 >;; ANTI-REGRESSION.TEST-IF-CLOSED.08</h3>
 ; 
 ; EVAL TEST
-; took 0.002 secs. (2.17 milliseconds) 
+; took 0.002 secs. (2.25 milliseconds) 
 
   !(assertEqualToResult 
     (is-closed 4) 
@@ -701,7 +702,7 @@ Deterministic: ()
 >;; ANTI-REGRESSION.TEST-IF-CLOSED.09</h3>
 ; 
 ; EVAL TEST
-; took 0.009 secs. (9.28 milliseconds) 
+; took 0.009 secs. (9.19 milliseconds) 
 
   !(assertEqualToResult 
     (is-closed (⍃ $y 3)) 
@@ -732,7 +733,7 @@ Deterministic: ()
 >;; ANTI-REGRESSION.TEST-IF-CLOSED.10</h3>
 ; 
 ; EVAL TEST
-; took 0.015 secs. (14.75 milliseconds) 
+; took 0.015 secs. (14.51 milliseconds) 
 
   !(assertEqualToResult 
     (is-closed (⍃ 4 $x)) 
@@ -763,7 +764,7 @@ Deterministic: ()
 >;; ANTI-REGRESSION.TEST-IF-CLOSED.11</h3>
 ; 
 ; EVAL TEST
-; took 0.017 secs. (16.66 milliseconds) 
+; took 0.017 secs. (16.72 milliseconds) 
 
   !(assertEqualToResult 
     (is-closed (⍃ 4 3)) 
@@ -779,7 +780,7 @@ Deterministic: ()
 ()]
 ;;; rust gets stuck / mettalog true
 <span class="ansi32"
->% 692,844 inferences, 0.131 CPU in 0.131 seconds (100% CPU, 5306713 Lips)
+>% 692,844 inferences, 0.132 CPU in 0.132 seconds (100% CPU, 5266979 Lips)
 </span>P;HTML|
 ;                         (= /home/runner/work/metta-wam/metta-wam/tests/baseline_compat/anti-regression/test_if_closed.metta  0)
 <span class="ansi1"
@@ -913,8 +914,13 @@ Deterministic: ()
 ;           (set_option_value  test true)
 P;HTML|
 ;           (maybe_halt  7)
-
-Script done on 2024-10-11 23:07:59+00:00 [COMMAND_EXIT_CODE="7"]
+<span class="ansi31"
+>  (in  
+    (maybe_halt  7) 
+    (unwind  
+      (halt  7)))
+</span>
+Script done on 2024-10-15 01:33:18+00:00 [COMMAND_EXIT_CODE="7"]
 
 </pre>
 </body>

@@ -85,7 +85,7 @@
 <body class="body_foreground body_background" style="font-size: normal;" >
 <pre class="ansi2html-content"
 >
-Script started on 2024-10-11 23:05:11+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
+Script started on 2024-10-15 01:30:29+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
 P;HTML|
 ;           (set_option_value  compat false)
 
@@ -2857,7 +2857,7 @@ Deterministic: ()
 >;; ANTI-REGRESSION.DEBUG-METTALOGTESTCURRIED.01</h3>
 ; 
 ; EVAL TEST
-; took 13.64 seconds.
+; took 13.77 seconds.
 
   !(let $expected 
     (expected) 
@@ -3872,7 +3872,7 @@ Deterministic: ()
 Deterministic: a
 a]
 <span class="ansi32"
->% 122,745,731 inferences, 23.061 CPU in 23.063 seconds (100% CPU, 5322639 Lips)
+>% 122,745,731 inferences, 23.353 CPU in 23.354 seconds (100% CPU, 5256207 Lips)
 </span>P;HTML|
 ;                         (= /home/runner/work/metta-wam/metta-wam/tests/baseline_compat/anti-regression/debug_mettalogTestCurried.metta  0)
 <span class="ansi1"
@@ -4006,8 +4006,13 @@ a]
 ;           (set_option_value  test true)
 P;HTML|
 ;           (maybe_halt  7)
-
-Script done on 2024-10-11 23:05:39+00:00 [COMMAND_EXIT_CODE="7"]
+<span class="ansi31"
+>  (in  
+    (maybe_halt  7) 
+    (unwind  
+      (halt  7)))
+</span>
+Script done on 2024-10-15 01:30:58+00:00 [COMMAND_EXIT_CODE="7"]
 
 </pre>
 </body>

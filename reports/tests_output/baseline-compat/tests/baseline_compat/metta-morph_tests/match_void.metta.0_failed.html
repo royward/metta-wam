@@ -13,6 +13,7 @@
 .inv_foreground { color: #000000; }
 .inv_background { background-color: #AAAAAA; }
 .ansi1 { font-weight: bold; }
+.ansi31 { color: #aa0000; }
 .ansi32 { color: #00aa00; }
 .ansi36 { color: #00aaaa; }
 .ansi38-013099040 { color: #0D6328; }
@@ -47,7 +48,7 @@
 <body class="body_foreground body_background" style="font-size: normal;" >
 <pre class="ansi2html-content"
 >
-Script started on 2024-10-11 23:18:53+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
+Script started on 2024-10-15 01:44:09+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
 P;HTML|
 ;           (set_option_value  compat false)
 
@@ -413,7 +414,7 @@ Deterministic: ()
 >;; METTA-MORPH-TESTS.MATCH-VOID.01</h3>
 ; 
 ; EVAL TEST
-; took 0.000168 secs. (167.73 microseconds) 
+; took 0.000176 secs. (175.62 microseconds) 
 
   !(assertEqualToResult 
     (match &belief_events $1 $1) ())
@@ -442,7 +443,7 @@ Deterministic: ()
 > belief1
 </span>; 
 ; EVAL TEST
-; took 0.001 secs. (1.14 milliseconds) 
+; took 0.001 secs. (1.13 milliseconds) 
 
   !(assertEqualToResult 
     (add-atom &belief_events belief1) 
@@ -472,7 +473,7 @@ Deterministic: ()
 >;; METTA-MORPH-TESTS.MATCH-VOID.03</h3>
 ; 
 ; EVAL TEST
-; took 0.000175 secs. (175.08 microseconds) 
+; took 0.000183 secs. (182.77 microseconds) 
 
   !(assertEqualToResult 
     (match &belief_events $1 $1) 
@@ -503,7 +504,7 @@ Deterministic: ()
 >;; METTA-MORPH-TESTS.MATCH-VOID.04</h3>
 ; 
 ; EVAL TEST
-; took 0.000130 secs. (129.80 microseconds) 
+; took 0.000144 secs. (143.52 microseconds) 
 
   !(assertEqualToResult 
     (case belief1 
@@ -535,7 +536,7 @@ Deterministic: ()
 >;; METTA-MORPH-TESTS.MATCH-VOID.05</h3>
 ; 
 ; EVAL TEST
-; took 0.000292 secs. (291.80 microseconds) 
+; took 0.000259 secs. (258.89 microseconds) 
 
   !(assertEqualToResult 
     (case 
@@ -562,7 +563,7 @@ Deterministic: ()
 >;; METTA-MORPH-TESTS.MATCH-VOID.06</h3>
 ; 
 ; EVAL TEST
-; took 0.000319 secs. (318.54 microseconds) 
+; took 0.000295 secs. (295.29 microseconds) 
 
   !(assertEqualToResult 
     (case 
@@ -591,7 +592,7 @@ Deterministic: ()
 >;; METTA-MORPH-TESTS.MATCH-VOID.07</h3>
 ; 
 ; EVAL TEST
-; took 0.000349 secs. (348.97 microseconds) 
+; took 0.000327 secs. (326.55 microseconds) 
 
   !(assertEqualToResult 
     (case 
@@ -620,7 +621,7 @@ Deterministic: ()
 >;; METTA-MORPH-TESTS.MATCH-VOID.08</h3>
 ; 
 ; EVAL TEST
-; took 0.000277 secs. (276.96 microseconds) 
+; took 0.000267 secs. (266.59 microseconds) 
 
   !(assertEqualToResult 
     (case 
@@ -654,7 +655,7 @@ Deterministic: ()
 > goal1
 </span>; 
 ; EVAL TEST
-; took 0.001 secs. (1.15 milliseconds) 
+; took 0.001 secs. (1.11 milliseconds) 
 
   !(assertEqualToResult 
     (add-atom &goal_events goal1) 
@@ -681,7 +682,7 @@ Deterministic: ()
 >;; METTA-MORPH-TESTS.MATCH-VOID.10</h3>
 ; 
 ; EVAL TEST
-; took 0.000311 secs. (310.57 microseconds) 
+; took 0.000350 secs. (349.53 microseconds) 
 
   !(assertEqualToResult 
     (case 
@@ -709,7 +710,7 @@ Deterministic: ()
 >;; METTA-MORPH-TESTS.MATCH-VOID.11</h3>
 ; 
 ; EVAL TEST
-; took 0.000265 secs. (265.03 microseconds) 
+; took 0.000279 secs. (279.42 microseconds) 
 
   !(assertEqualToResult 
     (case 
@@ -724,7 +725,7 @@ Deterministic: ()
 Deterministic: ()
 ()]
 <span class="ansi32"
->% 365,229 inferences, 0.074 CPU in 0.074 seconds (100% CPU, 4964433 Lips)
+>% 365,229 inferences, 0.074 CPU in 0.074 seconds (100% CPU, 4921674 Lips)
 </span>P;HTML|
 ;                         (= /home/runner/work/metta-wam/metta-wam/tests/baseline_compat/metta-morph_tests/match_void.metta  0)
 <span class="ansi1"
@@ -858,8 +859,13 @@ Deterministic: ()
 ;           (set_option_value  test true)
 P;HTML|
 ;           (maybe_halt  7)
-
-Script done on 2024-10-11 23:18:58+00:00 [COMMAND_EXIT_CODE="7"]
+<span class="ansi31"
+>  (in  
+    (maybe_halt  7) 
+    (unwind  
+      (halt  7)))
+</span>
+Script done on 2024-10-15 01:44:14+00:00 [COMMAND_EXIT_CODE="7"]
 
 </pre>
 </body>
