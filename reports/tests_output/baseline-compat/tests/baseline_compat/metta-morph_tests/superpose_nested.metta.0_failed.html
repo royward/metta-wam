@@ -33,7 +33,7 @@
 <body class="body_foreground body_background" style="font-size: normal;" >
 <pre class="ansi2html-content"
 >
-Script started on 2024-10-15 14:57:54+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
+Script started on 2024-10-15 15:03:44+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
 P;HTML|
 ;           (set_option_value  compat false)
 
@@ -365,7 +365,7 @@ Script started on 2024-10-15 14:57:54+00:00 [TERM="xterm-256color" TTY="/dev/pts
 >;; METTA-MORPH-TESTS.SUPERPOSE-NESTED.01</h3>
 ; 
 ; EVAL TEST
-; took 0.000173 secs. (173.07 microseconds) 
+; took 0.000184 secs. (184.42 microseconds) 
 
   !(assertEqualToResult 
     (superpose (a b c)) 
@@ -395,7 +395,7 @@ Deterministic: ()
 >;; METTA-MORPH-TESTS.SUPERPOSE-NESTED.02</h3>
 ; 
 ; EVAL TEST
-; took 0.000287 secs. (286.81 microseconds) 
+; took 0.000221 secs. (220.86 microseconds) 
 
   !(assertEqualToResult 
     (superpose ((superpose (a b c)))) 
@@ -425,7 +425,7 @@ Deterministic: ()
 >;; METTA-MORPH-TESTS.SUPERPOSE-NESTED.03</h3>
 ; 
 ; EVAL TEST
-; took 0.000430 secs. (430.49 microseconds) 
+; took 0.000451 secs. (451.01 microseconds) 
 
   !(assertEqualToResult 
     (superpose ((superpose (a b c)) (superpose (x y z)))) 
@@ -455,7 +455,7 @@ Deterministic: ()
 >;; METTA-MORPH-TESTS.SUPERPOSE-NESTED.04</h3>
 ; 
 ; EVAL TEST
-; took 0.000317 secs. (316.96 microseconds) 
+; took 0.000321 secs. (320.59 microseconds) 
 
   !(assertEqualToResult 
     (superpose ((superpose (a b c)) x y z)) 
@@ -470,7 +470,7 @@ Deterministic: ()
 Deterministic: ()
 ()]
 <span class="ansi32"
->% 126,861 inferences, 0.028 CPU in 0.028 seconds (100% CPU, 4597527 Lips)
+>% 126,861 inferences, 0.028 CPU in 0.028 seconds (100% CPU, 4558552 Lips)
 </span>P;HTML|
 ;                         (= /home/runner/work/metta-wam/metta-wam/tests/baseline_compat/metta-morph_tests/superpose_nested.metta  0)
 <span class="ansi1"
@@ -610,7 +610,7 @@ Deterministic: ()
     (unwind  
       (halt  7)))
 </span>
-Script done on 2024-10-15 14:58:00+00:00 [COMMAND_EXIT_CODE="7"]
+Script done on 2024-10-15 15:03:49+00:00 [COMMAND_EXIT_CODE="7"]
 
 </pre>
 </body>
