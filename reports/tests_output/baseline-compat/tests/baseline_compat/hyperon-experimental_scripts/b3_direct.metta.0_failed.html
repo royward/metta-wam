@@ -70,7 +70,7 @@
 <body class="body_foreground body_background" style="font-size: normal;" >
 <pre class="ansi2html-content"
 >
-Script started on 2024-10-15 01:34:21+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
+Script started on 2024-10-15 14:47:32+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
 P;HTML|
 ;           (set_option_value  compat false)
 
@@ -424,7 +424,7 @@ Script started on 2024-10-15 01:34:21+00:00 [TERM="xterm-256color" TTY="/dev/pts
 >;; HYPERON-EXPERIMENTAL-SCRIPTS.B3-DIRECT.01</h3>
 ; 
 ; EVAL TEST
-; took 0.001 secs. (1.15 milliseconds) 
+; took 0.001 secs. (1.10 milliseconds) 
 
   !(assertEqual 
     (green Fritz) T)
@@ -464,38 +464,38 @@ true]
 
 </span>[
 ;<span class="ansi38-047047047"
->    0:0   |--->(assertEqual (ift (green $_121610) $_121610) Fritz) </span>
+>    0:0   |--->(assertEqual (ift (green $_121626) $_121626) Fritz) </span>
 
 ;<h3 id="HYPERON-EXPERIMENTAL-SCRIPTS.B3-DIRECT.02"
 >;; HYPERON-EXPERIMENTAL-SCRIPTS.B3-DIRECT.02</h3>
 ;<span class="ansi38-047047047"
->    0:1   |   |--->(ift (green $_121610) $_121610) </span>
+>    0:1   |   |--->(ift (green $_121626) $_121626) </span>
 ;<span class="ansi38-047047047"
->    1:2   |   |   |--->(green $_121610) </span>
+>    1:2   |   |   |--->(green $_121626) </span>
 ;<span class="ansi38-047047047"
->    3:2   |   |   |-(=(green $_138142) </span>
+>    3:2   |   |   |-(=(green $_138158) </span>
 ;<span class="ansi38-047047047"
->          |   |     (frog $_138142)) </span>
+>          |   |     (frog $_138158)) </span>
 <span class="ansi38-119055000"
->                                                                                              ;;defs_used(([green,_143814]->[frog,_143814]))
+>                                                                                              ;;defs_used(([green,_143830]->[frog,_143830]))
 
 </span>;<span class="ansi38-047047047"
->          |   |     <--(frog $_121610) </span>
+>          |   |     <--(frog $_121626) </span>
 ;<span class="ansi38-047047047"
->    4:3   |   |   |   |--->(frog $_121610) </span>
+>    4:3   |   |   |   |--->(frog $_121626) </span>
 ;<span class="ansi38-047047047"
->    6:3   |   |   |   |-(=(frog $_154006) </span>
+>    6:3   |   |   |   |-(=(frog $_154022) </span>
 ;<span class="ansi38-047047047"
->          |   |   |     (And (croaks $_154006) (eat_flies $_154006))) </span>
+>          |   |   |     (And (croaks $_154022) (eat_flies $_154022))) </span>
 <span class="ansi38-119055000"
->                                                                                            ;;defs_used(([frog,_159734]->['And',[croaks,_159734],[eat_flies,_159734]]))
+>                                                                                            ;;defs_used(([frog,_159750]->['And',[croaks,_159750],[eat_flies,_159750]]))
 
 </span>;<span class="ansi38-047047047"
->          |   |   |     <--(And (croaks $_121610) (eat_flies $_121610)) </span>
+>          |   |   |     <--(And (croaks $_121626) (eat_flies $_121626)) </span>
 ;<span class="ansi38-047047047"
->    7:4   |   |   |   |   |--->(And (croaks $_121610) (eat_flies $_121610)) </span>
+>    7:4   |   |   |   |   |--->(And (croaks $_121626) (eat_flies $_121626)) </span>
 ;<span class="ansi38-047047047"
->    8:5   |   |   |   |   |   |--->(croaks $_121610) </span>
+>    8:5   |   |   |   |   |   |--->(croaks $_121626) </span>
 ;<span class="ansi38-047047047"
 >   10:5   |   |   |   |   |   |-(=(croaks Fritz) </span>
 ;<span class="ansi38-047047047"
@@ -532,17 +532,17 @@ true]
 >                                                                                                ;;[ift,[green,'Fritz'],'Fritz']->[ift,'T','Fritz']
 
 </span>;<span class="ansi38-047047047"
->   17:1   |   |-(=(ift T $_218176) </span>
+>   17:1   |   |-(=(ift T $_218192) </span>
 ;<span class="ansi38-047047047"
->          |     $_218176) </span>
+>          |     $_218192) </span>
 <span class="ansi38-119055000"
->                                                                                                ;;defs_used(([ift,'T',_223848]->_223848))
+>                                                                                                ;;defs_used(([ift,'T',_223864]->_223864))
 
 </span>;<span class="ansi38-047047047"
 >          |     <--Fritz </span>
 ; 
 ; EVAL TEST
-; took 0.023 secs. (22.75 milliseconds) 
+; took 0.023 secs. (23.01 milliseconds) 
 
   !(assertEqual 
     (ift 
@@ -573,17 +573,17 @@ Deterministic: ()
 
 </span>[
 ;<span class="ansi38-047047047"
->    0:0   |--->(assertEqualToResult (match &self (= ($_245252 Fritz) T) $_245252) (croaks eat_flies)) </span>
+>    0:0   |--->(assertEqualToResult (match &self (= ($_245268 Fritz) T) $_245268) (croaks eat_flies)) </span>
 
 ;<h3 id="HYPERON-EXPERIMENTAL-SCRIPTS.B3-DIRECT.03"
 >;; HYPERON-EXPERIMENTAL-SCRIPTS.B3-DIRECT.03</h3>
 ;<span class="ansi38-047047047"
->    0:1   |   |--->(match &self (= ($_245252 Fritz) T) $_245252) </span>
+>    0:1   |   |--->(match &self (= ($_245268 Fritz) T) $_245268) </span>
 ;<span class="ansi38-047047047"
 >    1:1   |   |-<--eat_flies </span>
 ; 
 ; EVAL TEST
-; took 0.002 secs. (2.30 milliseconds) 
+; took 0.002 secs. (2.25 milliseconds) 
 
   !(assertEqualToResult 
     (match &self 
@@ -602,7 +602,7 @@ Deterministic: ()
 Deterministic: ()
 ()]
 <span class="ansi32"
->% 343,273 inferences, 0.068 CPU in 0.068 seconds (100% CPU, 5068307 Lips)
+>% 293,978 inferences, 0.067 CPU in 0.067 seconds (100% CPU, 4412722 Lips)
 </span>P;HTML|
 ;                         (= /home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-experimental_scripts/b3_direct.metta  0)
 <span class="ansi1"
@@ -742,7 +742,7 @@ Deterministic: ()
     (unwind  
       (halt  7)))
 </span>
-Script done on 2024-10-15 01:34:26+00:00 [COMMAND_EXIT_CODE="7"]
+Script done on 2024-10-15 14:47:37+00:00 [COMMAND_EXIT_CODE="7"]
 
 </pre>
 </body>

@@ -96,7 +96,7 @@
 <body class="body_foreground body_background" style="font-size: normal;" >
 <pre class="ansi2html-content"
 >
-Script started on 2024-10-15 01:33:28+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
+Script started on 2024-10-15 14:46:43+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
 P;HTML|
 ;           (set_option_value  compat false)
 
@@ -657,10 +657,6 @@ Deterministic: ()
     (/ $count 
       (universe-size)))
 </span>;;;; iSurprisingness formula
-;;;; probability estimate 
-;;;; empirical
-;;;; probability estimate
-;;;; empirical
 <span class="ansi38-255165000"
 >  (= 
     (iSurprisingness $pattern) 
@@ -670,7 +666,11 @@ Deterministic: ()
         ( (candidate 
             (, $p1 $p2 $p3) $cnt) (let* (($pp1 (prob (count $p1))) ($pp2 (prob (count $p2))) ($pp3 (prob (count $p3))) ($pp1p2 (prob (count (, $p1 $p2)))) ($pp1p3 (prob (count (, $p1 $p3)))) ($pp2p3 (prob (count (, $p2 $p3)))) ($maxP (max (* $pp1p2 $pp3) (max (* $pp1p3 $pp2) (max (* $pp2p3 $pp1) (* $pp1 (* $pp2 $pp3)))))) ($minP (min (* $pp1p2 $pp3) (min (* $pp1p3 $pp2) (min (* $pp2p3 $pp1) (* $pp1 (* $pp2 $pp3)))))) ($p (prob $cnt))) (/ (max (- $p $maxP) (- $minP $p)) $p))) 
         ($ 0))))
-</span><span class="ansi38-255165000"
+</span>;;;; probability estimate 
+;;;; empirical
+;;;; probability estimate
+;;;; empirical
+<span class="ansi38-255165000"
 >  (= 
     (isurp? ($ptrn $cnt)) 
     (if 
@@ -755,7 +755,7 @@ Deterministic: ()
 >  (Inheritance B A)
 </span>; 
 ; EVAL TEST
-; took 0.002 secs. (2.17 milliseconds) 
+; took 0.002 secs. (1.91 milliseconds) 
 
   !(assertEqualToResult 
     (add-atom &db 
@@ -790,7 +790,7 @@ Deterministic: ()
 >  (Inheritance C A)
 </span>; 
 ; EVAL TEST
-; took 0.002 secs. (1.90 milliseconds) 
+; took 0.002 secs. (1.87 milliseconds) 
 
   !(assertEqualToResult 
     (add-atom &db 
@@ -825,7 +825,7 @@ Deterministic: ()
 >  (Inheritance D E)
 </span>; 
 ; EVAL TEST
-; took 0.002 secs. (1.89 milliseconds) 
+; took 0.002 secs. (1.91 milliseconds) 
 
   !(assertEqualToResult 
     (add-atom &db 
@@ -946,16 +946,16 @@ Deterministic: ()
     (fromNumber 1))
 </span><span class="ansi38-255165000"
 >  (= 
-    (highsurp) $_481896)
+    (highsurp) $_481912)
 </span><span class="ansi38-255165000"
 >  (= 
     (universe-size) 
-    (let $_734958 
-      (collapse (match &db $_734994 1)) 
-      (tuple-count $_734958)))
+    (let $_734974 
+      (collapse (match &db $_735010 1)) 
+      (tuple-count $_734974)))
 </span>; 
 ; EVAL TEST
-; took 0.110 secs. (110.29 milliseconds) 
+; took 0.110 secs. (110.15 milliseconds) 
 
   !(assertEqualToResult 
     (miner &db 
@@ -1017,7 +1017,7 @@ Deterministic: ()
 Deterministic: ()
 ()]
 <span class="ansi32"
->% 1,358,390 inferences, 0.268 CPU in 0.268 seconds (100% CPU, 5067365 Lips)
+>% 1,259,797 inferences, 0.260 CPU in 0.260 seconds (100% CPU, 4836368 Lips)
 </span>P;HTML|
 ;                         (= /home/runner/work/metta-wam/metta-wam/tests/baseline_compat/anti-regression/tmpMatch2.metta  0)
 <span class="ansi1"
@@ -1157,7 +1157,7 @@ Deterministic: ()
     (unwind  
       (halt  7)))
 </span>
-Script done on 2024-10-15 01:33:33+00:00 [COMMAND_EXIT_CODE="7"]
+Script done on 2024-10-15 14:46:48+00:00 [COMMAND_EXIT_CODE="7"]
 
 </pre>
 </body>
