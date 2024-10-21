@@ -26,7 +26,7 @@
 <body class="body_foreground body_background" style="font-size: normal;" >
 <pre class="ansi2html-content"
 >
-Script started on 2024-10-19 09:45:59+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
+Script started on 2024-10-21 18:58:48+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
 P;HTML|
 ;           (set_option_value  compat false)
 
@@ -358,13 +358,12 @@ Script started on 2024-10-19 09:45:59+00:00 [TERM="xterm-256color" TTY="/dev/pts
 </span><span class="ansi38-013099040"
 >!(assertEqual (is-space &self) True)
 
-</span>[
-
+</span>
 ;<h3 id="HYPERON-METTALOG-SANITY.IS-SPACE.01"
 >;; HYPERON-METTALOG-SANITY.IS-SPACE.01</h3>
 ; 
 ; EVAL TEST
-; took 0.001 secs. (1.13 milliseconds) 
+; took 0.001 secs. (1.02 milliseconds) 
 
 !(assertEqual (is-space &self) True)
 
@@ -372,17 +371,15 @@ Script started on 2024-10-19 09:45:59+00:00 [TERM="xterm-256color" TTY="/dev/pts
 >(loonit_success  (equal_enough_for_test  (True) (True)))
 </span>
 Deterministic: ()
-()]
 <span class="ansi38-013099040"
 >!(assertEqual (is-space &corelib) True)
 
-</span>[
-
+</span>
 ;<h3 id="HYPERON-METTALOG-SANITY.IS-SPACE.02"
 >;; HYPERON-METTALOG-SANITY.IS-SPACE.02</h3>
 ; 
 ; EVAL TEST
-; took 0.000995 secs. (995.19 microseconds) 
+; took 0.001 secs. (1.01 milliseconds) 
 
 !(assertEqual (is-space &corelib) True)
 
@@ -390,27 +387,24 @@ Deterministic: ()
 >(loonit_success  (equal_enough_for_test  (True) (True)))
 </span>
 Deterministic: ()
-()]
 <span class="ansi38-013099040"
 >!(assertEqual (is-space 666) False)
 
-</span>[
-
+</span>
 ;<h3 id="HYPERON-METTALOG-SANITY.IS-SPACE.03"
 >;; HYPERON-METTALOG-SANITY.IS-SPACE.03</h3>
 ; 
 ; EVAL TEST
-; took 0.000977 secs. (977.14 microseconds) 
+; took 0.001 secs. (1.03 milliseconds) 
 
 !(assertEqual (is-space 666) False)
 
 <span class="ansi36"
 >(loonit_success  (equal_enough_for_test  (False) (False)))
 </span>
-Deterministic: ()
-()]
-<span class="ansi32"
->% 110,899 inferences, 0.026 CPU in 0.026 seconds (100% CPU, 4307727 Lips)
+Deterministic: ()<span class="ansi32"
+>
+% 170,014 inferences, 0.050 CPU in 0.050 seconds (100% CPU, 3392602 Lips)
 </span>P;HTML|
 ;                       (= /home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity/is_space.metta  0)
 <span class="ansi1"
@@ -544,12 +538,15 @@ Deterministic: ()
 ;         (set_option_value  load show)
 P;HTML|
 ;         (set_option_value  test true)
-P;HTML|
+[()]
+[()]
+[()]
+P;HTML|
 ;         (maybe_halt  7)
 <span class="ansi31"
 >(in  (maybe_halt  7) (unwind  (halt  7)))
 </span>
-Script done on 2024-10-19 09:46:04+00:00 [COMMAND_EXIT_CODE="7"]
+Script done on 2024-10-21 18:58:54+00:00 [COMMAND_EXIT_CODE="7"]
 
 </pre>
 </body>

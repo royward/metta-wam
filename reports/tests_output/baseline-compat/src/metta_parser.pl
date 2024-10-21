@@ -176,6 +176,8 @@ svar(VAR, Name) :-
     symbol(VAR), atom_concat_or_rtrace('@', A, VAR), non_empty_atom(A),
     svar_fixvarname(VAR, Name), !.
 
+kif_ok:- fail.
+
 :- export(svar_fixvarname/2).
 
 %=
@@ -804,7 +806,7 @@ read_single_line_comment(Stream) :-
 % @arg Line The current line number.
 % @arg Col The current column number.
 % @arg CharPos The current character position in the stream.
-% @arg Position The current $postion/3 Term of the stream.
+% @arg Position The current `$position/4` Term of the stream.
 read_position(Stream, Line, Col, CharPos, Position) :-
     stream_property(Stream, position(Position)),  % Get the current position from the stream.
     stream_position_data(line_count, Position, Line),  % Extract the line number.
