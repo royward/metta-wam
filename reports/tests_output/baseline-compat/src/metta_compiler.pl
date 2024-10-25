@@ -1533,8 +1533,8 @@ f2q(Depth,HeadIs,RetType,RetResult,SOR, (AsPredO, Converted)) :-
 
 
 % If Convert is a "not" function, we convert it to the equivalent ";" (or) predicate.
-f2q(Depth,HeadIs,RetType,RetResult,Convert, \+ eval_true(AsPredO)) :- !,
-  Convert =~ not(AsPredI),
+f2q(Depth,HeadIs,RetType,RetResult,Convert, \+ eval_true(AsPredO)) :-
+  Convert =~ not(AsPredI), !,
   must_det_ll(f2p(Depth,HeadIs,RetType,RetResult,AsPredI, AsPredO)).
 
 each_result(Depth,HeadIs,RetType,RetResult,Convert,Converted):-
