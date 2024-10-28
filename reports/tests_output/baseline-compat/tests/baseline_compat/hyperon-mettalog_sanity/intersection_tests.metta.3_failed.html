@@ -60,7 +60,7 @@
 <body class="body_foreground body_background" style="font-size: normal;" >
 <pre class="ansi2html-content"
 >
-Script started on 2024-10-25 20:09:23+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
+Script started on 2024-10-28 01:42:38+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
 P;HTML|
 ;           (set_option_value  compat false)
 
@@ -395,7 +395,7 @@ Info: File /home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-m
 >;; HYPERON-METTALOG-SANITY.INTERSECTION-TESTS.01</h3>
 ; 
 ; EVAL TEST
-; took 0.047 secs. (46.66 milliseconds) 
+; took 0.049 secs. (48.69 milliseconds) 
 
 !(assertEqual (intersection (superpose (a b c d)) (superpose (c d e f))) (superpose (c d)))
 
@@ -432,7 +432,7 @@ Deterministic: ()
 >;; HYPERON-METTALOG-SANITY.INTERSECTION-TESTS.03</h3>
 ; 
 ; EVAL TEST
-; took 0.001 secs. (1.46 milliseconds) 
+; took 0.001 secs. (1.43 milliseconds) 
 
 !(assertEqual (intersection (intersection (superpose (a b c d)) (superpose (b c))) (superpose (d))) (superpose ()))
 
@@ -450,7 +450,7 @@ Deterministic: ()
 >;; HYPERON-METTALOG-SANITY.INTERSECTION-TESTS.04</h3>
 ; 
 ; EVAL TEST
-; took 0.003 secs. (3.34 milliseconds) 
+; took 0.003 secs. (3.37 milliseconds) 
 
 !(assertEqual (intersection (superpose ((foo bar) (bar baz) qux)) (superpose ((bar baz) qux))) (superpose ((bar baz) qux)))
 
@@ -468,7 +468,7 @@ Deterministic: ()
 >;; HYPERON-METTALOG-SANITY.INTERSECTION-TESTS.05</h3>
 ; 
 ; EVAL TEST
-; took 0.001 secs. (1.20 milliseconds) 
+; took 0.001 secs. (1.22 milliseconds) 
 
 !(assertEqual (intersection (superpose (1 2 3 foo bar)) (superpose (2 foo))) (superpose (2 foo)))
 
@@ -492,7 +492,7 @@ Deterministic: ()<span class="ansi38-255165000"
 >;; HYPERON-METTALOG-SANITY.INTERSECTION-TESTS.06</h3>
 ; 
 ; EVAL TEST
-; took 0.001 secs. (1.31 milliseconds) 
+; took 0.001 secs. (1.30 milliseconds) 
 
 !(assertEqual (intersection (superpose (a b b c d)) (superpose (b c))) (superpose (b c)))
 
@@ -510,7 +510,7 @@ Deterministic: ()
 >;; HYPERON-METTALOG-SANITY.INTERSECTION-TESTS.07</h3>
 ; 
 ; EVAL TEST
-; took 0.001 secs. (1.29 milliseconds) 
+; took 0.001 secs. (1.24 milliseconds) 
 
 !(assertEqual (unique (intersection (superpose (a b b c)) (superpose (b c c d)))) (superpose (b c)))
 
@@ -528,7 +528,7 @@ Deterministic: ()
 >;; HYPERON-METTALOG-SANITY.INTERSECTION-TESTS.08</h3>
 ; 
 ; EVAL TEST
-; took 0.000836 secs. (835.65 microseconds) 
+; took 0.000806 secs. (806.03 microseconds) 
 
 !(assertEqual (intersection (superpose (a b c)) (superpose ())) (superpose ()))
 
@@ -546,7 +546,7 @@ Deterministic: ()
 >;; HYPERON-METTALOG-SANITY.INTERSECTION-TESTS.09</h3>
 ; 
 ; EVAL TEST
-; took 0.000960 secs. (959.94 microseconds) 
+; took 0.001 secs. (1.00 milliseconds) 
 
 !(assertEqual (intersection (superpose (a b c)) (superpose (x y z))) (superpose ()))
 
@@ -564,7 +564,7 @@ Deterministic: ()
 >;; HYPERON-METTALOG-SANITY.INTERSECTION-TESTS.10</h3>
 ; 
 ; EVAL TEST
-; took 0.001 secs. (1.20 milliseconds) 
+; took 0.001 secs. (1.19 milliseconds) 
 
 !(assertEqual (intersection (superpose (a b c d)) (superpose (b c x y))) (superpose (b c)))
 
@@ -582,7 +582,7 @@ Deterministic: ()
 >;; HYPERON-METTALOG-SANITY.INTERSECTION-TESTS.11</h3>
 ; 
 ; EVAL TEST
-; took 0.001 secs. (1.25 milliseconds) 
+; took 0.001 secs. (1.22 milliseconds) 
 
 !(assertEqual (intersection (superpose (a b c d)) (superpose (a b c d))) (superpose (a b c d)))
 
@@ -600,7 +600,7 @@ Deterministic: ()
 >;; HYPERON-METTALOG-SANITY.INTERSECTION-TESTS.12</h3>
 ; 
 ; EVAL TEST
-; took 0.004 secs. (3.81 milliseconds) 
+; took 0.004 secs. (3.79 milliseconds) 
 
 !(assertEqual (intersection (superpose (a b c (a b c))) (superpose (a b c (a b c)))) (superpose (a b c (a b c))))
 
@@ -618,7 +618,7 @@ Deterministic: ()
 >;; HYPERON-METTALOG-SANITY.INTERSECTION-TESTS.13</h3>
 ; 
 ; EVAL TEST
-; took 0.001 secs. (1.02 milliseconds) 
+; took 0.001 secs. (1.08 milliseconds) 
 
 !(assertEqual (intersection (superpose (a b c d)) (superpose (c))) (superpose (c)))
 
@@ -636,7 +636,7 @@ Deterministic: ()
 >;; HYPERON-METTALOG-SANITY.INTERSECTION-TESTS.14</h3>
 ; 
 ; EVAL TEST
-; took 0.001 secs. (1.50 milliseconds) 
+; took 0.002 secs. (1.54 milliseconds) 
 
 !(assertEqual (intersection (superpose (a b c d e f)) (superpose (b c d))) (superpose (b c d)))
 
@@ -654,7 +654,7 @@ Deterministic: ()
 >;; HYPERON-METTALOG-SANITY.INTERSECTION-TESTS.15</h3>
 ; 
 ; EVAL TEST
-; took 0.003 secs. (2.98 milliseconds) 
+; took 0.003 secs. (2.92 milliseconds) 
 
 !(assertEqual (intersection (superpose (a (b c) d)) (superpose ((b c) e f))) (superpose ((b c))))
 
@@ -672,7 +672,7 @@ Deterministic: ()
 >;; HYPERON-METTALOG-SANITY.INTERSECTION-TESTS.16</h3>
 ; 
 ; EVAL TEST
-; took 0.001 secs. (1.43 milliseconds) 
+; took 0.001 secs. (1.38 milliseconds) 
 
 !(assertEqual (intersection (superpose ((a b) (c d))) (superpose ())) (superpose ()))
 
@@ -690,7 +690,7 @@ Deterministic: ()
 >;; HYPERON-METTALOG-SANITY.INTERSECTION-TESTS.17</h3>
 ; 
 ; EVAL TEST
-; took 0.001 secs. (1.39 milliseconds) 
+; took 0.001 secs. (1.27 milliseconds) 
 
 !(assertEqual (intersection (superpose (1 2 3 foo bar)) (superpose (3 foo baz))) (superpose (3 foo)))
 
@@ -708,12 +708,12 @@ Deterministic: ()
 >;; HYPERON-METTALOG-SANITY.INTERSECTION-TESTS.18</h3>
 ; 
 ; EVAL TEST
-; took 0.003 secs. (3.42 milliseconds) 
+; took 0.003 secs. (3.39 milliseconds) 
 
 !(assertEqual (intersection (superpose ((foo $x) (bar $y))) (superpose ((bar $y) (foo qux)))) (superpose ((bar $y))))
 
 <span class="ansi36"
->(loonit_success  (equal_enough_for_test  ((bar $_480088)) ((bar $_485106))))
+>(loonit_success  (equal_enough_for_test  ((bar $_480170)) ((bar $_485188))))
 </span>
 Deterministic: ()
 ;;;; Test intersection with variables and lists
@@ -726,7 +726,7 @@ Deterministic: ()
 >;; HYPERON-METTALOG-SANITY.INTERSECTION-TESTS.19</h3>
 ; 
 ; EVAL TEST
-; took 0.000995 secs. (995.01 microseconds) 
+; took 0.000915 secs. (915.34 microseconds) 
 
 !(assertEqual (intersection (superpose ($x b c)) (superpose (b $y c))) (superpose (b c)))
 
@@ -744,7 +744,7 @@ Deterministic: ()
 >;; HYPERON-METTALOG-SANITY.INTERSECTION-TESTS.20</h3>
 ; 
 ; EVAL TEST
-; took 0.003 secs. (3.26 milliseconds) 
+; took 0.003 secs. (3.35 milliseconds) 
 
 !(assertEqual (intersection (superpose (($x b) (c d))) (superpose ((a $y) (c d)))) (superpose ((c d))))
 
@@ -762,7 +762,7 @@ Deterministic: ()
 >;; HYPERON-METTALOG-SANITY.INTERSECTION-TESTS.21</h3>
 ; 
 ; EVAL TEST
-; took 0.004 secs. (3.55 milliseconds) 
+; took 0.004 secs. (3.65 milliseconds) 
 
 !(assertEqualToResult (pred-intersection unified (superpose (($x (+ 1 2)) (3 4))) (superpose ((3 $y) (4 (+ 1 2))))) ((3 3) (3 4) (4 3)))
 
@@ -780,7 +780,7 @@ Deterministic: ()
 >;; HYPERON-METTALOG-SANITY.INTERSECTION-TESTS.22</h3>
 ; 
 ; EVAL TEST
-; took 0.006 secs. (5.93 milliseconds) 
+; took 0.006 secs. (6.06 milliseconds) 
 
 !(assertEqual (intersection (superpose ((foo (+ 1 2)) (bar $y))) (superpose ((foo 3) (bar baz)))) (superpose ((foo 3))))
 
@@ -798,28 +798,28 @@ Deterministic: ()
 >;; HYPERON-METTALOG-SANITY.INTERSECTION-TESTS.23</h3>
 ; 
 ; EVAL TEST
-; took 0.008 secs. (7.50 milliseconds) 
+; took 0.008 secs. (7.73 milliseconds) 
 
 !(assertNotEqual (pred-intersection unified (superpose ((foo (+ 1 2)) (bar $y))) (superpose ((foo 3) (bar baz)))) (superpose ((foo 3) (bar $y))))
 
 
 
-(failed  once (arg  2 (\+  (equal_enough  ((foo 3) (bar baz)) ((foo 3) (bar $_752758)))) $_754588))
+(failed  once (arg  2 (\+  (equal_enough  ((foo 3) (bar baz)) ((foo 3) (bar $_752840)))) $_754670))
 
 
 
 
-(failed  once (arg  2 (\+  (equal_enough  ((foo 3) (bar baz)) ((foo 3) (bar $_752758)))) $_754588))
+(failed  once (arg  2 (\+  (equal_enough  ((foo 3) (bar baz)) ((foo 3) (bar $_752840)))) $_754670))
 
 
 ^  <span class="ansi1 ansi32"
->Call: </span>(246) [user] call(user:once, user:arg(2, \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752758]]), _754588))
+>Call: </span>(246) [user] call(user:once, user:arg(2, \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752840]]), _754670))
 ^  <span class="ansi1 ansi32"
->Call: </span>(247) [user] once(user:arg(2, \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752758]]), _754588))
+>Call: </span>(247) [user] once(user:arg(2, \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752840]]), _754670))
    <span class="ansi1 ansi32"
->Call: </span>(248) [system] arg(2, \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752758]]), _754588)
+>Call: </span>(248) [system] arg(2, \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752840]]), _754670)
 ^  <span class="ansi1 ansi31"
->Fail: </span>(246) [system] call(user:once, user:arg(2, \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752758]]), _754588))
+>Fail: </span>(246) [system] call(user:once, user:arg(2, \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752840]]), _754670))
 ^  <span class="ansi1 ansi32"
 >Call: </span>(246) [bugger] bugger:mquietly_if(true, rtrace:pop_tracer)
    <span class="ansi1 ansi32"
@@ -827,33 +827,33 @@ Deterministic: ()
    <span class="ansi1 ansi31"
 >Fail: </span>(248) [system] var(rtrace:pop_tracer)
 ^  <span class="ansi1 ansi32"
->Call: </span>(250) [system] setup_call_cleanup('$notrace'(_762136, _762138), once(rtrace:retract(t_l:tracer_reset(_762126))), '$restore_trace'(_762136, _762138))
+>Call: </span>(250) [system] setup_call_cleanup('$notrace'(_762218, _762220), once(rtrace:retract(t_l:tracer_reset(_762208))), '$restore_trace'(_762218, _762220))
 ^  <span class="ansi1 ansi32"
->Call: </span>(251) [system] sig_atomic(system:'$notrace'(_762136, _762138))
+>Call: </span>(251) [system] sig_atomic(system:'$notrace'(_762218, _762220))
 ^  <span class="ansi1 ansi32"
 >Exit: </span>(250) [system] setup_call_cleanup(system:'$notrace'(3, -1), system:once(rtrace:retract(t_l:tracer_reset(tAt_normal))), system:'$restore_trace'(3, -1))
 ^  <span class="ansi1 ansi32"
 >Call: </span>(250) [rtrace] tAt(false, 271, 271, false)
 <span class="ansi31"
->(loonit_failureR  (\+  (equal_enough  ((foo 3) (bar baz)) ((foo 3) (bar $_752758)))))
+>(loonit_failureR  (\+  (equal_enough  ((foo 3) (bar baz)) ((foo 3) (bar $_752840)))))
 </span>
 
-(failed  once (arg  2 (\+  (equal_enough  ((foo 3) (bar baz)) ((foo 3) (bar $_752758)))) $_769674))
+(failed  once (arg  2 (\+  (equal_enough  ((foo 3) (bar baz)) ((foo 3) (bar $_752840)))) $_769756))
 
 
 
 
-(failed  once (arg  2 (\+  (equal_enough  ((foo 3) (bar baz)) ((foo 3) (bar $_752758)))) $_769674))
+(failed  once (arg  2 (\+  (equal_enough  ((foo 3) (bar baz)) ((foo 3) (bar $_752840)))) $_769756))
 
 
 ^  <span class="ansi1 ansi32"
->Call: </span>(257) [user] call(user:once, user:arg(2, \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752758]]), _769674))
+>Call: </span>(257) [user] call(user:once, user:arg(2, \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752840]]), _769756))
 ^  <span class="ansi1 ansi32"
->Call: </span>(258) [user] once(user:arg(2, \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752758]]), _769674))
+>Call: </span>(258) [user] once(user:arg(2, \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752840]]), _769756))
    <span class="ansi1 ansi32"
->Call: </span>(259) [system] arg(2, \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752758]]), _769674)
+>Call: </span>(259) [system] arg(2, \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752840]]), _769756)
 ^  <span class="ansi1 ansi31"
->Fail: </span>(257) [system] call(user:once, user:arg(2, \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752758]]), _769674))
+>Fail: </span>(257) [system] call(user:once, user:arg(2, \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752840]]), _769756))
 ^  <span class="ansi1 ansi32"
 >Call: </span>(257) [bugger] bugger:mquietly_if(true, rtrace:pop_tracer)
    <span class="ansi1 ansi32"
@@ -861,43 +861,43 @@ Deterministic: ()
    <span class="ansi1 ansi31"
 >Fail: </span>(259) [system] var(rtrace:pop_tracer)
 ^  <span class="ansi1 ansi32"
->Call: </span>(261) [system] setup_call_cleanup('$notrace'(_777222, _777224), once(rtrace:retract(t_l:tracer_reset(_777212))), '$restore_trace'(_777222, _777224))
+>Call: </span>(261) [system] setup_call_cleanup('$notrace'(_777304, _777306), once(rtrace:retract(t_l:tracer_reset(_777294))), '$restore_trace'(_777304, _777306))
 ^  <span class="ansi1 ansi32"
->Call: </span>(262) [system] sig_atomic(system:'$notrace'(_777222, _777224))
+>Call: </span>(262) [system] sig_atomic(system:'$notrace'(_777304, _777306))
 ^  <span class="ansi1 ansi32"
 >Exit: </span>(261) [system] setup_call_cleanup(system:'$notrace'(3, -1), system:once(rtrace:retract(t_l:tracer_reset(tAt_normal))), system:'$restore_trace'(3, -1))
 ^  <span class="ansi1 ansi32"
 >Call: </span>(261) [rtrace] tAt(false, 271, 271, false)
 
 
-(failed  once (write_pass_fail  (assertNotEqual (pred-intersection unified (superpose ((foo (+ 1 2)) (bar $y))) (superpose ((foo 3) (bar baz)))) (superpose ((foo 3) (bar $y)))) FAIL (\+  (equal_enough  ((foo 3) (bar baz)) ((foo 3) (bar $_752758))))))
+(failed  once (write_pass_fail  (assertNotEqual (pred-intersection unified (superpose ((foo (+ 1 2)) (bar $y))) (superpose ((foo 3) (bar baz)))) (superpose ((foo 3) (bar $y)))) FAIL (\+  (equal_enough  ((foo 3) (bar baz)) ((foo 3) (bar $_752840))))))
 
 
 
 
-(failed  once (write_pass_fail  (assertNotEqual (pred-intersection unified (superpose ((foo (+ 1 2)) (bar $y))) (superpose ((foo 3) (bar baz)))) (superpose ((foo 3) (bar $y)))) FAIL (\+  (equal_enough  ((foo 3) (bar baz)) ((foo 3) (bar $_752758))))))
+(failed  once (write_pass_fail  (assertNotEqual (pred-intersection unified (superpose ((foo (+ 1 2)) (bar $y))) (superpose ((foo 3) (bar baz)))) (superpose ((foo 3) (bar $y)))) FAIL (\+  (equal_enough  ((foo 3) (bar baz)) ((foo 3) (bar $_752840))))))
 
 
 ^  <span class="ansi1 ansi32"
->Call: </span>(244) [user] call(user:once, user:write_pass_fail([assertNotEqual, ['pred-intersection', unified, [superpose, [[foo, [+, 1, 2]], [bar, '$VAR'("y")]]], [superpose, [[foo, 3], [bar, baz]]]], [superpose, [[foo, 3], [bar, '$VAR'("y")]]]], 'FAIL', \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752758]])))
+>Call: </span>(244) [user] call(user:once, user:write_pass_fail([assertNotEqual, ['pred-intersection', unified, [superpose, [[foo, [+, 1, 2]], [bar, '$VAR'("y")]]], [superpose, [[foo, 3], [bar, baz]]]], [superpose, [[foo, 3], [bar, '$VAR'("y")]]]], 'FAIL', \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752840]])))
 ^  <span class="ansi1 ansi32"
->Call: </span>(245) [user] once(user:write_pass_fail([assertNotEqual, ['pred-intersection', unified, [superpose, [[foo, [+, 1, 2]], [bar, '$VAR'("y")]]], [superpose, [[foo, 3], [bar, baz]]]], [superpose, [[foo, 3], [bar, '$VAR'("y")]]]], 'FAIL', \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752758]])))
+>Call: </span>(245) [user] once(user:write_pass_fail([assertNotEqual, ['pred-intersection', unified, [superpose, [[foo, [+, 1, 2]], [bar, '$VAR'("y")]]], [superpose, [[foo, 3], [bar, baz]]]], [superpose, [[foo, 3], [bar, '$VAR'("y")]]]], 'FAIL', \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752840]])))
 ^  <span class="ansi1 ansi32"
->Call: </span>(246) [user] write_pass_fail([assertNotEqual, ['pred-intersection', unified, [superpose, [[foo, [+, 1, 2]], [bar, '$VAR'("y")]]], [superpose, [[foo, 3], [bar, baz]]]], [superpose, [[foo, 3], [bar, '$VAR'("y")]]]], 'FAIL', \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752758]]))
+>Call: </span>(246) [user] write_pass_fail([assertNotEqual, ['pred-intersection', unified, [superpose, [[foo, [+, 1, 2]], [bar, '$VAR'("y")]]], [superpose, [[foo, 3], [bar, baz]]]], [superpose, [[foo, 3], [bar, '$VAR'("y")]]]], 'FAIL', \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752840]]))
 ^  <span class="ansi1 ansi32"
->Call: </span>(247) [user] must_det_ll(loonit_number(_784764))
+>Call: </span>(247) [user] must_det_ll(loonit_number(_784846))
 ^  <span class="ansi1 ansi32"
->Call: </span>(248) [user] once(user:loonit_number(_784764))
+>Call: </span>(248) [user] once(user:loonit_number(_784846))
 ^  <span class="ansi1 ansi32"
->Call: </span>(249) [user] loonit_number(_784764)
+>Call: </span>(249) [user] loonit_number(_784846)
    <span class="ansi1 ansi32"
->Call: </span>(250) [$syspreds] flag(loonit_test_number, _784764, _784764)
+>Call: </span>(250) [$syspreds] flag(loonit_test_number, _784846, _784846)
    <span class="ansi1 ansi32"
->Call: </span>(251) [system] _784764==_784764
+>Call: </span>(251) [system] _784846==_784846
    <span class="ansi1 ansi32"
->Exit: </span>(251) [system] _784764==_784764
+>Exit: </span>(251) [system] _784846==_784846
    <span class="ansi1 ansi32"
->Call: </span>(251) [system] get_flag(loonit_test_number, _784764)
+>Call: </span>(251) [system] get_flag(loonit_test_number, _784846)
    <span class="ansi1 ansi32"
 >Exit: </span>(251) [system] get_flag(loonit_test_number, 23)
    <span class="ansi1 ansi32"
@@ -913,13 +913,13 @@ Deterministic: ()
 ^  <span class="ansi1 ansi32"
 >Exit: </span>(247) [user] must_det_ll(user:loonit_number(23))
 ^  <span class="ansi1 ansi32"
->Call: </span>(247) [user] must_det_ll(get_test_name(23, _797764))
+>Call: </span>(247) [user] must_det_ll(get_test_name(23, _797846))
 ^  <span class="ansi1 ansi32"
->Call: </span>(248) [user] once(user:get_test_name(23, _797764))
+>Call: </span>(248) [user] once(user:get_test_name(23, _797846))
 ^  <span class="ansi1 ansi32"
->Call: </span>(249) [user] get_test_name(23, _797764)
+>Call: </span>(249) [user] get_test_name(23, _797846)
    <span class="ansi1 ansi32"
->Call: </span>(250) [system] nb_current(loading_file, _800554)
+>Call: </span>(250) [system] nb_current(loading_file, _800636)
    <span class="ansi1 ansi32"
 >Exit: </span>(250) [system] nb_current(loading_file, P;HTML|<span class="pl-atom"
 >'/home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity/intersection_tests.metta'</span>)
@@ -931,21 +931,21 @@ Deterministic: ()
 >'/home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity/intersection_tests.metta'</span>\==[]
 ^  <span class="ansi1 ansi32"
 >Call: </span>(250) [user] make_test_name(P;HTML|<span class="pl-atom"
->'/home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity/intersection_tests.metta'</span>, 23, _797764)
+>'/home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity/intersection_tests.metta'</span>, 23, _797846)
 ^  <span class="ansi1 ansi32"
 >Call: </span>(251) [user] ensure_basename(P;HTML|<span class="pl-atom"
->'/home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity/intersection_tests.metta'</span>, _837504)
+>'/home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity/intersection_tests.metta'</span>, _837586)
    <span class="ansi1 ansi32"
->Call: </span>(252) [files_ex] files_ex:directory_file_path('.', _842412, P;HTML|<span class="pl-atom"
+>Call: </span>(252) [files_ex] files_ex:directory_file_path('.', _842494, P;HTML|<span class="pl-atom"
 >'/home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity/intersection_tests.metta'</span>)
    <span class="ansi1 ansi32"
 >Call: </span>(253) [system] nonvar('.')
    <span class="ansi1 ansi32"
 >Exit: </span>(253) [system] nonvar('.')
    <span class="ansi1 ansi32"
->Call: </span>(253) [system] nonvar(_849018)
+>Call: </span>(253) [system] nonvar(_849100)
    <span class="ansi1 ansi31"
->Fail: </span>(253) [system] nonvar(_849018)
+>Fail: </span>(253) [system] nonvar(_849100)
    <span class="ansi1 ansi32"
 >Call: </span>(253) [system] nonvar(P;HTML|<span class="pl-atom"
 >'/home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity/intersection_tests.metta'</span>)
@@ -967,21 +967,21 @@ Deterministic: ()
 >Exit: </span>(253) [system] is_absolute_file_name(P;HTML|<span class="pl-atom"
 >'/home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity/intersection_tests.metta'</span>)
    <span class="ansi1 ansi32"
->Call: </span>(253) [system] sub_atom('.', _873952, _873954, 0, /)
+>Call: </span>(253) [system] sub_atom('.', _874034, _874036, 0, /)
    <span class="ansi1 ansi31"
->Fail: </span>(253) [system] sub_atom('.', _874892, _874894, 0, /)
+>Fail: </span>(253) [system] sub_atom('.', _874974, _874976, 0, /)
    <span class="ansi1 ansi32"
->Call: </span>(253) [system] atom_concat('.', /, _875756)
+>Call: </span>(253) [system] atom_concat('.', /, _875838)
    <span class="ansi1 ansi32"
 >Exit: </span>(253) [system] atom_concat('.', /, ./)
    <span class="ansi1 ansi32"
->Call: </span>(253) [system] atom_concat(./, _877622, P;HTML|<span class="pl-atom"
+>Call: </span>(253) [system] atom_concat(./, _877704, P;HTML|<span class="pl-atom"
 >'/home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity/intersection_tests.metta'</span>)
    <span class="ansi1 ansi31"
->Fail: </span>(253) [system] atom_concat(./, _877622, P;HTML|<span class="pl-atom"
+>Fail: </span>(253) [system] atom_concat(./, _877704, P;HTML|<span class="pl-atom"
 >'/home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity/intersection_tests.metta'</span>)
    <span class="ansi1 ansi31"
->Fail: </span>(252) [files_ex] files_ex:directory_file_path('.', _887368, P;HTML|<span class="pl-atom"
+>Fail: </span>(252) [files_ex] files_ex:directory_file_path('.', _887450, P;HTML|<span class="pl-atom"
 >'/home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity/intersection_tests.metta'</span>)
 ^  <span class="ansi1 ansi32"
 >Exit: </span>(251) [user] ensure_basename(P;HTML|<span class="pl-atom"
@@ -989,19 +989,19 @@ Deterministic: ()
 >'/home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity/intersection_tests.metta'</span>)
    <span class="ansi1 ansi32"
 >Call: </span>(251) [system] file_base_name(P;HTML|<span class="pl-atom"
->'/home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity/intersection_tests.metta'</span>, _900858)
+>'/home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity/intersection_tests.metta'</span>, _900940)
    <span class="ansi1 ansi32"
 >Exit: </span>(251) [system] file_base_name(P;HTML|<span class="pl-atom"
 >'/home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity/intersection_tests.metta'</span>, P;HTML|<span class="pl-atom"
 >'intersection_tests.metta'</span>)
    <span class="ansi1 ansi32"
->Call: </span>(251) [files_ex] files_ex:directory_file_path(_914382, P;HTML|<span class="pl-atom"
+>Call: </span>(251) [files_ex] files_ex:directory_file_path(_914464, P;HTML|<span class="pl-atom"
 >'intersection_tests.metta'</span>, P;HTML|<span class="pl-atom"
 >'/home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity/intersection_tests.metta'</span>)
    <span class="ansi1 ansi32"
->Call: </span>(252) [system] nonvar(_914382)
+>Call: </span>(252) [system] nonvar(_914464)
    <span class="ansi1 ansi31"
->Fail: </span>(252) [system] nonvar(_914382)
+>Fail: </span>(252) [system] nonvar(_914464)
    <span class="ansi1 ansi32"
 >Call: </span>(252) [system] nonvar(P;HTML|<span class="pl-atom"
 >'/home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity/intersection_tests.metta'</span>)
@@ -1009,9 +1009,9 @@ Deterministic: ()
 >Exit: </span>(252) [system] nonvar(P;HTML|<span class="pl-atom"
 >'/home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity/intersection_tests.metta'</span>)
    <span class="ansi1 ansi32"
->Call: </span>(252) [system] nonvar(_914382)
+>Call: </span>(252) [system] nonvar(_914464)
    <span class="ansi1 ansi31"
->Fail: </span>(252) [system] nonvar(_914382)
+>Fail: </span>(252) [system] nonvar(_914464)
    <span class="ansi1 ansi32"
 >Call: </span>(252) [system] nonvar(P;HTML|<span class="pl-atom"
 >'intersection_tests.metta'</span>)
@@ -1019,7 +1019,7 @@ Deterministic: ()
 >Exit: </span>(252) [system] nonvar(P;HTML|<span class="pl-atom"
 >'intersection_tests.metta'</span>)
    <span class="ansi1 ansi32"
->Call: </span>(252) [system] atom_concat(_946000, P;HTML|<span class="pl-atom"
+>Call: </span>(252) [system] atom_concat(_946082, P;HTML|<span class="pl-atom"
 >'intersection_tests.metta'</span>, P;HTML|<span class="pl-atom"
 >'/home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity/intersection_tests.metta'</span>)
    <span class="ansi1 ansi32"
@@ -1027,9 +1027,9 @@ Deterministic: ()
 >'intersection_tests.metta'</span>, P;HTML|<span class="pl-atom"
 >'/home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity/intersection_tests.metta'</span>)
    <span class="ansi1 ansi32"
->Call: </span>(252) [files_ex] files_ex:strip_trailing_slash('/home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity/', _914382)
+>Call: </span>(252) [files_ex] files_ex:strip_trailing_slash('/home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity/', _914464)
    <span class="ansi1 ansi32"
->Call: </span>(253) [system] atom_concat(_964322, /, '/home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity/')
+>Call: </span>(253) [system] atom_concat(_964404, /, '/home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity/')
    <span class="ansi1 ansi32"
 >Exit: </span>(253) [system] atom_concat('/home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity', /, '/home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity/')
    <span class="ansi1 ansi32"
@@ -1037,7 +1037,7 @@ Deterministic: ()
    <span class="ansi1 ansi32"
 >Exit: </span>(253) [system] '/home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity'\==''
    <span class="ansi1 ansi32"
->Call: </span>(253) [system] _914382='/home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity'
+>Call: </span>(253) [system] _914464='/home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity'
    <span class="ansi1 ansi32"
 >Exit: </span>(253) [system] '/home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity'='/home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity'
    <span class="ansi1 ansi32"
@@ -1047,37 +1047,37 @@ Deterministic: ()
 >'intersection_tests.metta'</span>, P;HTML|<span class="pl-atom"
 >'/home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity/intersection_tests.metta'</span>)
    <span class="ansi1 ansi32"
->Call: </span>(251) [system] file_base_name('/home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity', _979524)
+>Call: </span>(251) [system] file_base_name('/home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity', _979606)
    <span class="ansi1 ansi32"
 >Exit: </span>(251) [system] file_base_name('/home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity', 'hyperon-mettalog_sanity')
    <span class="ansi1 ansi32"
->Call: </span>(251) [system] file_name_extension(_981382, _981460, P;HTML|<span class="pl-atom"
+>Call: </span>(251) [system] file_name_extension(_981464, _981542, P;HTML|<span class="pl-atom"
 >'intersection_tests.metta'</span>)
    <span class="ansi1 ansi32"
 >Exit: </span>(251) [system] file_name_extension(intersection_tests, metta, P;HTML|<span class="pl-atom"
 >'intersection_tests.metta'</span>)
    <span class="ansi1 ansi32"
->Call: </span>(251) [system] string_upper('hyperon-mettalog_sanity', _990972)
+>Call: </span>(251) [system] string_upper('hyperon-mettalog_sanity', _991054)
    <span class="ansi1 ansi32"
 >Exit: </span>(251) [system] string_upper('hyperon-mettalog_sanity', "HYPERON-METTALOG_SANITY")
    <span class="ansi1 ansi32"
->Call: </span>(251) [system] string_upper(intersection_tests, _992842)
+>Call: </span>(251) [system] string_upper(intersection_tests, _992924)
    <span class="ansi1 ansi32"
 >Exit: </span>(251) [system] string_upper(intersection_tests, "INTERSECTION_TESTS")
 ^  <span class="ansi1 ansi32"
->Call: </span>(251) [user] string_replace("INTERSECTION_TESTS", "_", "-", _994722)
+>Call: </span>(251) [user] string_replace("INTERSECTION_TESTS", "_", "-", _994804)
 ^  <span class="ansi1 ansi32"
->Call: </span>(252) [user] symbolic_list_concat(_995660, "_", "INTERSECTION_TESTS")
+>Call: </span>(252) [user] symbolic_list_concat(_995742, "_", "INTERSECTION_TESTS")
    <span class="ansi1 ansi32"
->Call: </span>(253) [system] atomic_list_concat(_995660, "_", "INTERSECTION_TESTS")
+>Call: </span>(253) [system] atomic_list_concat(_995742, "_", "INTERSECTION_TESTS")
    <span class="ansi1 ansi32"
 >Exit: </span>(253) [system] atomic_list_concat(['INTERSECTION', 'TESTS'], "_", "INTERSECTION_TESTS")
 ^  <span class="ansi1 ansi32"
 >Exit: </span>(252) [user] symbolic_list_concat(['INTERSECTION', 'TESTS'], "_", "INTERSECTION_TESTS")
 ^  <span class="ansi1 ansi32"
->Call: </span>(252) [user] symbolic_list_concat(['INTERSECTION', 'TESTS'], "-", _994722)
+>Call: </span>(252) [user] symbolic_list_concat(['INTERSECTION', 'TESTS'], "-", _994804)
    <span class="ansi1 ansi32"
->Call: </span>(253) [system] atomic_list_concat(['INTERSECTION', 'TESTS'], "-", _994722)
+>Call: </span>(253) [system] atomic_list_concat(['INTERSECTION', 'TESTS'], "-", _994804)
    <span class="ansi1 ansi32"
 >Exit: </span>(253) [system] atomic_list_concat(['INTERSECTION', 'TESTS'], "-", 'INTERSECTION-TESTS')
 ^  <span class="ansi1 ansi32"
@@ -1085,19 +1085,19 @@ Deterministic: ()
 ^  <span class="ansi1 ansi32"
 >Exit: </span>(251) [user] string_replace("INTERSECTION_TESTS", "_", "-", 'INTERSECTION-TESTS')
 ^  <span class="ansi1 ansi32"
->Call: </span>(251) [user] string_replace("HYPERON-METTALOG_SANITY", "_", "-", _1004078)
+>Call: </span>(251) [user] string_replace("HYPERON-METTALOG_SANITY", "_", "-", _1004160)
 ^  <span class="ansi1 ansi32"
->Call: </span>(252) [user] symbolic_list_concat(_1005016, "_", "HYPERON-METTALOG_SANITY")
+>Call: </span>(252) [user] symbolic_list_concat(_1005098, "_", "HYPERON-METTALOG_SANITY")
    <span class="ansi1 ansi32"
->Call: </span>(253) [system] atomic_list_concat(_1005016, "_", "HYPERON-METTALOG_SANITY")
+>Call: </span>(253) [system] atomic_list_concat(_1005098, "_", "HYPERON-METTALOG_SANITY")
    <span class="ansi1 ansi32"
 >Exit: </span>(253) [system] atomic_list_concat(['HYPERON-METTALOG', 'SANITY'], "_", "HYPERON-METTALOG_SANITY")
 ^  <span class="ansi1 ansi32"
 >Exit: </span>(252) [user] symbolic_list_concat(['HYPERON-METTALOG', 'SANITY'], "_", "HYPERON-METTALOG_SANITY")
 ^  <span class="ansi1 ansi32"
->Call: </span>(252) [user] symbolic_list_concat(['HYPERON-METTALOG', 'SANITY'], "-", _1004078)
+>Call: </span>(252) [user] symbolic_list_concat(['HYPERON-METTALOG', 'SANITY'], "-", _1004160)
    <span class="ansi1 ansi32"
->Call: </span>(253) [system] atomic_list_concat(['HYPERON-METTALOG', 'SANITY'], "-", _1004078)
+>Call: </span>(253) [system] atomic_list_concat(['HYPERON-METTALOG', 'SANITY'], "-", _1004160)
    <span class="ansi1 ansi32"
 >Exit: </span>(253) [system] atomic_list_concat(['HYPERON-METTALOG', 'SANITY'], "-", 'HYPERON-METTALOG-SANITY')
 ^  <span class="ansi1 ansi32"
@@ -1105,187 +1105,187 @@ Deterministic: ()
 ^  <span class="ansi1 ansi32"
 >Exit: </span>(251) [user] string_replace("HYPERON-METTALOG_SANITY", "_", "-", 'HYPERON-METTALOG-SANITY')
 ^  <span class="ansi1 ansi32"
->Call: </span>(251) [user] bugger:wots(_1013422, format('~`0t~d~2|', [23]))
+>Call: </span>(251) [user] bugger:wots(_1013504, format('~`0t~d~2|', [23]))
    <span class="ansi1 ansi32"
->Call: </span>(252) [system] nb_current('$wots_stack', _1014376)
+>Call: </span>(252) [system] nb_current('$wots_stack', _1014458)
    <span class="ansi1 ansi31"
->Fail: </span>(252) [system] nb_current('$wots_stack', _1014376)
+>Fail: </span>(252) [system] nb_current('$wots_stack', _1014458)
    <span class="ansi1 ansi32"
->Call: </span>(252) [system] _1016234=[]
+>Call: </span>(252) [system] _1016316=[]
    <span class="ansi1 ansi32"
 >Exit: </span>(252) [system] []=[]
    <span class="ansi1 ansi32"
->Call: </span>(252) [system] current_output(_1018092)
+>Call: </span>(252) [system] current_output(_1018174)
    <span class="ansi1 ansi32"
->Exit: </span>(252) [system] current_output(<stream>(0x7f179e7ec120))
+>Exit: </span>(252) [system] current_output(<stream>(0x7f05731c4120))
 ^  <span class="ansi1 ansi32"
->Call: </span>(252) [bugger] locally_each:locally(nb_setval('$wots_stack', [<stream>(0x7f179e7ec120)]), woto(string(_1013422), user:format('~`0t~d~2|', [23])))
+>Call: </span>(252) [bugger] locally_each:locally(nb_setval('$wots_stack', [<stream>(0x7f05731c4120)]), woto(string(_1013504), user:format('~`0t~d~2|', [23])))
 ^  <span class="ansi1 ansi32"
->Call: </span>(253) [locally_each] locally_each:wtl(bugger, nb_setval('$wots_stack', [<stream>(0x7f179e7ec120)]), bugger:woto(string(_1013422), user:format('~`0t~d~2|', [23])), bugger:each_call_cleanup)
+>Call: </span>(253) [locally_each] locally_each:wtl(bugger, nb_setval('$wots_stack', [<stream>(0x7f05731c4120)]), bugger:woto(string(_1013504), user:format('~`0t~d~2|', [23])), bugger:each_call_cleanup)
    <span class="ansi1 ansi32"
->Call: </span>(254) [system] nb_current('$wots_stack', _1021874)
+>Call: </span>(254) [system] nb_current('$wots_stack', _1021956)
    <span class="ansi1 ansi31"
->Fail: </span>(254) [system] nb_current('$wots_stack', _1021874)
+>Fail: </span>(254) [system] nb_current('$wots_stack', _1021956)
 ^  <span class="ansi1 ansi32"
->Call: </span>(254) [bugger] call_cleanup((nb_setval('$wots_stack', [<stream>(0x7f179e7ec120)]), bugger:woto(string(_1013422), user:format('~`0t~d~2|', [23])), nb_delete('$wots_stack')), nb_delete('$wots_stack'))
+>Call: </span>(254) [bugger] call_cleanup((nb_setval('$wots_stack', [<stream>(0x7f05731c4120)]), bugger:woto(string(_1013504), user:format('~`0t~d~2|', [23])), nb_delete('$wots_stack')), nb_delete('$wots_stack'))
    <span class="ansi1 ansi32"
->Call: </span>(256) [$syspreds] nb_setval('$wots_stack', [<stream>(0x7f179e7ec120)])
+>Call: </span>(256) [$syspreds] nb_setval('$wots_stack', [<stream>(0x7f05731c4120)])
    <span class="ansi1 ansi32"
->Call: </span>(257) [system] duplicate_term([<stream>(0x7f179e7ec120)], _1025644)
+>Call: </span>(257) [system] duplicate_term([<stream>(0x7f05731c4120)], _1025726)
    <span class="ansi1 ansi32"
->Exit: </span>(257) [system] duplicate_term([<stream>(0x7f179e7ec120)], [<stream>(0x7f179e7ec120)])
+>Exit: </span>(257) [system] duplicate_term([<stream>(0x7f05731c4120)], [<stream>(0x7f05731c4120)])
    <span class="ansi1 ansi32"
->Call: </span>(257) [system] nb_linkval('$wots_stack', [<stream>(0x7f179e7ec120)])
+>Call: </span>(257) [system] nb_linkval('$wots_stack', [<stream>(0x7f05731c4120)])
    <span class="ansi1 ansi32"
->Exit: </span>(257) [system] nb_linkval('$wots_stack', [<stream>(0x7f179e7ec120)])
+>Exit: </span>(257) [system] nb_linkval('$wots_stack', [<stream>(0x7f05731c4120)])
    <span class="ansi1 ansi32"
->Exit: </span>(256) [$syspreds] nb_setval('$wots_stack', [<stream>(0x7f179e7ec120)])
+>Exit: </span>(256) [$syspreds] nb_setval('$wots_stack', [<stream>(0x7f05731c4120)])
 ^  <span class="ansi1 ansi32"
->Call: </span>(256) [bugger] bugger:woto(string(_1013422), user:format('~`0t~d~2|', [23]))
+>Call: </span>(256) [bugger] bugger:woto(string(_1013504), user:format('~`0t~d~2|', [23]))
 ^  <span class="ansi1 ansi32"
->Call: </span>(257) [bugger] once((use_tty(string(_1013422), _1031238);_1031238=true))
+>Call: </span>(257) [bugger] once((use_tty(string(_1013504), _1031320);_1031320=true))
 ^  <span class="ansi1 ansi32"
->Call: </span>(259) [bugger] bugger:use_tty(string(_1013422), _1031238)
+>Call: </span>(259) [bugger] bugger:use_tty(string(_1013504), _1031320)
    <span class="ansi1 ansi32"
->Call: </span>(260) [system] compound(string(_1013422))
+>Call: </span>(260) [system] compound(string(_1013504))
    <span class="ansi1 ansi32"
->Exit: </span>(260) [system] compound(string(_1013422))
+>Exit: </span>(260) [system] compound(string(_1013504))
    <span class="ansi1 ansi32"
->Call: </span>(260) [system] stream_property(current_output, tty(_1031238))
+>Call: </span>(260) [system] stream_property(current_output, tty(_1031320))
    <span class="ansi1 ansi32"
 >Call: </span>(261) [system] nonvar(current_output)
    <span class="ansi1 ansi32"
 >Exit: </span>(261) [system] nonvar(current_output)
    <span class="ansi1 ansi32"
->Call: </span>(261) [system] nonvar(tty(_1031238))
+>Call: </span>(261) [system] nonvar(tty(_1031320))
    <span class="ansi1 ansi32"
->Exit: </span>(261) [system] nonvar(tty(_1031238))
+>Exit: </span>(261) [system] nonvar(tty(_1031320))
    <span class="ansi1 ansi32"
 >Exit: </span>(260) [system] stream_property(current_output, tty(true))
 ^  <span class="ansi1 ansi32"
->Exit: </span>(259) [bugger] bugger:use_tty(string(_1013422), true)
+>Exit: </span>(259) [bugger] bugger:use_tty(string(_1013504), true)
 ^  <span class="ansi1 ansi32"
->Exit: </span>(257) [system] once(bugger:(use_tty(string(_1013422), true);true=true))
+>Exit: </span>(257) [system] once(bugger:(use_tty(string(_1013504), true);true=true))
 ^  <span class="ansi1 ansi32"
->Call: </span>(257) [bugger] bugger:get_stream_setup(_1042384)
+>Call: </span>(257) [bugger] bugger:get_stream_setup(_1042466)
 ^  <span class="ansi1 ansi32"
 >Exit: </span>(257) [bugger] bugger:get_stream_setup(true)
 ^  <span class="ansi1 ansi32"
->Call: </span>(257) [bugger] bugger:woto_tty(string(_1013422), true, (true, user:format('~`0t~d~2|', [23])))
+>Call: </span>(257) [bugger] bugger:woto_tty(string(_1013504), true, (true, user:format('~`0t~d~2|', [23])))
 ^  <span class="ansi1 ansi32"
->Call: </span>(258) [bugger] bugger:with_output_to_each(string(_1013422), (set_stream_ignore(current_output, tty(true)), bugger:(true, user:format('~`0t~d~2|', [23]))))
+>Call: </span>(258) [bugger] bugger:with_output_to_each(string(_1013504), (set_stream_ignore(current_output, tty(true)), bugger:(true, user:format('~`0t~d~2|', [23]))))
    <span class="ansi1 ansi32"
->Call: </span>(259) [system] compound(string(_1013422))
+>Call: </span>(259) [system] compound(string(_1013504))
    <span class="ansi1 ansi32"
->Exit: </span>(259) [system] compound(string(_1013422))
+>Exit: </span>(259) [system] compound(string(_1013504))
    <span class="ansi1 ansi32"
->Call: </span>(259) [system] compound_name_arity(string(_1013422), _1048076, 0)
+>Call: </span>(259) [system] compound_name_arity(string(_1013504), _1048158, 0)
    <span class="ansi1 ansi31"
->Fail: </span>(259) [system] compound_name_arity(string(_1013422), _1049008, 0)
+>Fail: </span>(259) [system] compound_name_arity(string(_1013504), _1049090, 0)
    <span class="ansi1 ansi32"
->Call: </span>(259) [system] string(_1013422)=..[_1049866, _1049872]
+>Call: </span>(259) [system] string(_1013504)=..[_1049948, _1049954]
    <span class="ansi1 ansi32"
->Exit: </span>(259) [system] string(_1013422)=..[string, _1013422]
+>Exit: </span>(259) [system] string(_1013504)=..[string, _1013504]
 ^  <span class="ansi1 ansi32"
 >Call: </span>(259) [bugger] bugger:stream_u_type(string)
 ^  <span class="ansi1 ansi32"
 >Exit: </span>(259) [bugger] bugger:stream_u_type(string)
    <span class="ansi1 ansi32"
->Call: </span>(259) [system] current_output(_1053592)
+>Call: </span>(259) [system] current_output(_1053674)
    <span class="ansi1 ansi32"
->Exit: </span>(259) [system] current_output(<stream>(0x7f179e7ec120))
+>Exit: </span>(259) [system] current_output(<stream>(0x7f05731c4120))
    <span class="ansi1 ansi32"
->Call: </span>(259) [system] _1055442=set_output_safe(<stream>(0x7f179e7ec120))
+>Call: </span>(259) [system] _1055524=set_output_safe(<stream>(0x7f05731c4120))
    <span class="ansi1 ansi32"
->Exit: </span>(259) [system] set_output_safe(<stream>(0x7f179e7ec120))=set_output_safe(<stream>(0x7f179e7ec120))
+>Exit: </span>(259) [system] set_output_safe(<stream>(0x7f05731c4120))=set_output_safe(<stream>(0x7f05731c4120))
    <span class="ansi1 ansi32"
->Call: </span>(259) [system] _1057304=mfs(_1057308, string, _1057312, set_output_safe, set_output_safe(<stream>(0x7f179e7ec120)))
+>Call: </span>(259) [system] _1057386=mfs(_1057390, string, _1057394, set_output_safe, set_output_safe(<stream>(0x7f05731c4120)))
    <span class="ansi1 ansi32"
->Exit: </span>(259) [system] mfs(_1057308, string, _1057312, set_output_safe, set_output_safe(<stream>(0x7f179e7ec120)))=mfs(_1057308, string, _1057312, set_output_safe, set_output_safe(<stream>(0x7f179e7ec120)))
+>Exit: </span>(259) [system] mfs(_1057390, string, _1057394, set_output_safe, set_output_safe(<stream>(0x7f05731c4120)))=mfs(_1057390, string, _1057394, set_output_safe, set_output_safe(<stream>(0x7f05731c4120)))
    <span class="ansi1 ansi32"
->Call: </span>(259) [system] _1059174=mfs_end(mfs(_1057308, string, _1057312, set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), _1013422)
+>Call: </span>(259) [system] _1059256=mfs_end(mfs(_1057390, string, _1057394, set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), _1013504)
    <span class="ansi1 ansi32"
->Exit: </span>(259) [system] mfs_end(mfs(_1057308, string, _1057312, set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), _1013422)=mfs_end(mfs(_1057308, string, _1057312, set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), _1013422)
+>Exit: </span>(259) [system] mfs_end(mfs(_1057390, string, _1057394, set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), _1013504)=mfs_end(mfs(_1057390, string, _1057394, set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), _1013504)
 ^  <span class="ansi1 ansi32"
->Call: </span>(259) [bugger] call_cleanup(trusted_redo_call_cleanup(mfs_start(mfs(_1057308, string, _1057312, set_output_safe, set_output_safe(<stream>(0x7f179e7ec120)))), (bugger:(set_stream_ignore(current_output, tty(true)), bugger:(true, user:format('~`0t~d~2|', [23]))), mfs_end(mfs(_1057308, string, _1057312, set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), _1013422)), mfs_end(mfs(_1057308, string, _1057312, set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), _1013422)), mfs_end(mfs(_1057308, string, _1057312, set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), _1013422))
+>Call: </span>(259) [bugger] call_cleanup(trusted_redo_call_cleanup(mfs_start(mfs(_1057390, string, _1057394, set_output_safe, set_output_safe(<stream>(0x7f05731c4120)))), (bugger:(set_stream_ignore(current_output, tty(true)), bugger:(true, user:format('~`0t~d~2|', [23]))), mfs_end(mfs(_1057390, string, _1057394, set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), _1013504)), mfs_end(mfs(_1057390, string, _1057394, set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), _1013504)), mfs_end(mfs(_1057390, string, _1057394, set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), _1013504))
    <span class="ansi1 ansi32"
->Call: </span>(261) [system] _1062020=mquietly(bugger:mfs_end(mfs(_1057308, string, _1057312, set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), _1013422))
+>Call: </span>(261) [system] _1062102=mquietly(bugger:mfs_end(mfs(_1057390, string, _1057394, set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), _1013504))
    <span class="ansi1 ansi32"
->Exit: </span>(261) [system] mquietly(bugger:mfs_end(mfs(_1057308, string, _1057312, set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), _1013422))=mquietly(bugger:mfs_end(mfs(_1057308, string, _1057312, set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), _1013422))
+>Exit: </span>(261) [system] mquietly(bugger:mfs_end(mfs(_1057390, string, _1057394, set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), _1013504))=mquietly(bugger:mfs_end(mfs(_1057390, string, _1057394, set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), _1013504))
 ^  <span class="ansi1 ansi32"
->Call: </span>(261) [each_call_cleanup] setup_call_cleanup(bugger:mfs_start(mfs(_1057308, string, _1057312, set_output_safe, set_output_safe(<stream>(0x7f179e7ec120)))), ((bugger:(bugger:(set_stream_ignore(current_output, tty(true)), bugger:(true, user:format('~`0t~d~2|', [23]))), mfs_end(mfs(_1057308, string, _1057312, set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), _1013422)), deterministic(_1063896)), (notrace(_1063896==true)->!;mquietly(bugger:mfs_end(mfs(_1057308, string, _1057312, set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), _1013422)), notrace(nb_setarg(1, mquietly(bugger:mfs_end(mfs(_1057308, string, _1057312, set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), _1013422)), true));bugger:mfs_start(mfs(_1057308, string, _1057312, set_output_safe, set_output_safe(<stream>(0x7f179e7ec120)))), notrace(nb_setarg(1, mquietly(bugger:mfs_end(mfs(_1057308, string, _1057312, set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), _1013422)), bugger:mfs_end(mfs(_1057308, string, _1057312, set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), _1013422))), notrace(fail))), mquietly(bugger:mfs_end(mfs(_1057308, string, _1057312, set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), _1013422)))
+>Call: </span>(261) [each_call_cleanup] setup_call_cleanup(bugger:mfs_start(mfs(_1057390, string, _1057394, set_output_safe, set_output_safe(<stream>(0x7f05731c4120)))), ((bugger:(bugger:(set_stream_ignore(current_output, tty(true)), bugger:(true, user:format('~`0t~d~2|', [23]))), mfs_end(mfs(_1057390, string, _1057394, set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), _1013504)), deterministic(_1063978)), (notrace(_1063978==true)->!;mquietly(bugger:mfs_end(mfs(_1057390, string, _1057394, set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), _1013504)), notrace(nb_setarg(1, mquietly(bugger:mfs_end(mfs(_1057390, string, _1057394, set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), _1013504)), true));bugger:mfs_start(mfs(_1057390, string, _1057394, set_output_safe, set_output_safe(<stream>(0x7f05731c4120)))), notrace(nb_setarg(1, mquietly(bugger:mfs_end(mfs(_1057390, string, _1057394, set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), _1013504)), bugger:mfs_end(mfs(_1057390, string, _1057394, set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), _1013504))), notrace(fail))), mquietly(bugger:mfs_end(mfs(_1057390, string, _1057394, set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), _1013504)))
 ^  <span class="ansi1 ansi32"
->Call: </span>(262) [system] sig_atomic(bugger:mfs_start(mfs(_1057308, string, _1057312, set_output_safe, set_output_safe(<stream>(0x7f179e7ec120)))))
+>Call: </span>(262) [system] sig_atomic(bugger:mfs_start(mfs(_1057390, string, _1057394, set_output_safe, set_output_safe(<stream>(0x7f05731c4120)))))
 ^  <span class="ansi1 ansi32"
->Call: </span>(264) [bugger] bugger:mfs_start(mfs(_1057308, string, _1057312, set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))))
+>Call: </span>(264) [bugger] bugger:mfs_start(mfs(_1057390, string, _1057394, set_output_safe, set_output_safe(<stream>(0x7f05731c4120))))
    <span class="ansi1 ansi32"
->Call: </span>(265) [system] compound(mfs(_1057308, string, _1057312, set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))))
+>Call: </span>(265) [system] compound(mfs(_1057390, string, _1057394, set_output_safe, set_output_safe(<stream>(0x7f05731c4120))))
    <span class="ansi1 ansi32"
->Exit: </span>(265) [system] compound(mfs(_1057308, string, _1057312, set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))))
+>Exit: </span>(265) [system] compound(mfs(_1057390, string, _1057394, set_output_safe, set_output_safe(<stream>(0x7f05731c4120))))
    <span class="ansi1 ansi32"
->Call: </span>(265) [system] arg(2, mfs(_1057308, string, _1057312, set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), _1068630)
+>Call: </span>(265) [system] arg(2, mfs(_1057390, string, _1057394, set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), _1068712)
    <span class="ansi1 ansi32"
->Exit: </span>(265) [system] arg(2, mfs(_1057308, string, _1057312, set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), string)
+>Exit: </span>(265) [system] arg(2, mfs(_1057390, string, _1057394, set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), string)
    <span class="ansi1 ansi32"
->Call: </span>(265) [system] arg(3, mfs(_1057308, string, _1057312, set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), _1070496)
+>Call: </span>(265) [system] arg(3, mfs(_1057390, string, _1057394, set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), _1070578)
    <span class="ansi1 ansi32"
->Exit: </span>(265) [system] arg(3, mfs(_1057308, string, _1057312, set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), _1057312)
+>Exit: </span>(265) [system] arg(3, mfs(_1057390, string, _1057394, set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), _1057394)
    <span class="ansi1 ansi32"
->Call: </span>(265) [system] arg(4, mfs(_1057308, string, _1057312, set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), _1072362)
+>Call: </span>(265) [system] arg(4, mfs(_1057390, string, _1057394, set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), _1072444)
    <span class="ansi1 ansi32"
->Exit: </span>(265) [system] arg(4, mfs(_1057308, string, _1057312, set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), set_output_safe)
+>Exit: </span>(265) [system] arg(4, mfs(_1057390, string, _1057394, set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), set_output_safe)
    <span class="ansi1 ansi32"
->Call: </span>(265) [system] _1074228=mfs(_1074232, string, _1074236, set_output_safe, _1074240)
+>Call: </span>(265) [system] _1074310=mfs(_1074314, string, _1074318, set_output_safe, _1074322)
    <span class="ansi1 ansi32"
->Exit: </span>(265) [system] mfs(_1074232, string, _1074236, set_output_safe, _1074240)=mfs(_1074232, string, _1074236, set_output_safe, _1074240)
+>Exit: </span>(265) [system] mfs(_1074314, string, _1074318, set_output_safe, _1074322)=mfs(_1074314, string, _1074318, set_output_safe, _1074322)
    <span class="ansi1 ansi32"
->Call: </span>(265) [system] is_stream(_1057312)
+>Call: </span>(265) [system] is_stream(_1057394)
    <span class="ansi1 ansi31"
->Fail: </span>(265) [system] is_stream(_1057312)
+>Fail: </span>(265) [system] is_stream(_1057394)
 ^  <span class="ansi1 ansi32"
->Call: </span>(265) [bugger] bugger:new_mfs(mfs(_1074232, string, _1074236, set_output_safe, _1074240))
+>Call: </span>(265) [bugger] bugger:new_mfs(mfs(_1074314, string, _1074318, set_output_safe, _1074322))
    <span class="ansi1 ansi32"
->Call: </span>(266) [memory_file] memory_file:new_memory_file(_1074232)
+>Call: </span>(266) [memory_file] memory_file:new_memory_file(_1074314)
    <span class="ansi1 ansi32"
->Exit: </span>(266) [memory_file] memory_file:new_memory_file(<memory_file>(0x5597f7fddc40))
+>Exit: </span>(266) [memory_file] memory_file:new_memory_file(<memory_file>(0x55b97bb11080))
    <span class="ansi1 ansi32"
->Call: </span>(266) [memory_file] memory_file:open_memory_file(<memory_file>(0x5597f7fddc40), write, _1074236, [free_on_close(true)])
+>Call: </span>(266) [memory_file] memory_file:open_memory_file(<memory_file>(0x55b97bb11080), write, _1074318, [free_on_close(true)])
    <span class="ansi1 ansi32"
->Exit: </span>(266) [memory_file] memory_file:open_memory_file(<memory_file>(0x5597f7fddc40), write, <stream>(0x5597f8018260), [free_on_close(true)])
+>Exit: </span>(266) [memory_file] memory_file:open_memory_file(<memory_file>(0x55b97bb11080), write, <stream>(0x55b97bb7c6c0), [free_on_close(true)])
 ^  <span class="ansi1 ansi32"
->Exit: </span>(265) [bugger] bugger:new_mfs(mfs(<memory_file>(0x5597f7fddc40), string, <stream>(0x5597f8018260), set_output_safe, _1074240))
+>Exit: </span>(265) [bugger] bugger:new_mfs(mfs(<memory_file>(0x55b97bb11080), string, <stream>(0x55b97bb7c6c0), set_output_safe, _1074322))
    <span class="ansi1 ansi32"
->Call: </span>(265) [system] nb_setarg(1, mfs(_1057308, string, _1057312, set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), <memory_file>(0x5597f7fddc40))
+>Call: </span>(265) [system] nb_setarg(1, mfs(_1057390, string, _1057394, set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), <memory_file>(0x55b97bb11080))
    <span class="ansi1 ansi32"
->Exit: </span>(265) [system] nb_setarg(1, mfs(<memory_file>(0x5597f7fddc40), string, _1057312, set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), <memory_file>(0x5597f7fddc40))
+>Exit: </span>(265) [system] nb_setarg(1, mfs(<memory_file>(0x55b97bb11080), string, _1057394, set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), <memory_file>(0x55b97bb11080))
    <span class="ansi1 ansi32"
->Call: </span>(265) [system] nb_setarg(3, mfs(<memory_file>(0x5597f7fddc40), string, _1057312, set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), <stream>(0x5597f8018260))
+>Call: </span>(265) [system] nb_setarg(3, mfs(<memory_file>(0x55b97bb11080), string, _1057394, set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), <stream>(0x55b97bb7c6c0))
    <span class="ansi1 ansi32"
->Exit: </span>(265) [system] nb_setarg(3, mfs(<memory_file>(0x5597f7fddc40), string, <stream>(0x5597f8018260), set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), <stream>(0x5597f8018260))
+>Exit: </span>(265) [system] nb_setarg(3, mfs(<memory_file>(0x55b97bb11080), string, <stream>(0x55b97bb7c6c0), set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), <stream>(0x55b97bb7c6c0))
 ^  <span class="ansi1 ansi32"
->Call: </span>(265) [bugger] bugger:set_output_safe(<stream>(0x5597f8018260))
+>Call: </span>(265) [bugger] bugger:set_output_safe(<stream>(0x55b97bb7c6c0))
    <span class="ansi1 ansi32"
->Call: </span>(267) [system] set_output(<stream>(0x5597f8018260))
+>Call: </span>(267) [system] set_output(<stream>(0x55b97bb7c6c0))
    <span class="ansi1 ansi32"
->Exit: </span>(267) [system] set_output(<stream>(0x5597f8018260))
+>Exit: </span>(267) [system] set_output(<stream>(0x55b97bb7c6c0))
 ^  <span class="ansi1 ansi32"
->Exit: </span>(265) [bugger] bugger:set_output_safe(<stream>(0x5597f8018260))
+>Exit: </span>(265) [bugger] bugger:set_output_safe(<stream>(0x55b97bb7c6c0))
 ^  <span class="ansi1 ansi32"
->Exit: </span>(264) [bugger] bugger:mfs_start(mfs(<memory_file>(0x5597f7fddc40), string, <stream>(0x5597f8018260), set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))))
+>Exit: </span>(264) [bugger] bugger:mfs_start(mfs(<memory_file>(0x55b97bb11080), string, <stream>(0x55b97bb7c6c0), set_output_safe, set_output_safe(<stream>(0x7f05731c4120))))
 ^  <span class="ansi1 ansi32"
->Exit: </span>(262) [system] sig_atomic(bugger:mfs_start(mfs(<memory_file>(0x5597f7fddc40), string, <stream>(0x5597f8018260), set_output_safe, set_output_safe(<stream>(0x7f179e7ec120)))))
+>Exit: </span>(262) [system] sig_atomic(bugger:mfs_start(mfs(<memory_file>(0x55b97bb11080), string, <stream>(0x55b97bb7c6c0), set_output_safe, set_output_safe(<stream>(0x7f05731c4120)))))
 ^  <span class="ansi1 ansi32"
 >Call: </span>(263) [bugger] bugger:set_stream_ignore(current_output, tty(true))
 ^  <span class="ansi1 ansi32"
->Call: </span>(264) [bugger] ignore(notrace(catch(set_stream(current_output, tty(true)), _1093790, writeln(user_error, _1093790=set_stream(current_output, tty(true))))))
+>Call: </span>(264) [bugger] ignore(notrace(catch(set_stream(current_output, tty(true)), _1093872, writeln(user_error, _1093872=set_stream(current_output, tty(true))))))
 ^  <span class="ansi1 ansi32"
->Call: </span>(266) [system] setup_call_cleanup('$notrace'(_1094762, _1094764), once(bugger:catch(set_stream(current_output, tty(true)), _1093790, writeln(user_error, _1093790=set_stream(current_output, tty(true))))), '$restore_trace'(_1094762, _1094764))
+>Call: </span>(266) [system] setup_call_cleanup('$notrace'(_1094844, _1094846), once(bugger:catch(set_stream(current_output, tty(true)), _1093872, writeln(user_error, _1093872=set_stream(current_output, tty(true))))), '$restore_trace'(_1094844, _1094846))
 ^  <span class="ansi1 ansi32"
->Call: </span>(267) [system] sig_atomic(system:'$notrace'(_1094762, _1094764))
+>Call: </span>(267) [system] sig_atomic(system:'$notrace'(_1094844, _1094846))
 ^  <span class="ansi1 ansi32"
->Exit: </span>(266) [system] setup_call_cleanup(system:'$notrace'(3, -1), system:once(bugger:catch(set_stream(current_output, tty(true)), _1093790, writeln(user_error, _1093790=set_stream(current_output, tty(true))))), system:'$restore_trace'(3, -1))
+>Exit: </span>(266) [system] setup_call_cleanup(system:'$notrace'(3, -1), system:once(bugger:catch(set_stream(current_output, tty(true)), _1093872, writeln(user_error, _1093872=set_stream(current_output, tty(true))))), system:'$restore_trace'(3, -1))
 ^  <span class="ansi1 ansi32"
->Exit: </span>(264) [system] ignore(bugger:notrace(catch(set_stream(current_output, tty(true)), _1093790, writeln(user_error, _1093790=set_stream(current_output, tty(true))))))
+>Exit: </span>(264) [system] ignore(bugger:notrace(catch(set_stream(current_output, tty(true)), _1093872, writeln(user_error, _1093872=set_stream(current_output, tty(true))))))
 ^  <span class="ansi1 ansi32"
 >Exit: </span>(263) [bugger] bugger:set_stream_ignore(current_output, tty(true))
 ^  <span class="ansi1 ansi32"
@@ -1293,95 +1293,95 @@ Deterministic: ()
 ^  <span class="ansi1 ansi32"
 >Exit: </span>(263) [user] format('~`0t~d~2|', [23])
 ^  <span class="ansi1 ansi32"
->Call: </span>(263) [bugger] bugger:mfs_end(mfs(<memory_file>(0x5597f7fddc40), string, <stream>(0x5597f8018260), set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), _1013422)
+>Call: </span>(263) [bugger] bugger:mfs_end(mfs(<memory_file>(0x55b97bb11080), string, <stream>(0x55b97bb7c6c0), set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), _1013504)
 ^  <span class="ansi1 ansi32"
->Call: </span>(264) [bugger] ignore((is_stream(<stream>(0x5597f8018260)), close(<stream>(0x5597f8018260)), mem_handle_to_substring(<memory_file>(0x5597f7fddc40), _1102308), substring_to_type(_1102308, string, _1013422)))
+>Call: </span>(264) [bugger] ignore((is_stream(<stream>(0x55b97bb7c6c0)), close(<stream>(0x55b97bb7c6c0)), mem_handle_to_substring(<memory_file>(0x55b97bb11080), _1102390), substring_to_type(_1102390, string, _1013504)))
    <span class="ansi1 ansi32"
->Call: </span>(266) [system] is_stream(<stream>(0x5597f8018260))
+>Call: </span>(266) [system] is_stream(<stream>(0x55b97bb7c6c0))
    <span class="ansi1 ansi32"
->Exit: </span>(266) [system] is_stream(<stream>(0x5597f8018260))
+>Exit: </span>(266) [system] is_stream(<stream>(0x55b97bb7c6c0))
    <span class="ansi1 ansi32"
->Call: </span>(266) [system] close(<stream>(0x5597f8018260))
+>Call: </span>(266) [system] close(<stream>(0x55b97bb7c6c0))
    <span class="ansi1 ansi32"
->Exit: </span>(266) [system] close(<stream>(0x5597f8018260))
+>Exit: </span>(266) [system] close(<stream>(0x55b97bb7c6c0))
 ^  <span class="ansi1 ansi32"
->Call: </span>(266) [bugger] bugger:mem_handle_to_substring(<memory_file>(0x5597f7fddc40), _1102308)
+>Call: </span>(266) [bugger] bugger:mem_handle_to_substring(<memory_file>(0x55b97bb11080), _1102390)
    <span class="ansi1 ansi32"
->Call: </span>(267) [memory_file] memory_file:memory_file_to_string(<memory_file>(0x5597f7fddc40), _1102308)
+>Call: </span>(267) [memory_file] memory_file:memory_file_to_string(<memory_file>(0x55b97bb11080), _1102390)
    <span class="ansi1 ansi32"
->Exit: </span>(267) [memory_file] memory_file:memory_file_to_string(<memory_file>(0x5597f7fddc40), "23")
+>Exit: </span>(267) [memory_file] memory_file:memory_file_to_string(<memory_file>(0x55b97bb11080), "23")
 ^  <span class="ansi1 ansi32"
->Exit: </span>(266) [bugger] bugger:mem_handle_to_substring(<memory_file>(0x5597f7fddc40), "23")
+>Exit: </span>(266) [bugger] bugger:mem_handle_to_substring(<memory_file>(0x55b97bb11080), "23")
 ^  <span class="ansi1 ansi32"
->Call: </span>(266) [bugger] bugger:substring_to_type("23", string, _1013422)
+>Call: </span>(266) [bugger] bugger:substring_to_type("23", string, _1013504)
 ^  <span class="ansi1 ansi32"
 >Exit: </span>(266) [bugger] bugger:substring_to_type("23", string, "23")
 ^  <span class="ansi1 ansi32"
->Exit: </span>(264) [system] ignore(bugger:(is_stream(<stream>(0x5597f8018260)), close(<stream>(0x5597f8018260)), mem_handle_to_substring(<memory_file>(0x5597f7fddc40), "23"), substring_to_type("23", string, "23")))
+>Exit: </span>(264) [system] ignore(bugger:(is_stream(<stream>(0x55b97bb7c6c0)), close(<stream>(0x55b97bb7c6c0)), mem_handle_to_substring(<memory_file>(0x55b97bb11080), "23"), substring_to_type("23", string, "23")))
 ^  <span class="ansi1 ansi32"
->Call: </span>(264) [bugger] bugger:set_output_safe(<stream>(0x7f179e7ec120))
+>Call: </span>(264) [bugger] bugger:set_output_safe(<stream>(0x7f05731c4120))
    <span class="ansi1 ansi32"
->Call: </span>(266) [system] set_output(<stream>(0x7f179e7ec120))
+>Call: </span>(266) [system] set_output(<stream>(0x7f05731c4120))
    <span class="ansi1 ansi32"
->Exit: </span>(266) [system] set_output(<stream>(0x7f179e7ec120))
+>Exit: </span>(266) [system] set_output(<stream>(0x7f05731c4120))
 ^  <span class="ansi1 ansi32"
->Exit: </span>(264) [bugger] bugger:set_output_safe(<stream>(0x7f179e7ec120))
+>Exit: </span>(264) [bugger] bugger:set_output_safe(<stream>(0x7f05731c4120))
 ^  <span class="ansi1 ansi32"
->Exit: </span>(263) [bugger] bugger:mfs_end(mfs(<memory_file>(0x5597f7fddc40), string, <stream>(0x5597f8018260), set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), "23")
+>Exit: </span>(263) [bugger] bugger:mfs_end(mfs(<memory_file>(0x55b97bb11080), string, <stream>(0x55b97bb7c6c0), set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), "23")
 ^  <span class="ansi1 ansi32"
->Call: </span>(264) [system] setup_call_cleanup('$notrace'(_1118152, _1118154), once(each_call_cleanup:(true==true)), '$restore_trace'(_1118152, _1118154))
+>Call: </span>(264) [system] setup_call_cleanup('$notrace'(_1118234, _1118236), once(each_call_cleanup:(true==true)), '$restore_trace'(_1118234, _1118236))
 ^  <span class="ansi1 ansi32"
->Call: </span>(265) [system] sig_atomic(system:'$notrace'(_1118152, _1118154))
+>Call: </span>(265) [system] sig_atomic(system:'$notrace'(_1118234, _1118236))
 ^  <span class="ansi1 ansi32"
 >Exit: </span>(264) [system] setup_call_cleanup(system:'$notrace'(3, -1), system:once(each_call_cleanup:(true==true)), system:'$restore_trace'(3, -1))
    <span class="ansi1 ansi32"
->Call: </span>(264) [system] var(bugger:mfs_end(mfs(<memory_file>(0x5597f7fddc40), string, <stream>(0x5597f8018260), set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), "23"))
+>Call: </span>(264) [system] var(bugger:mfs_end(mfs(<memory_file>(0x55b97bb11080), string, <stream>(0x55b97bb7c6c0), set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), "23"))
    <span class="ansi1 ansi31"
->Fail: </span>(264) [system] var(bugger:mfs_end(mfs(<memory_file>(0x5597f7fddc40), string, <stream>(0x5597f8018260), set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), "23"))
+>Fail: </span>(264) [system] var(bugger:mfs_end(mfs(<memory_file>(0x55b97bb11080), string, <stream>(0x55b97bb7c6c0), set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), "23"))
 ^  <span class="ansi1 ansi32"
->Call: </span>(264) [bugger] bugger:mfs_end(mfs(<memory_file>(0x5597f7fddc40), string, <stream>(0x5597f8018260), set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), "23")
+>Call: </span>(264) [bugger] bugger:mfs_end(mfs(<memory_file>(0x55b97bb11080), string, <stream>(0x55b97bb7c6c0), set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), "23")
 ^  <span class="ansi1 ansi32"
->Call: </span>(265) [bugger] ignore((is_stream(<stream>(0x5597f8018260)), close(<stream>(0x5597f8018260)), mem_handle_to_substring(<memory_file>(0x5597f7fddc40), _1123802), substring_to_type(_1123802, string, "23")))
+>Call: </span>(265) [bugger] ignore((is_stream(<stream>(0x55b97bb7c6c0)), close(<stream>(0x55b97bb7c6c0)), mem_handle_to_substring(<memory_file>(0x55b97bb11080), _1123884), substring_to_type(_1123884, string, "23")))
    <span class="ansi1 ansi32"
->Call: </span>(267) [system] is_stream(<stream>(0x5597f8018260))
+>Call: </span>(267) [system] is_stream(<stream>(0x55b97bb7c6c0))
    <span class="ansi1 ansi31"
->Fail: </span>(267) [system] is_stream(<stream>(0x5597f8018260))
+>Fail: </span>(267) [system] is_stream(<stream>(0x55b97bb7c6c0))
 ^  <span class="ansi1 ansi32"
->Exit: </span>(265) [system] ignore(bugger:(is_stream(<stream>(0x5597f8018260)), close(<stream>(0x5597f8018260)), mem_handle_to_substring(<memory_file>(0x5597f7fddc40), _1123802), substring_to_type(_1123802, string, "23")))
+>Exit: </span>(265) [system] ignore(bugger:(is_stream(<stream>(0x55b97bb7c6c0)), close(<stream>(0x55b97bb7c6c0)), mem_handle_to_substring(<memory_file>(0x55b97bb11080), _1123884), substring_to_type(_1123884, string, "23")))
 ^  <span class="ansi1 ansi32"
->Call: </span>(265) [bugger] bugger:set_output_safe(<stream>(0x7f179e7ec120))
+>Call: </span>(265) [bugger] bugger:set_output_safe(<stream>(0x7f05731c4120))
    <span class="ansi1 ansi32"
->Call: </span>(267) [system] set_output(<stream>(0x7f179e7ec120))
+>Call: </span>(267) [system] set_output(<stream>(0x7f05731c4120))
    <span class="ansi1 ansi32"
->Exit: </span>(267) [system] set_output(<stream>(0x7f179e7ec120))
+>Exit: </span>(267) [system] set_output(<stream>(0x7f05731c4120))
 ^  <span class="ansi1 ansi32"
->Exit: </span>(265) [bugger] bugger:set_output_safe(<stream>(0x7f179e7ec120))
+>Exit: </span>(265) [bugger] bugger:set_output_safe(<stream>(0x7f05731c4120))
 ^  <span class="ansi1 ansi32"
->Exit: </span>(264) [bugger] bugger:mfs_end(mfs(<memory_file>(0x5597f7fddc40), string, <stream>(0x5597f8018260), set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), "23")
+>Exit: </span>(264) [bugger] bugger:mfs_end(mfs(<memory_file>(0x55b97bb11080), string, <stream>(0x55b97bb7c6c0), set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), "23")
 ^  <span class="ansi1 ansi32"
->Exit: </span>(261) [system] setup_call_cleanup(bugger:mfs_start(mfs(<memory_file>(0x5597f7fddc40), string, <stream>(0x5597f8018260), set_output_safe, set_output_safe(<stream>(0x7f179e7ec120)))), each_call_cleanup:((bugger:(bugger:(set_stream_ignore(current_output, tty(true)), bugger:(true, user:format('~`0t~d~2|', [23]))), mfs_end(mfs(<memory_file>(0x5597f7fddc40), string, <stream>(0x5597f8018260), set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), "23")), deterministic(true)), (notrace(true==true)->!;mquietly(bugger:mfs_end(mfs(<memory_file>(0x5597f7fddc40), string, <stream>(0x5597f8018260), set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), "23")), notrace(nb_setarg(1, mquietly(bugger:mfs_end(mfs(<memory_file>(0x5597f7fddc40), string, <stream>(0x5597f8018260), set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), "23")), true));bugger:mfs_start(mfs(<memory_file>(0x5597f7fddc40), string, <stream>(0x5597f8018260), set_output_safe, set_output_safe(<stream>(0x7f179e7ec120)))), notrace(nb_setarg(1, mquietly(bugger:mfs_end(mfs(<memory_file>(0x5597f7fddc40), string, <stream>(0x5597f8018260), set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), "23")), bugger:mfs_end(mfs(<memory_file>(0x5597f7fddc40), string, <stream>(0x5597f8018260), set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), "23"))), notrace(fail))), each_call_cleanup:mquietly(bugger:mfs_end(mfs(<memory_file>(0x5597f7fddc40), string, <stream>(0x5597f8018260), set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), "23")))
+>Exit: </span>(261) [system] setup_call_cleanup(bugger:mfs_start(mfs(<memory_file>(0x55b97bb11080), string, <stream>(0x55b97bb7c6c0), set_output_safe, set_output_safe(<stream>(0x7f05731c4120)))), each_call_cleanup:((bugger:(bugger:(set_stream_ignore(current_output, tty(true)), bugger:(true, user:format('~`0t~d~2|', [23]))), mfs_end(mfs(<memory_file>(0x55b97bb11080), string, <stream>(0x55b97bb7c6c0), set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), "23")), deterministic(true)), (notrace(true==true)->!;mquietly(bugger:mfs_end(mfs(<memory_file>(0x55b97bb11080), string, <stream>(0x55b97bb7c6c0), set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), "23")), notrace(nb_setarg(1, mquietly(bugger:mfs_end(mfs(<memory_file>(0x55b97bb11080), string, <stream>(0x55b97bb7c6c0), set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), "23")), true));bugger:mfs_start(mfs(<memory_file>(0x55b97bb11080), string, <stream>(0x55b97bb7c6c0), set_output_safe, set_output_safe(<stream>(0x7f05731c4120)))), notrace(nb_setarg(1, mquietly(bugger:mfs_end(mfs(<memory_file>(0x55b97bb11080), string, <stream>(0x55b97bb7c6c0), set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), "23")), bugger:mfs_end(mfs(<memory_file>(0x55b97bb11080), string, <stream>(0x55b97bb7c6c0), set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), "23"))), notrace(fail))), each_call_cleanup:mquietly(bugger:mfs_end(mfs(<memory_file>(0x55b97bb11080), string, <stream>(0x55b97bb7c6c0), set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), "23")))
 ^  <span class="ansi1 ansi32"
->Call: </span>(261) [bugger] bugger:mfs_end(mfs(<memory_file>(0x5597f7fddc40), string, <stream>(0x5597f8018260), set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), "23")
+>Call: </span>(261) [bugger] bugger:mfs_end(mfs(<memory_file>(0x55b97bb11080), string, <stream>(0x55b97bb7c6c0), set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), "23")
 ^  <span class="ansi1 ansi32"
->Call: </span>(262) [bugger] ignore((is_stream(<stream>(0x5597f8018260)), close(<stream>(0x5597f8018260)), mem_handle_to_substring(<memory_file>(0x5597f7fddc40), _1134086), substring_to_type(_1134086, string, "23")))
+>Call: </span>(262) [bugger] ignore((is_stream(<stream>(0x55b97bb7c6c0)), close(<stream>(0x55b97bb7c6c0)), mem_handle_to_substring(<memory_file>(0x55b97bb11080), _1134168), substring_to_type(_1134168, string, "23")))
    <span class="ansi1 ansi32"
->Call: </span>(264) [system] is_stream(<stream>(0x5597f8018260))
+>Call: </span>(264) [system] is_stream(<stream>(0x55b97bb7c6c0))
    <span class="ansi1 ansi31"
->Fail: </span>(264) [system] is_stream(<stream>(0x5597f8018260))
+>Fail: </span>(264) [system] is_stream(<stream>(0x55b97bb7c6c0))
 ^  <span class="ansi1 ansi32"
->Exit: </span>(262) [system] ignore(bugger:(is_stream(<stream>(0x5597f8018260)), close(<stream>(0x5597f8018260)), mem_handle_to_substring(<memory_file>(0x5597f7fddc40), _1134086), substring_to_type(_1134086, string, "23")))
+>Exit: </span>(262) [system] ignore(bugger:(is_stream(<stream>(0x55b97bb7c6c0)), close(<stream>(0x55b97bb7c6c0)), mem_handle_to_substring(<memory_file>(0x55b97bb11080), _1134168), substring_to_type(_1134168, string, "23")))
 ^  <span class="ansi1 ansi32"
->Call: </span>(262) [bugger] bugger:set_output_safe(<stream>(0x7f179e7ec120))
+>Call: </span>(262) [bugger] bugger:set_output_safe(<stream>(0x7f05731c4120))
    <span class="ansi1 ansi32"
->Call: </span>(264) [system] set_output(<stream>(0x7f179e7ec120))
+>Call: </span>(264) [system] set_output(<stream>(0x7f05731c4120))
    <span class="ansi1 ansi32"
->Exit: </span>(264) [system] set_output(<stream>(0x7f179e7ec120))
+>Exit: </span>(264) [system] set_output(<stream>(0x7f05731c4120))
 ^  <span class="ansi1 ansi32"
->Exit: </span>(262) [bugger] bugger:set_output_safe(<stream>(0x7f179e7ec120))
+>Exit: </span>(262) [bugger] bugger:set_output_safe(<stream>(0x7f05731c4120))
 ^  <span class="ansi1 ansi32"
->Exit: </span>(261) [bugger] bugger:mfs_end(mfs(<memory_file>(0x5597f7fddc40), string, <stream>(0x5597f8018260), set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), "23")
+>Exit: </span>(261) [bugger] bugger:mfs_end(mfs(<memory_file>(0x55b97bb11080), string, <stream>(0x55b97bb7c6c0), set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), "23")
 ^  <span class="ansi1 ansi32"
->Exit: </span>(259) [system] call_cleanup(bugger:trusted_redo_call_cleanup(mfs_start(mfs(<memory_file>(0x5597f7fddc40), string, <stream>(0x5597f8018260), set_output_safe, set_output_safe(<stream>(0x7f179e7ec120)))), (bugger:(set_stream_ignore(current_output, tty(true)), bugger:(true, user:format('~`0t~d~2|', [23]))), mfs_end(mfs(<memory_file>(0x5597f7fddc40), string, <stream>(0x5597f8018260), set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), "23")), mfs_end(mfs(<memory_file>(0x5597f7fddc40), string, <stream>(0x5597f8018260), set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), "23")), bugger:mfs_end(mfs(<memory_file>(0x5597f7fddc40), string, <stream>(0x5597f8018260), set_output_safe, set_output_safe(<stream>(0x7f179e7ec120))), "23"))
+>Exit: </span>(259) [system] call_cleanup(bugger:trusted_redo_call_cleanup(mfs_start(mfs(<memory_file>(0x55b97bb11080), string, <stream>(0x55b97bb7c6c0), set_output_safe, set_output_safe(<stream>(0x7f05731c4120)))), (bugger:(set_stream_ignore(current_output, tty(true)), bugger:(true, user:format('~`0t~d~2|', [23]))), mfs_end(mfs(<memory_file>(0x55b97bb11080), string, <stream>(0x55b97bb7c6c0), set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), "23")), mfs_end(mfs(<memory_file>(0x55b97bb11080), string, <stream>(0x55b97bb7c6c0), set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), "23")), bugger:mfs_end(mfs(<memory_file>(0x55b97bb11080), string, <stream>(0x55b97bb7c6c0), set_output_safe, set_output_safe(<stream>(0x7f05731c4120))), "23"))
 ^  <span class="ansi1 ansi32"
 >Exit: </span>(258) [bugger] bugger:with_output_to_each(string("23"), bugger:(set_stream_ignore(current_output, tty(true)), bugger:(true, user:format('~`0t~d~2|', [23]))))
 ^  <span class="ansi1 ansi32"
@@ -1397,15 +1397,15 @@ Deterministic: ()
    <span class="ansi1 ansi32"
 >Exit: </span>(256) [system] nb_delete('$wots_stack')
 ^  <span class="ansi1 ansi32"
->Exit: </span>(254) [system] call_cleanup(bugger:(nb_setval('$wots_stack', [<stream>(0x7f179e7ec120)]), bugger:woto(string("23"), user:format('~`0t~d~2|', [23])), nb_delete('$wots_stack')), bugger:nb_delete('$wots_stack'))
+>Exit: </span>(254) [system] call_cleanup(bugger:(nb_setval('$wots_stack', [<stream>(0x7f05731c4120)]), bugger:woto(string("23"), user:format('~`0t~d~2|', [23])), nb_delete('$wots_stack')), bugger:nb_delete('$wots_stack'))
 ^  <span class="ansi1 ansi32"
->Exit: </span>(253) [locally_each] locally_each:wtl(bugger, nb_setval('$wots_stack', [<stream>(0x7f179e7ec120)]), bugger:woto(string("23"), user:format('~`0t~d~2|', [23])), bugger:each_call_cleanup)
+>Exit: </span>(253) [locally_each] locally_each:wtl(bugger, nb_setval('$wots_stack', [<stream>(0x7f05731c4120)]), bugger:woto(string("23"), user:format('~`0t~d~2|', [23])), bugger:each_call_cleanup)
 ^  <span class="ansi1 ansi32"
->Exit: </span>(252) [locally_each] locally_each:locally(bugger:nb_setval('$wots_stack', [<stream>(0x7f179e7ec120)]), bugger:woto(string("23"), user:format('~`0t~d~2|', [23])))
+>Exit: </span>(252) [locally_each] locally_each:locally(bugger:nb_setval('$wots_stack', [<stream>(0x7f05731c4120)]), bugger:woto(string("23"), user:format('~`0t~d~2|', [23])))
 ^  <span class="ansi1 ansi32"
 >Exit: </span>(251) [bugger] bugger:wots("23", user:format('~`0t~d~2|', [23]))
 ^  <span class="ansi1 ansi32"
->Call: </span>(251) [user] format(string(_797764), "~w.~w.~w", ['HYPERON-METTALOG-SANITY', 'INTERSECTION-TESTS', "23"])
+>Call: </span>(251) [user] format(string(_797846), "~w.~w.~w", ['HYPERON-METTALOG-SANITY', 'INTERSECTION-TESTS', "23"])
 ^  <span class="ansi1 ansi32"
 >Exit: </span>(251) [user] format(string("HYPERON-METTALOG-SANITY.INTERSECTION-TESTS.23"), "~w.~w.~w", ['HYPERON-METTALOG-SANITY', 'INTERSECTION-TESTS', "23"])
 ^  <span class="ansi1 ansi32"
@@ -1418,31 +1418,31 @@ Deterministic: ()
 ^  <span class="ansi1 ansi32"
 >Exit: </span>(247) [user] must_det_ll(user:get_test_name(23, "HYPERON-METTALOG-SANITY.INTERSECTION-TESTS.23"))
 ^  <span class="ansi1 ansi32"
->Call: </span>(247) [user] must_det_ll(arg(1, \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752758]]), _1163192))
+>Call: </span>(247) [user] must_det_ll(arg(1, \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752840]]), _1163274))
 ^  <span class="ansi1 ansi32"
->Call: </span>(248) [user] once(user:arg(1, \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752758]]), _1163192))
+>Call: </span>(248) [user] once(user:arg(1, \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752840]]), _1163274))
    <span class="ansi1 ansi32"
->Call: </span>(249) [system] arg(1, \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752758]]), _1163192)
+>Call: </span>(249) [system] arg(1, \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752840]]), _1163274)
    <span class="ansi1 ansi32"
->Exit: </span>(249) [system] arg(1, \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752758]]), equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752758]]))
+>Exit: </span>(249) [system] arg(1, \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752840]]), equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752840]]))
 ^  <span class="ansi1 ansi32"
->Exit: </span>(248) [system] once(user:arg(1, \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752758]]), equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752758]])))
+>Exit: </span>(248) [system] once(user:arg(1, \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752840]]), equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752840]])))
 ^  <span class="ansi1 ansi32"
->Exit: </span>(247) [user] must_det_ll(user:arg(1, \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752758]]), equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752758]])))
+>Exit: </span>(247) [user] must_det_ll(user:arg(1, \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752840]]), equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752840]])))
 ^  <span class="ansi1 ansi32"
->Call: </span>(247) [user] must_det_ll(arg(2, \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752758]]), _1168778))
+>Call: </span>(247) [user] must_det_ll(arg(2, \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752840]]), _1168860))
 ^  <span class="ansi1 ansi32"
->Call: </span>(248) [user] once(user:arg(2, \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752758]]), _1168778))
+>Call: </span>(248) [user] once(user:arg(2, \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752840]]), _1168860))
    <span class="ansi1 ansi32"
->Call: </span>(249) [system] arg(2, \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752758]]), _1168778)
+>Call: </span>(249) [system] arg(2, \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752840]]), _1168860)
 ^  <span class="ansi1 ansi31"
->Fail: </span>(248) [system] once(user:arg(2, \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752758]]), _1168778))
+>Fail: </span>(248) [system] once(user:arg(2, \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752840]]), _1168860))
 ^  <span class="ansi1 ansi31"
->Fail: </span>(247) [user] must_det_ll(user:arg(2, \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752758]]), _1168778))
+>Fail: </span>(247) [user] must_det_ll(user:arg(2, \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752840]]), _1168860))
 ^  <span class="ansi1 ansi31"
->Fail: </span>(246) [user] write_pass_fail([assertNotEqual, ['pred-intersection', unified, [superpose, [[foo, [+, 1, 2]], [bar, '$VAR'("y")]]], [superpose, [[foo, 3], [bar, baz]]]], [superpose, [[foo, 3], [bar, '$VAR'("y")]]]], 'FAIL', \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752758]]))
+>Fail: </span>(246) [user] write_pass_fail([assertNotEqual, ['pred-intersection', unified, [superpose, [[foo, [+, 1, 2]], [bar, '$VAR'("y")]]], [superpose, [[foo, 3], [bar, baz]]]], [superpose, [[foo, 3], [bar, '$VAR'("y")]]]], 'FAIL', \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752840]]))
 ^  <span class="ansi1 ansi31"
->Fail: </span>(244) [system] call(user:once, user:write_pass_fail([assertNotEqual, ['pred-intersection', unified, [superpose, [[foo, [+, 1, 2]], [bar, '$VAR'("y")]]], [superpose, [[foo, 3], [bar, baz]]]], [superpose, [[foo, 3], [bar, '$VAR'("y")]]]], 'FAIL', \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752758]])))
+>Fail: </span>(244) [system] call(user:once, user:write_pass_fail([assertNotEqual, ['pred-intersection', unified, [superpose, [[foo, [+, 1, 2]], [bar, '$VAR'("y")]]], [superpose, [[foo, 3], [bar, baz]]]], [superpose, [[foo, 3], [bar, '$VAR'("y")]]]], 'FAIL', \+equal_enough([[foo, 3], [bar, baz]], [[foo, 3], [bar, _752840]])))
 ^  <span class="ansi1 ansi32"
 >Call: </span>(244) [bugger] bugger:mquietly_if(true, rtrace:pop_tracer)
    <span class="ansi1 ansi32"
@@ -1450,9 +1450,9 @@ Deterministic: ()
    <span class="ansi1 ansi31"
 >Fail: </span>(246) [system] var(rtrace:pop_tracer)
 ^  <span class="ansi1 ansi32"
->Call: </span>(248) [system] setup_call_cleanup('$notrace'(_1178096, _1178098), once(rtrace:retract(t_l:tracer_reset(_1178086))), '$restore_trace'(_1178096, _1178098))
+>Call: </span>(248) [system] setup_call_cleanup('$notrace'(_1178178, _1178180), once(rtrace:retract(t_l:tracer_reset(_1178168))), '$restore_trace'(_1178178, _1178180))
 ^  <span class="ansi1 ansi32"
->Call: </span>(249) [system] sig_atomic(system:'$notrace'(_1178096, _1178098))
+>Call: </span>(249) [system] sig_atomic(system:'$notrace'(_1178178, _1178180))
 ^  <span class="ansi1 ansi32"
 >Exit: </span>(248) [system] setup_call_cleanup(system:'$notrace'(3, -1), system:once(rtrace:retract(t_l:tracer_reset(tAt_normal))), system:'$restore_trace'(3, -1))
 ^  <span class="ansi1 ansi32"
@@ -1469,7 +1469,7 @@ Deterministic: ()
 >;; HYPERON-METTALOG-SANITY.INTERSECTION-TESTS.24</h3>
 ; 
 ; EVAL TEST
-; took 0.002 secs. (2.04 milliseconds) 
+; took 0.002 secs. (1.91 milliseconds) 
 
 !(assertEqual (intersection (superpose (($x b) (+ 2 2))) (superpose ((a $y) 4))) (superpose (4)))
 
@@ -1488,7 +1488,7 @@ Deterministic: ()
 >;; HYPERON-METTALOG-SANITY.INTERSECTION-TESTS.25</h3>
 ; 
 ; EVAL TEST
-; took 0.002 secs. (2.39 milliseconds) 
+; took 0.002 secs. (2.38 milliseconds) 
 
 !(assertEqual (intersection (superpose ($x (f $x))) (superpose ((f (f $x))))) (superpose ()))
 
@@ -1506,12 +1506,12 @@ Deterministic: ()
 >;; HYPERON-METTALOG-SANITY.INTERSECTION-TESTS.26</h3>
 ; 
 ; EVAL TEST
-; took 0.002 secs. (2.31 milliseconds) 
+; took 0.002 secs. (2.29 milliseconds) 
 
 !(assertEqual (intersection (superpose ($y (f $x))) (superpose ($a (f $b)))) (superpose ((f $x))))
 
 <span class="ansi36"
->(loonit_success  (equal_enough_for_test  ((f $_1259876)) ((f $_1264894))))
+>(loonit_success  (equal_enough_for_test  ((f $_1259958)) ((f $_1264976))))
 </span>
 Deterministic: ()
 ;;;; Test intersection with self-referential structures
@@ -1524,12 +1524,12 @@ Deterministic: ()
 >;; HYPERON-METTALOG-SANITY.INTERSECTION-TESTS.27</h3>
 ; 
 ; EVAL TEST
-; took 0.002 secs. (2.30 milliseconds) 
+; took 0.002 secs. (2.24 milliseconds) 
 
 !(assertEqual (intersection (superpose ((f $x) $y)) (superpose ((f $b) $a))) (superpose ((f $x))))
 
 <span class="ansi36"
->(loonit_success  (equal_enough_for_test  ((f $_1293842)) ((f $_1298860))))
+>(loonit_success  (equal_enough_for_test  ((f $_1293924)) ((f $_1298942))))
 </span>
 Deterministic: ()
 ;;;; once alpha equivalence is established then the ideities take hold
@@ -1541,14 +1541,14 @@ Deterministic: ()
 >;; HYPERON-METTALOG-SANITY.INTERSECTION-TESTS.28</h3>
 ; 
 ; EVAL TEST
-; took 0.002 secs. (2.23 milliseconds) 
+; took 0.002 secs. (2.26 milliseconds) 
 
 !(assertEqual (intersection (superpose ((f $x) $x)) (superpose ((f $a) $a))) (superpose ((f $x) $x)))
 
 <span class="ansi31"
->(loonit_failureR  (equal_enough_for_test  ((f $_1327706)) ((f $_1332524) $_1332512)))
+>(loonit_failureR  (equal_enough_for_test  ((f $_1327788)) ((f $_1332606) $_1332594)))
 </span>
-Deterministic: ((Error  (got  ((f $_1327706))) (expected  ((f $_1332524) $_1332512))))
+Deterministic: ((Error  (got  ((f $_1327788))) (expected  ((f $_1332606) $_1332594))))
 ;;;; Reversed: alpha equivalence is established too late?
 <span class="ansi38-013099040"
 >!(assertEqual (intersection (superpose ($x (f $x))) (superpose ($a (f $a)))) (superpose ($x (f $x))))
@@ -1563,9 +1563,9 @@ Deterministic: ((Error  (got  ((f $_1327706))) (expected  ((f $_1332524) $_13325
 !(assertEqual (intersection (superpose ($x (f $x))) (superpose ($a (f $a)))) (superpose ($x (f $x))))
 
 <span class="ansi31"
->(loonit_failureR  (equal_enough_for_test  ((f $_1369436)) ($_1374472 (f $_1374460))))
+>(loonit_failureR  (equal_enough_for_test  ((f $_1369518)) ($_1374554 (f $_1374542))))
 </span>
-Deterministic: ((Error  (got  ((f $_1369436))) (expected  ($_1374472 (f $_1374460)))))
+Deterministic: ((Error  (got  ((f $_1369518))) (expected  ($_1374554 (f $_1374542)))))
 ;;;; Test intersection with potential variable misidentification
 ;;;; This test ensures that variables are correctly identified and don't lead to erroneous unifications.
 <span class="ansi38-013099040"
@@ -1576,12 +1576,12 @@ Deterministic: ((Error  (got  ((f $_1369436))) (expected  ($_1374472 (f $_137446
 >;; HYPERON-METTALOG-SANITY.INTERSECTION-TESTS.30</h3>
 ; 
 ; EVAL TEST
-; took 0.002 secs. (2.28 milliseconds) 
+; took 0.002 secs. (2.34 milliseconds) 
 
 !(assertEqual (intersection (superpose ($y (f $x))) (superpose ($x (f $x)))) (superpose ((f $x))))
 
 <span class="ansi36"
->(loonit_success  (equal_enough_for_test  ((f $_1411324)) ((f $_1416342))))
+>(loonit_success  (equal_enough_for_test  ((f $_1411406)) ((f $_1416424))))
 </span>
 Deterministic: ()
 ;;;; Test intersection with potential variable misidentification
@@ -1594,14 +1594,14 @@ Deterministic: ()
 >;; HYPERON-METTALOG-SANITY.INTERSECTION-TESTS.31</h3>
 ; 
 ; EVAL TEST
-; took 0.002 secs. (2.28 milliseconds) 
+; took 0.002 secs. (2.32 milliseconds) 
 
 !(assertEqual (intersection (superpose ($x (f $y))) (superpose ((f $y) $x))) (superpose ($x (f $y))))
 
 <span class="ansi31"
->(loonit_failureR  (equal_enough_for_test  ((f $_1445188)) ($_1450224 (f $_1450212))))
+>(loonit_failureR  (equal_enough_for_test  ((f $_1445270)) ($_1450306 (f $_1450294))))
 </span>
-Deterministic: ((Error  (got  ((f $_1445188))) (expected  ($_1450224 (f $_1450212)))))
+Deterministic: ((Error  (got  ((f $_1445270))) (expected  ($_1450306 (f $_1450294)))))
 ;;;
 ;;; (= (intersection $x $y) (superpose (intersect-elements (collapse $x) (collapse $y))))
 ;;; A Test to show we can define a function to be used like how normal people are imagining
@@ -1615,7 +1615,7 @@ Deterministic: ((Error  (got  ((f $_1445188))) (expected  ($_1450224 (f $_145021
 >;; HYPERON-METTALOG-SANITY.INTERSECTION-TESTS.32</h3>
 ; 
 ; EVAL TEST
-; took 0.002 secs. (1.96 milliseconds) 
+; took 0.002 secs. (1.92 milliseconds) 
 
 !(assertEqual (intersect-elements (1 2 3 foo bar) (2 foo)) (2 foo))
 
@@ -1629,7 +1629,7 @@ Deterministic: ()
 </span>
 Deterministic: ()<span class="ansi32"
 >
-% 1,847,018 inferences, 0.436 CPU in 0.438 seconds (100% CPU, 4239901 Lips)
+% 1,850,106 inferences, 0.442 CPU in 0.444 seconds (100% CPU, 4185949 Lips)
 </span>P;HTML|
 ;                       (= /home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-mettalog_sanity/intersection_tests.metta  0)
 <span class="ansi1"
@@ -1790,10 +1790,10 @@ Deterministic: ()<span class="ansi32"
 [()]
 [()]
 [()]
-[((Error  (got  ((f $_1327706))) (expected  ((f $_1332524) $_1332512))))]
-[((Error  (got  ((f $_1369436))) (expected  ($_1374472 (f $_1374460)))))]
+[((Error  (got  ((f $_1327788))) (expected  ((f $_1332606) $_1332594))))]
+[((Error  (got  ((f $_1369518))) (expected  ($_1374554 (f $_1374542)))))]
 [()]
-[((Error  (got  ((f $_1445188))) (expected  ($_1450224 (f $_1450212)))))]
+[((Error  (got  ((f $_1445270))) (expected  ($_1450306 (f $_1450294)))))]
 [()]
 [()]
 P;HTML|
@@ -1801,7 +1801,7 @@ Deterministic: ()<span class="ansi32"
 <span class="ansi31"
 >(in  (maybe_halt  7) (unwind  (halt  7)))
 </span>
-Script done on 2024-10-25 20:09:29+00:00 [COMMAND_EXIT_CODE="7"]
+Script done on 2024-10-28 01:42:44+00:00 [COMMAND_EXIT_CODE="7"]
 
 </pre>
 </body>
