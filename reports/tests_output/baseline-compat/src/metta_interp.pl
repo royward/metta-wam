@@ -1788,7 +1788,7 @@ into_metta_callable(_Self,TermV,Term,X,NamedVarsList,Was):-
   nop(nl))))),
   nop(maplist(verbose_unify,Vars)),
   %NamedVarsList=[_=RealRealRes|_],
-  var(RealRes),
+  %var(RealRes),
   X = RealRes)))),!.
 
 

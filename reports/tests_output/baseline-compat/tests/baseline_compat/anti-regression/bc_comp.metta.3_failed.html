@@ -117,7 +117,7 @@
 </head>
 <body class="body_foreground body_background" style="font-size: normal;" >
 <pre class="ansi2html-content">
-Script started on 2024-10-28 21:38:37+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
+Script started on 2024-10-28 22:30:38+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
 ^@P;HTML|
 ;           (set_option_value  compat false)
 
@@ -870,7 +870,7 @@ Deterministic: ()<span class="ansi38-255165009">;; In file as:
 ;<h3 id="ANTI-REGRESSION.BC-COMP.01">;; ANTI-REGRESSION.BC-COMP.01</h3>
 ; 
 ; EVAL TEST
-; took 0.002 secs. (1.74 milliseconds) 
+; took 0.002 secs. (1.80 milliseconds) 
 
 !(assertEqualToResult (add-atom &kb (: axiom (nums 2 3))) (()))
 
@@ -987,7 +987,7 @@ Deterministic: False<span class="ansi38-255165009">;; In file as:
 ;<h3 id="ANTI-REGRESSION.BC-COMP.02">;; ANTI-REGRESSION.BC-COMP.02</h3>
 ; 
 ; EVAL TEST
-; took 0.001 secs. (1.17 milliseconds) 
+; took 0.001 secs. (1.30 milliseconds) 
 
 !(assertEqualToResult (add-atom &kb (: rule1 (-> (nums $x $y) (rule1output $x $y)))) (()))
 
@@ -1122,7 +1122,7 @@ Deterministic: False<span class="ansi38-255165009">;; In file as:
 ;<h3 id="ANTI-REGRESSION.BC-COMP.03">;; ANTI-REGRESSION.BC-COMP.03</h3>
 ; 
 ; EVAL TEST
-; took 0.001 secs. (1.21 milliseconds) 
+; took 0.001 secs. (1.39 milliseconds) 
 
 !(assertEqualToResult (add-atom &kb (: rule (-> (rule1output $x $y) (-> (⍃ $x $y) (less $x $y))))) (()))
 
@@ -1676,9 +1676,9 @@ Deterministic: ()
 </span>
 ;<h3 id="ANTI-REGRESSION.BC-COMP.04">;; ANTI-REGRESSION.BC-COMP.04</h3>
 ;<span class="ansi38-047047047">    0:0   |--->(⍃ 2 3) </span>
-   <span class="ansi1 ansi32">Call: </span>(252) [system] _23282= ⍃ ? <span class="ansi1 ansi90">Info: Processing progress: 100% </span><span class="ansi1 ansi90"> - Stopping reporting on /home/runner/work/metta-wam/metta-wam/tests/baseline_compat/anti-regression/bc_comp.metta progress.
+   <span class="ansi1 ansi32">Call: </span>(252) [system] _23022= ⍃ ? <span class="ansi1 ansi90">Info: Processing progress: 100% </span><span class="ansi1 ansi90"> - Stopping reporting on /home/runner/work/metta-wam/metta-wam/tests/baseline_compat/anti-regression/bc_comp.metta progress.
 </span>
-Script done on 2024-10-28 21:39:17+00:00 [COMMAND_EXIT_CODE="143"]
+Script done on 2024-10-28 22:31:18+00:00 [COMMAND_EXIT_CODE="143"]
 
 </pre>
 </body>
