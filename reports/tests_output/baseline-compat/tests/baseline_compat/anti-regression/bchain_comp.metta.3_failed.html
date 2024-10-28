@@ -105,7 +105,7 @@
 </head>
 <body class="body_foreground body_background" style="font-size: normal;" >
 <pre class="ansi2html-content">
-Script started on 2024-10-28 18:43:45+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
+Script started on 2024-10-28 21:39:19+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
 P;HTML|
 ;           (set_option_value  compat false)
 
@@ -854,7 +854,7 @@ Deterministic: ()<span class="ansi38-255165009">;; In file as:
 ;<h3 id="ANTI-REGRESSION.BCHAIN-COMP.01">;; ANTI-REGRESSION.BCHAIN-COMP.01</h3>
 ; 
 ; EVAL TEST
-; took 0.002 secs. (1.74 milliseconds) 
+; took 0.002 secs. (1.72 milliseconds) 
 
 !(assertEqualToResult (add-atom &kb (: axiom (nums 2 3))) (()))
 
@@ -971,7 +971,7 @@ Deterministic: False<span class="ansi38-255165009">;; In file as:
 ;<h3 id="ANTI-REGRESSION.BCHAIN-COMP.02">;; ANTI-REGRESSION.BCHAIN-COMP.02</h3>
 ; 
 ; EVAL TEST
-; took 0.001 secs. (1.18 milliseconds) 
+; took 0.001 secs. (1.25 milliseconds) 
 
 !(assertEqualToResult (add-atom &kb (: rule1 (-> (nums $x $y) (rule1output $x $y)))) (()))
 
@@ -1106,7 +1106,7 @@ Deterministic: False<span class="ansi38-255165009">;; In file as:
 ;<h3 id="ANTI-REGRESSION.BCHAIN-COMP.03">;; ANTI-REGRESSION.BCHAIN-COMP.03</h3>
 ; 
 ; EVAL TEST
-; took 0.001 secs. (1.30 milliseconds) 
+; took 0.001 secs. (1.28 milliseconds) 
 
 !(assertEqualToResult (add-atom &kb (: rule (-> (rule1output $x $y) (-> (⍃ $x $y) (less $x $y))))) (()))
 
@@ -1589,7 +1589,7 @@ metta_compiled_predicate('&self', 'is-variable', 2).
 ;<h3 id="ANTI-REGRESSION.BCHAIN-COMP.04">;; ANTI-REGRESSION.BCHAIN-COMP.04</h3>
    <span class="ansi1 ansi32">Call: </span>(252) [system] _20548= ⍃ ? <span class="ansi1 ansi90">Info: Processing progress: 100% </span><span class="ansi1 ansi90"> - Stopping reporting on /home/runner/work/metta-wam/metta-wam/tests/baseline_compat/anti-regression/bchain_comp.metta progress.
 </span>
-Script done on 2024-10-28 18:44:25+00:00 [COMMAND_EXIT_CODE="143"]
+Script done on 2024-10-28 21:39:59+00:00 [COMMAND_EXIT_CODE="143"]
 
 </pre>
 </body>

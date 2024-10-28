@@ -36,7 +36,7 @@
 </head>
 <body class="body_foreground body_background" style="font-size: normal;" >
 <pre class="ansi2html-content">
-Script started on 2024-10-28 19:02:41+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
+Script started on 2024-10-28 21:58:15+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
 P;HTML|
 ;           (set_option_value  compat false)
 
@@ -391,7 +391,7 @@ Info: File /home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-e
 ;<h3 id="HYPERON-EXPERIMENTAL-SCRIPTS.D1-GADT.01">;; HYPERON-EXPERIMENTAL-SCRIPTS.D1-GADT.01</h3>
 ; 
 ; EVAL TEST
-; took 0.000257 secs. (256.76 microseconds) 
+; took 0.000261 secs. (261.24 microseconds) 
 
 !(assertEqual (get-type 5) Number)
 
@@ -404,7 +404,7 @@ Deterministic: ()
 ;<h3 id="HYPERON-EXPERIMENTAL-SCRIPTS.D1-GADT.02">;; HYPERON-EXPERIMENTAL-SCRIPTS.D1-GADT.02</h3>
 ; 
 ; EVAL TEST
-; took 0.000237 secs. (236.69 microseconds) 
+; took 0.000239 secs. (238.98 microseconds) 
 
 !(assertEqual (get-type (+ 5 7)) Number)
 
@@ -418,7 +418,7 @@ Deterministic: ()
 ;<h3 id="HYPERON-EXPERIMENTAL-SCRIPTS.D1-GADT.03">;; HYPERON-EXPERIMENTAL-SCRIPTS.D1-GADT.03</h3>
 ; 
 ; EVAL TEST
-; took 0.000181 secs. (181.25 microseconds) 
+; took 0.000203 secs. (203.36 microseconds) 
 
 !(assertEqual (get-type +) (-> Number Number Number))
 
@@ -433,7 +433,7 @@ Deterministic: ()
 ;<h3 id="HYPERON-EXPERIMENTAL-SCRIPTS.D1-GADT.04">;; HYPERON-EXPERIMENTAL-SCRIPTS.D1-GADT.04</h3>
 ; 
 ; EVAL TEST
-; took 0.000302 secs. (302.36 microseconds) 
+; took 0.000339 secs. (338.51 microseconds) 
 
 !(assertEqualToResult (get-type (+ 5 "4")) ())
 
@@ -446,7 +446,7 @@ Deterministic: ()
 ;<h3 id="HYPERON-EXPERIMENTAL-SCRIPTS.D1-GADT.05">;; HYPERON-EXPERIMENTAL-SCRIPTS.D1-GADT.05</h3>
 ; 
 ; EVAL TEST
-; took 0.000195 secs. (195.22 microseconds) 
+; took 0.000200 secs. (200.27 microseconds) 
 
 !(assertEqualToResult (get-type (+ -)) ())
 
@@ -461,7 +461,7 @@ Deterministic: ()
 ;<h3 id="HYPERON-EXPERIMENTAL-SCRIPTS.D1-GADT.06">;; HYPERON-EXPERIMENTAL-SCRIPTS.D1-GADT.06</h3>
 ; 
 ; EVAL TEST
-; took 0.000163 secs. (163.16 microseconds) 
+; took 0.000175 secs. (174.74 microseconds) 
 
 !(assertEqual (get-type Either) Type)
 
@@ -480,7 +480,7 @@ Deterministic: ()
 ;<h3 id="HYPERON-EXPERIMENTAL-SCRIPTS.D1-GADT.07">;; HYPERON-EXPERIMENTAL-SCRIPTS.D1-GADT.07</h3>
 ; 
 ; EVAL TEST
-; took 0.000231 secs. (230.65 microseconds) 
+; took 0.000225 secs. (225.24 microseconds) 
 
 !(assertEqual (get-type (Left 5)) Either)
 
@@ -495,7 +495,7 @@ Deterministic: ()<span class="ansi38-255165000"> (: isLeft (-> Either Bool))
 ;<h3 id="HYPERON-EXPERIMENTAL-SCRIPTS.D1-GADT.08">;; HYPERON-EXPERIMENTAL-SCRIPTS.D1-GADT.08</h3>
 ; 
 ; EVAL TEST
-; took 0.000323 secs. (322.97 microseconds) 
+; took 0.000382 secs. (382.22 microseconds) 
 
 !(assertEqual (get-type (isLeft (Right 5))) Bool)
 
@@ -509,7 +509,7 @@ Deterministic: ()
 ;<h3 id="HYPERON-EXPERIMENTAL-SCRIPTS.D1-GADT.09">;; HYPERON-EXPERIMENTAL-SCRIPTS.D1-GADT.09</h3>
 ; 
 ; EVAL TEST
-; took 0.000231 secs. (231.18 microseconds) 
+; took 0.000257 secs. (257.24 microseconds) 
 
 !(assertEqualToResult (get-type (isLeft 5)) ())
 
@@ -529,7 +529,7 @@ Deterministic: ()
 ;<h3 id="HYPERON-EXPERIMENTAL-SCRIPTS.D1-GADT.10">;; HYPERON-EXPERIMENTAL-SCRIPTS.D1-GADT.10</h3>
    <span class="ansi1 ansi32">Call: </span>(256) [system] _254602='EitherP' ? <span class="ansi1 ansi90">Info: Processing progress: 100% </span><span class="ansi1 ansi90"> - Stopping reporting on /home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-experimental_scripts/d1_gadt.metta progress.
 </span>
-Script done on 2024-10-28 19:03:21+00:00 [COMMAND_EXIT_CODE="143"]
+Script done on 2024-10-28 21:58:55+00:00 [COMMAND_EXIT_CODE="143"]
 
 </pre>
 </body>
