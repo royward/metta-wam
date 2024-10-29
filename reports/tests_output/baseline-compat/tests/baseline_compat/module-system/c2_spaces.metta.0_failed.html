@@ -15,6 +15,7 @@
 .ansi1 { font-weight: bold; }
 .ansi31 { color: #aa0000; }
 .ansi32 { color: #00aa00; }
+.ansi34 { color: #0000aa; }
 .ansi36 { color: #00aaaa; }
 .ansi90 { color: #7f7f7f; }
 .ansi38-013099040 { color: #0D6328; }
@@ -59,8 +60,20 @@
 <body class="body_foreground body_background" style="font-size: normal;" >
 <pre class="ansi2html-content"
 >
-Script started on 2024-10-28 01:50:26+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
-P;HTML|
+Script started on 2024-10-29 20:16:12+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
+<span class="ansi31"
+>Warning: /home/runner/work/metta-wam/metta-wam/src/canary/metta_eval.pl:200:
+Warning:    Clauses of </span><span class="ansi34"
+>eval_args/6</span><span class="ansi31"
+> are not together in the source-file
+Warning:    Earlier definition at /home/runner/work/metta-wam/metta-wam/src/canary/metta_eval.pl:174
+Warning:    Current predicate: </span><span class="ansi34"
+>super_safety_checks/1</span><span class="ansi31"
+>
+Warning:    Use </span><span class="ansi34"
+>:- discontiguous eval_args/6.</span><span class="ansi31"
+> to suppress this message
+</span>P;HTML|
 ;           (set_option_value  compat false)
 
 P;HTML|
@@ -445,7 +458,7 @@ Deterministic: ()
 >;; MODULE-SYSTEM.C2-SPACES.01</h3>
 ; 
 ; EVAL TEST
-; took 0.000628 secs. (628.41 microseconds) 
+; took 0.000627 secs. (626.99 microseconds) 
 
 !(assertEqualToResult (match &kb (, ($obj is $prop) ($prop is-a Color) ($obj is-a Planet)) (Color of Planet $obj is $prop)) ((Color of Planet Mars is Red)))
 
@@ -462,7 +475,7 @@ Deterministic: ()
 >;; MODULE-SYSTEM.C2-SPACES.02</h3>
 ; 
 ; EVAL TEST
-; took 0.000158 secs. (157.78 microseconds) 
+; took 0.000159 secs. (159.14 microseconds) 
 
 !(assertEqualToResult (match &self ($p is-a Color) $p) ())
 
@@ -482,7 +495,7 @@ Deterministic: ()
 >;; MODULE-SYSTEM.C2-SPACES.03</h3>
 ; 
 ; EVAL TEST
-; took 0.000358 secs. (358.31 microseconds) 
+; took 0.000358 secs. (357.68 microseconds) 
 
 !(assertEqual (match &kb (, (Venus orbit $x au) (Mars orbit $y au)) (- $y $x)) 0.8)
 
@@ -506,7 +519,7 @@ Deterministic: ()
 >;; MODULE-SYSTEM.C2-SPACES.04</h3>
 ; 
 ; EVAL TEST
-; took 0.000657 secs. (657.25 microseconds) 
+; took 0.000661 secs. (661.38 microseconds) 
 
 !(assertEqualToResult (match &kb ($prop is-a Color) (match &self ($obj is $prop) $obj)) (Ball))
 
@@ -567,7 +580,7 @@ Deterministic: ()
 >;; MODULE-SYSTEM.C2-SPACES.05</h3>
 ; 
 ; EVAL TEST
-; took 0.000538 secs. (537.72 microseconds) 
+; took 0.000528 secs. (527.74 microseconds) 
 
 !(assertEqualToResult (match &self (, ($obj is $prop) ($prop is-a Color) ($obj is-a Planet)) (Color of Planet $obj is $prop)) ((Color of Planet Mars is Red)))
 
@@ -576,7 +589,7 @@ Deterministic: ()
 </span>
 Deterministic: ()<span class="ansi32"
 >
-% 474,246 inferences, 0.141 CPU in 0.147 seconds (96% CPU, 3374657 Lips)
+% 473,792 inferences, 0.146 CPU in 0.153 seconds (96% CPU, 3247569 Lips)
 </span>P;HTML|
 ;                       (= /home/runner/work/metta-wam/metta-wam/tests/baseline_compat/module-system/c2_spaces.metta  0)
 <span class="ansi1"
@@ -722,7 +735,7 @@ Deterministic: ()<span class="ansi32"
 <span class="ansi31"
 >(in  (maybe_halt  7) (unwind  (halt  7)))
 </span>
-Script done on 2024-10-28 01:50:33+00:00 [COMMAND_EXIT_CODE="7"]
+Script done on 2024-10-29 20:16:18+00:00 [COMMAND_EXIT_CODE="7"]
 
 </pre>
 </body>

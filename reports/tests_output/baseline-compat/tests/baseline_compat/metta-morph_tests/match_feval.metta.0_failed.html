@@ -15,6 +15,7 @@
 .ansi1 { font-weight: bold; }
 .ansi31 { color: #aa0000; }
 .ansi32 { color: #00aa00; }
+.ansi34 { color: #0000aa; }
 .ansi36 { color: #00aaaa; }
 .ansi90 { color: #7f7f7f; }
 .ansi38-255165000 { color: #FFA500; }
@@ -26,8 +27,20 @@
 <body class="body_foreground body_background" style="font-size: normal;" >
 <pre class="ansi2html-content"
 >
-Script started on 2024-10-28 01:48:14+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
-P;HTML|
+Script started on 2024-10-29 20:13:48+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
+<span class="ansi31"
+>Warning: /home/runner/work/metta-wam/metta-wam/src/canary/metta_eval.pl:200:
+Warning:    Clauses of </span><span class="ansi34"
+>eval_args/6</span><span class="ansi31"
+> are not together in the source-file
+Warning:    Earlier definition at /home/runner/work/metta-wam/metta-wam/src/canary/metta_eval.pl:174
+Warning:    Current predicate: </span><span class="ansi34"
+>super_safety_checks/1</span><span class="ansi31"
+>
+Warning:    Use </span><span class="ansi34"
+>:- discontiguous eval_args/6.</span><span class="ansi31"
+> to suppress this message
+</span>P;HTML|
 ;           (set_option_value  compat false)
 
 P;HTML|
@@ -359,7 +372,7 @@ Info: File /home/runner/work/metta-wam/metta-wam/tests/baseline_compat/metta-mor
 >;; METTA-MORPH-TESTS.MATCH-FEVAL.01</h3>
 ; 
 ; EVAL TEST
-; took 0.000772 secs. (771.98 microseconds) 
+; took 0.000739 secs. (738.55 microseconds) 
 
 !(assertEqualToResult (match &self (= (f $x) $y) $y) ((* 2 $x)))
 
@@ -368,7 +381,7 @@ Info: File /home/runner/work/metta-wam/metta-wam/tests/baseline_compat/metta-mor
 </span>
 Deterministic: ()<span class="ansi32"
 >
-% 147,968 inferences, 0.053 CPU in 0.056 seconds (96% CPU, 2768229 Lips)
+% 147,954 inferences, 0.054 CPU in 0.056 seconds (96% CPU, 2762960 Lips)
 </span>P;HTML|
 ;                       (= /home/runner/work/metta-wam/metta-wam/tests/baseline_compat/metta-morph_tests/match_feval.metta  0)
 <span class="ansi1"
@@ -508,7 +521,7 @@ Deterministic: ()<span class="ansi32"
 <span class="ansi31"
 >(in  (maybe_halt  7) (unwind  (halt  7)))
 </span>
-Script done on 2024-10-28 01:48:20+00:00 [COMMAND_EXIT_CODE="7"]
+Script done on 2024-10-29 20:13:54+00:00 [COMMAND_EXIT_CODE="7"]
 
 </pre>
 </body>

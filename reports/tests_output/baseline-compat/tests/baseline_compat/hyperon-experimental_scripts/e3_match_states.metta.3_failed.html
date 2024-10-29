@@ -15,6 +15,7 @@
 .ansi1 { font-weight: bold; }
 .ansi31 { color: #aa0000; }
 .ansi32 { color: #00aa00; }
+.ansi34 { color: #0000aa; }
 .ansi36 { color: #00aaaa; }
 .ansi90 { color: #7f7f7f; }
 .ansi38-255165000 { color: #FFA500; }
@@ -38,8 +39,20 @@
 <body class="body_foreground body_background" style="font-size: normal;" >
 <pre class="ansi2html-content"
 >
-Script started on 2024-10-28 01:40:09+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
-P;HTML|
+Script started on 2024-10-29 20:05:10+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
+<span class="ansi31"
+>Warning: /home/runner/work/metta-wam/metta-wam/src/canary/metta_eval.pl:200:
+Warning:    Clauses of </span><span class="ansi34"
+>eval_args/6</span><span class="ansi31"
+> are not together in the source-file
+Warning:    Earlier definition at /home/runner/work/metta-wam/metta-wam/src/canary/metta_eval.pl:174
+Warning:    Current predicate: </span><span class="ansi34"
+>super_safety_checks/1</span><span class="ansi31"
+>
+Warning:    Use </span><span class="ansi34"
+>:- discontiguous eval_args/6.</span><span class="ansi31"
+> to suppress this message
+</span>P;HTML|
 ;           (set_option_value  compat false)
 
 P;HTML|
@@ -405,7 +418,7 @@ Deterministic: ()
 >;; HYPERON-EXPERIMENTAL-SCRIPTS.E3-MATCH-STATES.01</h3>
 ; 
 ; EVAL TEST
-; took 0.000572 secs. (571.73 microseconds) 
+; took 0.000622 secs. (622.15 microseconds) 
 
 !(assertEqual (get-state (status (Goal lunch-order))) inactive)
 
@@ -431,7 +444,7 @@ Deterministic: ()
 >;; HYPERON-EXPERIMENTAL-SCRIPTS.E3-MATCH-STATES.02</h3>
 ; 
 ; EVAL TEST
-; took 0.000616 secs. (616.27 microseconds) 
+; took 0.000642 secs. (641.62 microseconds) 
 
 !(assertEqualToResult (nop (change-state! (status (Goal lunch-order)) active)) (()))
 
@@ -452,7 +465,7 @@ Deterministic: ()
 >;; HYPERON-EXPERIMENTAL-SCRIPTS.E3-MATCH-STATES.03</h3>
 ; 
 ; EVAL TEST
-; took 0.000517 secs. (517.22 microseconds) 
+; took 0.000598 secs. (597.77 microseconds) 
 
 !(assertEqual (get-state (status (Goal lunch-order))) active)
 
@@ -481,7 +494,7 @@ Deterministic: ()<span class="ansi38-255165009"
 >;; HYPERON-EXPERIMENTAL-SCRIPTS.E3-MATCH-STATES.04</h3>
 ; 
 ; EVAL TEST
-; took 0.000268 secs. (268.25 microseconds) 
+; took 0.000312 secs. (311.51 microseconds) 
 
 !(assertEqualToResult (nop (change-state! &state-active inactive)) (()))
 
@@ -501,7 +514,7 @@ Deterministic: ()
 >;; HYPERON-EXPERIMENTAL-SCRIPTS.E3-MATCH-STATES.05</h3>
 ; 
 ; EVAL TEST
-; took 0.000178 secs. (178.31 microseconds) 
+; took 0.000183 secs. (183.07 microseconds) 
 
 !(assertEqual (match &self (= (status (Goal $goal)) &state-active) $goal) meditation)
 
@@ -519,7 +532,7 @@ Deterministic: ((Error  (got  ()) (expected  (meditation))))
 >;; HYPERON-EXPERIMENTAL-SCRIPTS.E3-MATCH-STATES.06</h3>
 ; 
 ; EVAL TEST
-; took 0.001 secs. (1.37 milliseconds) 
+; took 0.001 secs. (1.44 milliseconds) 
 
 !(assertEqual (if (== (get-state (status (Goal $goal))) active) $goal (superpose ())) lunch-order)
 
@@ -528,7 +541,7 @@ Deterministic: ((Error  (got  ()) (expected  (meditation))))
 </span>
 Deterministic: ((Error  (got  ()) (expected  (lunch-order))))<span class="ansi32"
 >
-% 388,107 inferences, 0.103 CPU in 0.106 seconds (98% CPU, 3754620 Lips)
+% 389,219 inferences, 0.108 CPU in 0.110 seconds (98% CPU, 3620559 Lips)
 </span>P;HTML|
 ;                       (= /home/runner/work/metta-wam/metta-wam/tests/baseline_compat/hyperon-experimental_scripts/e3_match_states.metta  0)
 <span class="ansi1"
@@ -676,7 +689,7 @@ Deterministic: ((Error  (got  ()) (expected  (lunch-order))))<span class="ansi32
 <span class="ansi31"
 >(in  (maybe_halt  7) (unwind  (halt  7)))
 </span>
-Script done on 2024-10-28 01:40:15+00:00 [COMMAND_EXIT_CODE="7"]
+Script done on 2024-10-29 20:05:16+00:00 [COMMAND_EXIT_CODE="7"]
 
 </pre>
 </body>
