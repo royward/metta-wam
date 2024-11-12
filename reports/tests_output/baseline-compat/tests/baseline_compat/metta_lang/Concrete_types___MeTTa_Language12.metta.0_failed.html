@@ -26,7 +26,7 @@
 <body class="body_foreground body_background" style="font-size: normal;" >
 <pre class="ansi2html-content"
 >
-Script started on 2024-11-11 19:22:59+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
+Script started on 2024-11-12 18:45:35+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
 P;HTML|
 ;           (set_option_value  compat false)
 
@@ -342,9 +342,9 @@ Script started on 2024-11-11 19:22:59+00:00 [TERM="xterm-256color" TTY="/dev/pts
 P;HTML|
 ;                                         (= 4  "[()]")
 P;HTML|
-;                                         (= 5  "0.03user 0.01system 0:00.04elapsed 100%CPU (0avgtext+0avgdata 26120maxresident)k")
+;                                         (= 5  "0.03user 0.01system 0:00.05elapsed 98%CPU (0avgtext+0avgdata 26108maxresident)k")
 P;HTML|
-;                                         (= 5  "0inputs+0outputs (0major+3124minor)pagefaults 0swaps")
+;                                         (= 5  "0inputs+0outputs (0major+3121minor)pagefaults 0swaps")
 <span class="ansi1 ansi90"
 >
 Info: File /home/runner/work/metta-wam/metta-wam/tests/baseline_compat/metta_lang/Concrete_types___MeTTa_Language12.metta is 656 bytes (30 lines)
@@ -369,7 +369,7 @@ Info: File /home/runner/work/metta-wam/metta-wam/tests/baseline_compat/metta_lan
 >;; METTA-LANG.CONCRETE-TYPES---METTA-LANGUAGE12.01</h3>
 ; 
 ; EVAL TEST
-; took 0.000330 secs. (330.36 microseconds) 
+; took 0.000328 secs. (327.75 microseconds) 
 
 !(assertEqualToResult (get-type 1) (Number))
 
@@ -388,7 +388,7 @@ Deterministic: ()
 >;; METTA-LANG.CONCRETE-TYPES---METTA-LANGUAGE12.02</h3>
 ; 
 ; EVAL TEST
-; took 0.000185 secs. (185.42 microseconds) 
+; took 0.000209 secs. (208.99 microseconds) 
 
 !(assertEqualToResult (get-type 1.1) (Number))
 
@@ -407,7 +407,7 @@ Deterministic: ()
 >;; METTA-LANG.CONCRETE-TYPES---METTA-LANGUAGE12.03</h3>
 ; 
 ; EVAL TEST
-; took 0.000179 secs. (179.34 microseconds) 
+; took 0.000208 secs. (207.90 microseconds) 
 
 !(assertEqualToResult (get-type +) ((-> Number Number Number)))
 
@@ -426,7 +426,7 @@ Deterministic: ()
 >;; METTA-LANG.CONCRETE-TYPES---METTA-LANGUAGE12.04</h3>
 ; 
 ; EVAL TEST
-; took 0.000230 secs. (230.43 microseconds) 
+; took 0.000216 secs. (215.89 microseconds) 
 
 !(assertEqualToResult (get-type (+ 1 2.1)) (Number))
 
@@ -436,7 +436,7 @@ Deterministic: ()
 Deterministic: ()
 ;;;  !(assertEqualToResult ( )  (  )  ) 
 <span class="ansi32"
->% 212,792 inferences, 0.068 CPU in 0.070 seconds (97% CPU, 3141490 Lips)
+>% 213,036 inferences, 0.069 CPU in 0.071 seconds (97% CPU, 3092896 Lips)
 </span>P;HTML|
 ;                       (= /home/runner/work/metta-wam/metta-wam/tests/baseline_compat/metta_lang/Concrete_types___MeTTa_Language12.metta  0)
 <span class="ansi1"
@@ -579,7 +579,7 @@ Deterministic: ()
 <span class="ansi31"
 >(in  (maybe_halt  7) (unwind  (halt  7)))
 </span>
-Script done on 2024-11-11 19:23:06+00:00 [COMMAND_EXIT_CODE="7"]
+Script done on 2024-11-12 18:45:41+00:00 [COMMAND_EXIT_CODE="7"]
 
 </pre>
 </body>

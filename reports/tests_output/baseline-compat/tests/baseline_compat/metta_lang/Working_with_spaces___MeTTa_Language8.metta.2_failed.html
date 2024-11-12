@@ -37,7 +37,7 @@
 <body class="body_foreground body_background" style="font-size: normal;" >
 <pre class="ansi2html-content"
 >
-Script started on 2024-11-11 19:38:49+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
+Script started on 2024-11-12 19:01:49+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
 P;HTML|
 ;           (set_option_value  compat false)
 
@@ -359,13 +359,13 @@ Script started on 2024-11-11 19:38:49+00:00 [TERM="xterm-256color" TTY="/dev/pts
 P;HTML|
 ;                                         (= 6  "Expected: [GroundingSpace-addr]")
 P;HTML|
-;                                         (= 6  "Got: [GroundingSpace-0x55bcb4c0cfe8]")
+;                                         (= 6  "Got: [GroundingSpace-0x558e33c3e598]")
 P;HTML|
 ;                                         (= 7  "Missed result: GroundingSpace-addr)]")
 P;HTML|
-;                                         (= 7  "0.03user 0.01system 0:00.05elapsed 98%CPU (0avgtext+0avgdata 26112maxresident)k")
+;                                         (= 7  "0.04user 0.01system 0:00.05elapsed 100%CPU (0avgtext+0avgdata 26124maxresident)k")
 P;HTML|
-;                                         (= 7  "0inputs+0outputs (0major+3120minor)pagefaults 0swaps")
+;                                         (= 7  "0inputs+0outputs (0major+3124minor)pagefaults 0swaps")
 <span class="ansi1 ansi90"
 >
 Info: File /home/runner/work/metta-wam/metta-wam/tests/baseline_compat/metta_lang/Working_with_spaces___MeTTa_Language8.metta is 853 bytes (44 lines)
@@ -389,7 +389,7 @@ Info: File /home/runner/work/metta-wam/metta-wam/tests/baseline_compat/metta_lan
 >;; METTA-LANG.WORKING-WITH-SPACES---METTA-LANGUAGE8.01</h3>
 ; 
 ; EVAL TEST
-; took 0.000364 secs. (363.55 microseconds) 
+; took 0.000380 secs. (380.36 microseconds) 
 
 !(assertEqualToResult (println "xx 114 ") ((println "xx 114 ")))
 
@@ -406,7 +406,7 @@ Deterministic: ()
 >;; METTA-LANG.WORKING-WITH-SPACES---METTA-LANGUAGE8.02</h3>
 ; 
 ; EVAL TEST
-; took 0.000346 secs. (346.50 microseconds) 
+; took 0.000362 secs. (362.15 microseconds) 
 
 !(assertEqualToResult (add-reduct &self (= (get-space) (new-space))) (()))
 
@@ -429,7 +429,7 @@ Deterministic: ((Error  (got  ((add-reduct &self (= (get-space) (new-space))))) 
 >;; METTA-LANG.WORKING-WITH-SPACES---METTA-LANGUAGE8.03</h3>
 ; 
 ; EVAL TEST
-; took 0.000275 secs. (275.10 microseconds) 
+; took 0.000292 secs. (291.57 microseconds) 
 
 !(assertEqualToResult (println "xx 115 ") ((println "xx 115 ")))
 
@@ -448,7 +448,7 @@ Deterministic: ()
 > (Parent Bob Ann)
 </span>; 
 ; EVAL TEST
-; took 0.002 secs. (1.97 milliseconds) 
+; took 0.002 secs. (2.00 milliseconds) 
 
 !(assertEqualToResult (add-atom (get-space) (Parent Bob Ann)) (()))
 
@@ -471,7 +471,7 @@ Deterministic: ()
 >;; METTA-LANG.WORKING-WITH-SPACES---METTA-LANGUAGE8.05</h3>
 ; 
 ; EVAL TEST
-; took 0.000339 secs. (339.02 microseconds) 
+; took 0.000290 secs. (289.63 microseconds) 
 
 !(assertEqualToResult (println "xx 116 ") ((println "xx 116 ")))
 
@@ -488,7 +488,7 @@ Deterministic: ()
 >;; METTA-LANG.WORKING-WITH-SPACES---METTA-LANGUAGE8.06</h3>
 ; 
 ; EVAL TEST
-; took 0.000284 secs. (284.22 microseconds) 
+; took 0.000297 secs. (296.57 microseconds) 
 
 !(assertEqualToResult (get-space) (GroundingSpace-addr))
 
@@ -512,7 +512,7 @@ Deterministic: (println "xx 117 ")
 >;; METTA-LANG.WORKING-WITH-SPACES---METTA-LANGUAGE8.07</h3>
 ; 
 ; EVAL TEST
-; took 0.000913 secs. (912.99 microseconds) 
+; took 0.000899 secs. (899.01 microseconds) 
 
 !(assertEqualToResult (match (get-space) (Parent $x $y) ($x $y)) ((Bob Ann)))
 
@@ -526,7 +526,7 @@ Deterministic: ()
 ;;;[(Bob Ann)]
 ;;;  !(assertEqualToResult ( )  (  )  ) 
 <span class="ansi32"
->% 348,793 inferences, 0.095 CPU in 0.098 seconds (98% CPU, 3659430 Lips)
+>% 347,845 inferences, 0.094 CPU in 0.096 seconds (98% CPU, 3683365 Lips)
 </span>P;HTML|
 ;                       (= /home/runner/work/metta-wam/metta-wam/tests/baseline_compat/metta_lang/Working_with_spaces___MeTTa_Language8.metta  0)
 <span class="ansi1"
@@ -673,7 +673,7 @@ Deterministic: ()
 <span class="ansi31"
 >(in  (maybe_halt  7) (unwind  (halt  7)))
 </span>
-Script done on 2024-11-11 19:38:55+00:00 [COMMAND_EXIT_CODE="7"]
+Script done on 2024-11-12 19:01:55+00:00 [COMMAND_EXIT_CODE="7"]
 
 </pre>
 </body>
