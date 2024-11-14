@@ -43,7 +43,7 @@
 <body class="body_foreground body_background" style="font-size: normal;" >
 <pre class="ansi2html-content"
 >
-Script started on 2024-11-12 18:50:01+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
+Script started on 2024-11-14 18:33:19+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
 P;HTML|
 ;           (set_option_value  compat false)
 
@@ -369,9 +369,9 @@ Script started on 2024-11-12 18:50:01+00:00 [TERM="xterm-256color" TTY="/dev/pts
 P;HTML|
 ;                                         (= 7  "Missed result: ())]")
 P;HTML|
-;                                         (= 7  "0.04user 0.01system 0:00.05elapsed 98%CPU (0avgtext+0avgdata 26560maxresident)k")
+;                                         (= 7  "0.05user 0.00system 0:00.05elapsed 98%CPU (0avgtext+0avgdata 26324maxresident)k")
 P;HTML|
-;                                         (= 7  "0inputs+0outputs (0major+3143minor)pagefaults 0swaps")
+;                                         (= 7  "0inputs+0outputs (0major+3145minor)pagefaults 0swaps")
 <span class="ansi1 ansi90"
 >
 Info: File /home/runner/work/metta-wam/metta-wam/tests/baseline_compat/metta_lang/Controlling_pattern_matching___MeTTa_Language10.metta is 1.67K bytes (54 lines)
@@ -405,7 +405,7 @@ Info: File /home/runner/work/metta-wam/metta-wam/tests/baseline_compat/metta_lan
 >;; METTA-LANG.CONTROLLING-PATTERN-MATCHING---METTA-LANGUAGE10.01</h3>
 ; 
 ; EVAL TEST
-; took 0.000396 secs. (395.97 microseconds) 
+; took 0.000427 secs. (426.99 microseconds) 
 
 !(assertEqualToResult (println "1") ((println "1")))
 
@@ -421,7 +421,7 @@ Deterministic: ()
 >;; METTA-LANG.CONTROLLING-PATTERN-MATCHING---METTA-LANGUAGE10.02</h3>
 ; 
 ; EVAL TEST
-; took 0.000832 secs. (832.33 microseconds) 
+; took 0.000795 secs. (795.47 microseconds) 
 
 !(assertEqualToResult (of-same-age Bob) (Bob Tom))
 
@@ -447,7 +447,7 @@ Deterministic: ()
 >;; METTA-LANG.CONTROLLING-PATTERN-MATCHING---METTA-LANGUAGE10.03</h3>
 ; 
 ; EVAL TEST
-; took 0.000343 secs. (343.01 microseconds) 
+; took 0.000361 secs. (360.59 microseconds) 
 
 !(assertEqualToResult (println "2") ((println "2")))
 
@@ -464,7 +464,7 @@ Deterministic: ()
 >;; METTA-LANG.CONTROLLING-PATTERN-MATCHING---METTA-LANGUAGE10.04</h3>
 ; 
 ; EVAL TEST
-; took 0.000578 secs. (578.06 microseconds) 
+; took 0.000563 secs. (562.82 microseconds) 
 
 !(assertEqualToResult (let $age (age Bob) (match &self (= (age $other) $age) $other)) (Bob Tom))
 
@@ -492,7 +492,7 @@ Deterministic: ()
 >;; METTA-LANG.CONTROLLING-PATTERN-MATCHING---METTA-LANGUAGE10.05</h3>
 ; 
 ; EVAL TEST
-; took 0.000364 secs. (364.27 microseconds) 
+; took 0.000334 secs. (333.82 microseconds) 
 
 !(assertEqualToResult (println "3") ((println "3")))
 
@@ -509,7 +509,7 @@ Deterministic: ()
 >;; METTA-LANG.CONTROLLING-PATTERN-MATCHING---METTA-LANGUAGE10.06</h3>
 ; 
 ; EVAL TEST
-; took 0.000150 secs. (149.93 microseconds) 
+; took 0.000149 secs. (148.58 microseconds) 
 
 !(assertEqualToResult (match &self (= (age $other) (age Bob)) $other) (()))
 
@@ -534,7 +534,7 @@ Deterministic: (println "4")
 >;; METTA-LANG.CONTROLLING-PATTERN-MATCHING---METTA-LANGUAGE10.07</h3>
 ; 
 ; EVAL TEST
-; took 0.000236 secs. (235.63 microseconds) 
+; took 0.000219 secs. (219.15 microseconds) 
 
 !(assertEqualToResult (let $pattern (= (age $other) (age Bob)) $pattern) (((= 5 5) (= 8 5) (= 5 5) (= 3 5))))
 
@@ -560,7 +560,7 @@ Deterministic: (println "5")
 >;; METTA-LANG.CONTROLLING-PATTERN-MATCHING---METTA-LANGUAGE10.08</h3>
 ; 
 ; EVAL TEST
-; took 0.000305 secs. (304.74 microseconds) 
+; took 0.000294 secs. (294.25 microseconds) 
 
 !(assertEqualToResult (let $pattern (= (age $other) (age Bob)) (match &self $pattern $other)) (()))
 
@@ -571,7 +571,7 @@ Deterministic: ()
 ;;; !(assertEqualToResult ( )  (  )  )       
 ;;;  !(assertEqualToResult ( )  (  )  ) 
 <span class="ansi32"
->% 435,201 inferences, 0.114 CPU in 0.116 seconds (98% CPU, 3815411 Lips)
+>% 436,241 inferences, 0.115 CPU in 0.117 seconds (98% CPU, 3799868 Lips)
 </span>P;HTML|
 ;                       (= /home/runner/work/metta-wam/metta-wam/tests/baseline_compat/metta_lang/Controlling_pattern_matching___MeTTa_Language10.metta  0)
 <span class="ansi1"
@@ -720,7 +720,7 @@ Deterministic: ()
 <span class="ansi31"
 >(in  (maybe_halt  7) (unwind  (halt  7)))
 </span>
-Script done on 2024-11-12 18:50:07+00:00 [COMMAND_EXIT_CODE="7"]
+Script done on 2024-11-14 18:33:25+00:00 [COMMAND_EXIT_CODE="7"]
 
 </pre>
 </body>

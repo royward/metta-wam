@@ -36,7 +36,7 @@
 <body class="body_foreground body_background" style="font-size: normal;" >
 <pre class="ansi2html-content"
 >
-Script started on 2024-11-12 18:52:27+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
+Script started on 2024-11-14 18:35:43+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="-1" LINES="-1"]
 P;HTML|
 ;           (set_option_value  compat false)
 
@@ -352,9 +352,9 @@ Script started on 2024-11-12 18:52:27+00:00 [TERM="xterm-256color" TTY="/dev/pts
 P;HTML|
 ;                                         (= 4  "[()]")
 P;HTML|
-;                                         (= 5  "0.03user 0.01system 0:00.05elapsed 98%CPU (0avgtext+0avgdata 26284maxresident)k")
+;                                         (= 5  "0.03user 0.01system 0:00.05elapsed 98%CPU (0avgtext+0avgdata 26280maxresident)k")
 P;HTML|
-;                                         (= 5  "0inputs+0outputs (0major+3136minor)pagefaults 0swaps")
+;                                         (= 5  "0inputs+0outputs (0major+3133minor)pagefaults 0swaps")
 <span class="ansi1 ansi90"
 >
 Info: File /home/runner/work/metta-wam/metta-wam/tests/baseline_compat/metta_lang/Functions_and_unification___MeTTa_Language3.metta is 669 bytes (35 lines)
@@ -390,7 +390,7 @@ Info: File /home/runner/work/metta-wam/metta-wam/tests/baseline_compat/metta_lan
 >;; METTA-LANG.FUNCTIONS-AND-UNIFICATION---METTA-LANGUAGE3.01</h3>
 ; 
 ; EVAL TEST
-; took 0.000446 secs. (446.23 microseconds) 
+; took 0.000444 secs. (444.04 microseconds) 
 
 !(assertEqualToResult (println "xx 0 ") ((println "xx 0 ")))
 
@@ -407,7 +407,7 @@ Deterministic: ()
 >;; METTA-LANG.FUNCTIONS-AND-UNIFICATION---METTA-LANGUAGE3.02</h3>
 ; 
 ; EVAL TEST
-; took 0.000908 secs. (907.55 microseconds) 
+; took 0.000902 secs. (901.72 microseconds) 
 
 !(assertEqualToResult (get-parent-entries Tom $) ((Parent Tom Bob) (Parent Tom Liz)))
 
@@ -430,7 +430,7 @@ Deterministic: ()
 >;; METTA-LANG.FUNCTIONS-AND-UNIFICATION---METTA-LANGUAGE3.03</h3>
 ; 
 ; EVAL TEST
-; took 0.000319 secs. (318.60 microseconds) 
+; took 0.000330 secs. (330.43 microseconds) 
 
 !(assertEqualToResult (println "xx 1 ") ((println "xx 1 ")))
 
@@ -447,7 +447,7 @@ Deterministic: ()
 >;; METTA-LANG.FUNCTIONS-AND-UNIFICATION---METTA-LANGUAGE3.04</h3>
 ; 
 ; EVAL TEST
-; took 0.000523 secs. (522.97 microseconds) 
+; took 0.000378 secs. (377.87 microseconds) 
 
 !(assertEqualToResult (get-parents Bob) (Pam Tom))
 
@@ -457,7 +457,7 @@ Deterministic: ()
 Deterministic: ()
 ;;;  !(assertEqualToResult ( )  (  )  ) 
 <span class="ansi32"
->% 255,523 inferences, 0.080 CPU in 0.082 seconds (97% CPU, 3190834 Lips)
+>% 255,555 inferences, 0.081 CPU in 0.084 seconds (97% CPU, 3139850 Lips)
 </span>P;HTML|
 ;                       (= /home/runner/work/metta-wam/metta-wam/tests/baseline_compat/metta_lang/Functions_and_unification___MeTTa_Language3.metta  0)
 <span class="ansi1"
@@ -600,7 +600,7 @@ Deterministic: ()
 <span class="ansi31"
 >(in  (maybe_halt  7) (unwind  (halt  7)))
 </span>
-Script done on 2024-11-12 18:52:33+00:00 [COMMAND_EXIT_CODE="7"]
+Script done on 2024-11-14 18:35:49+00:00 [COMMAND_EXIT_CODE="7"]
 
 </pre>
 </body>
