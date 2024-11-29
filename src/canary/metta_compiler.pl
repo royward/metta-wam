@@ -162,6 +162,7 @@ compile_for_exec1(AsBodyFn, Converted) :-
    f2p([exec0],HResult,AsBodyFn,NextBody),
    %optimize_head_and_body(x_assign([exec0],HResult),NextBody,HeadC,NextBodyB),
    ast_to_prolog_aux([],[native(exec0),HResult],HeadC),
+   %ast_to_prolog([],[[native(trace)]|NextBody],NextBodyC).
    ast_to_prolog([],NextBody,NextBodyC).
 
 compile_for_assert(HeadIs, AsBodyFn, Converted) :-
@@ -540,6 +541,7 @@ f2p(HeadIs,RetResult, Convert, Converted) :- HeadIs\=@=Convert,
 % temporary placeholder
 is_arg_eval('Number',yes) :- !.
 is_arg_eval('Bool',yes) :- !.
+is_arg_eval('LazyBool',yes) :- !.
 is_arg_eval('Any',yes) :- !.
 is_arg_eval('Atom',yes) :- !.
 is_arg_eval(_,no).
@@ -551,8 +553,11 @@ do_arg_eval(HeadIs,Arg,yes,NewArg,Code) :- f2p(HeadIs,NewArg,Arg,Code).
 %f2p(_HeadIs,_RetResult,x_assign(Convert,Res), x_assign(Convert,Res)):- !.
 %f2p(_HeadIs,RetResult,Convert, Code):- into_x_assign(Convert,RetResult,Code).
 
-f2p(HeadIs,list(Convert), Convert, []) :- HeadIs\=@=Convert,
-   is_list(Convert).
+%f2p(HeadIs,list(Convert), Convert, []) :- trace,HeadIs\=@=Convert,
+%   is_list(Convert),!.
+f2p(HeadIs,list(Converted), Convert, Codes) :- HeadIs\=@=Convert, is_list(Convert),!,
+   maplist(f2p(HeadIs),Converted,Convert,Allcodes),
+   append(Allcodes,Codes).
 
 f2p(HeadIs,_RetResult,Convert,_Code):-
    format("Error in f2p ~w ~w\n",[HeadIs,Convert]),
