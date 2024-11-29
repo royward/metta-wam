@@ -159,7 +159,7 @@ compile_for_exec0(Res,I,BB):- fail,
 
 compile_for_exec1(AsBodyFn, Converted) :-
    Converted = (HeadC :- NextBodyC),  % Create a rule with Head as the converted AsFunction and NextBody as the converted AsBodyFn
-   f2p([exec0],HResult,AsBodyFn,NextBody),
+   f2p([exec0],HResult,_ResultEvaluated,AsBodyFn,NextBody),
    %optimize_head_and_body(x_assign([exec0],HResult),NextBody,HeadC,NextBodyB),
    ast_to_prolog_aux([],[native(exec0),HResult],HeadC),
    ast_to_prolog([],NextBody,NextBodyC).
@@ -172,7 +172,7 @@ compile_for_assert(HeadIs, AsBodyFn, Converted) :-
    must_det_ll((
       Converted = (HeadC :- NextBodyC),  % Create a rule with Head as the converted AsFunction and NextBody as the converted AsBodyFn
       %leash(-all),trace,
-      f2p(HeadIs,HResult,AsBodyFn,NextBody),
+      f2p(HeadIs,HResult,_ResultEvaluated,AsBodyFn,NextBody),
 
       %format("HeadIs:~w HResult:~w AsBodyFn:~w NextBody:~w\n",[HeadIs,HResult,AsBodyFn,NextBody]),
       %format("HERE\n"),
@@ -233,7 +233,7 @@ functs_to_preds0(EqHB,OO):- compile_head_for_assert(EqHB,OO),!.
 
 functs_to_preds0(I,OO):-
    sexpr_s2p(I, M),
-   f2p(_,_,M,O),
+   f2p(_,_,_Evaluated,M,O),
    expand_to_hb(O,H,B),
    head_preconds_into_body(H,B,HH,BB),!,
    OO = ':-'(HH,BB).
@@ -502,15 +502,15 @@ u_assign_c(FList,R):- compound(FList), !, FList=~R.
 
 quietlY(G):- call(G).
 
-:- discontiguous f2p/4.
+:- discontiguous f2p/5.
 
-f2p(_HeadIs,Convert, Convert, []) :-
+f2p(_HeadIs,Convert, ResultEvaluted, Convert, []) :-
      (is_ftVar(Convert);number(Convert)),!.% Check if Convert is a variable
 
-f2p(_HeadIs, X, '#\\'(X), []).
+f2p(_HeadIs, X, ResultEvaluted, '#\\'(X), []).
 
 % If Convert is a number or an atom, it is considered as already converted.
-f2p(_HeadIs,RetResult, Convert, Converted) :- % HeadIs\=@=Convert,
+f2p(_HeadIs,RetResult, ResultEvaluted, Convert, Converted) :- % HeadIs\=@=Convert,
     Converted=[[assign,RetResult,Convert]],
     once(number(Convert); atom(Convert); data_term(Convert)),  % Check if Convert is a number or an atom
     % For OVER-REACHING categorization of dataobjs %
@@ -518,18 +518,18 @@ f2p(_HeadIs,RetResult, Convert, Converted) :- % HeadIs\=@=Convert,
     %trace_break,
     !.  % Set RetResult to Convert as it is already in predicate form
 
-f2p(HeadIs,RetResult,Convert, Converted):-
+f2p(HeadIs,RetResult, ResultEvaluted, Convert, Converted):-
    Convert=[Fn|_],
    atom(Fn),
-   compile_flow_control(HeadIs,RetResult,Convert, Converted),!.
+   compile_flow_control(HeadIs,RetResult,ResultEvaluted, Convert, Converted),!.
 
-f2p(HeadIs,RetResult, Convert, Converted) :- HeadIs\=@=Convert,
+f2p(HeadIs,RetResult, ResultEvaluted, Convert, Converted) :- HeadIs\=@=Convert,
    Convert=[Fn|Args],
    atom(Fn),!,
    length(Args,Largs),
-   get_operator_typedef(_,Fn,Largs,Types,_RetType),
-   maplist(is_arg_eval,Types,EvalArgs),
-   %,
+   get_operator_typedef(_,Fn,Largs,Types,RetType),
+   maplist(arg_eval_props,Types,EvalArgs),
+   arg_eval_props(RetType,_LazyRet),
    maplist(do_arg_eval(HeadIs),Args,EvalArgs,NewArgs,NewCodes),
    append(NewCodes,CombinedNewCode),
    %into_x_assign([Fn|NewArgs],RetResult,Code),
@@ -538,14 +538,26 @@ f2p(HeadIs,RetResult, Convert, Converted) :- HeadIs\=@=Convert,
    %combine_code_list(CombinedNewCode1,Converted).
 
 % temporary placeholder
-is_arg_eval('Number',yes) :- !.
-is_arg_eval('Bool',yes) :- !.
-is_arg_eval('Any',yes) :- !.
-is_arg_eval('Atom',yes) :- !.
-is_arg_eval(_,no).
+%is_arg_eval('Number',yes) :- !.
+%is_arg_eval('Bool',yes) :- !.
+%is_arg_eval('Any',yes) :- !.
+%is_arg_eval('Atom',yes) :- !.
+%is_arg_eval(_,no).
 
-do_arg_eval(_,Arg,no,Arg,[]).
-do_arg_eval(HeadIs,Arg,yes,NewArg,Code) :- f2p(HeadIs,NewArg,Arg,Code).
+%is_arg_lazy('Atom',yes) :- !.
+%is_arg_lazy(_,no).
+
+arg_eval_props('Number',yes-no) :- !.
+arg_eval_props('Bool',yes-no) :- !.
+arg_eval_props('Any',yes-no) :- !.
+arg_eval_props('Atom',yes-yes) :- !.
+arg_eval_props(_,no-no).
+
+do_arg_eval(_,Arg,no-_,Arg,[]).
+do_arg_eval(HeadIs,Arg,yes-yes,[is_p1,SubCode,SubArg],Code) :-
+   f2p(HeadIs,SubArg,Arg,SubCode),
+   Code=[].
+do_arg_eval(HeadIs,Arg,yes-no,NewArg,Code) :- f2p(HeadIs,NewArg,Arg,Code).
 
 % The catch-all If no specific case is matched, consider Convert as already converted.
 %f2p(_HeadIs,_RetResult,x_assign(Convert,Res), x_assign(Convert,Res)):- !.
