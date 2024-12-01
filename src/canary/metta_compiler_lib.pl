@@ -38,6 +38,8 @@ mc__or(_,_,'True').
 
 %%%%%%%%%%%%%%%%%%%%% misc
 
+'mc__empty'(_) :- fail.
+
 'mc__stringToChars'(S,C) :- string_chars(S,C).
 
 'mc__charsToString'(C,S) :- string_chars(S,C).

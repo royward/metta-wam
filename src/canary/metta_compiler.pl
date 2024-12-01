@@ -162,6 +162,7 @@ compile_for_exec1(AsBodyFn, Converted) :-
    f2p([exec0],HResult,_ResultEvaluated,AsBodyFn,NextBody),
    %optimize_head_and_body(x_assign([exec0],HResult),NextBody,HeadC,NextBodyB),
    ast_to_prolog_aux([],[native(exec0),HResult],HeadC),
+   %ast_to_prolog([],[[native(trace)]|NextBody],NextBodyC).
    ast_to_prolog([],NextBody,NextBodyC).
 
 compile_for_assert(HeadIs, AsBodyFn, Converted) :-
@@ -504,38 +505,45 @@ quietlY(G):- call(G).
 
 :- discontiguous f2p/5.
 
-f2p(_HeadIs,Convert, ResultEvaluted, Convert, []) :-
-     (is_ftVar(Convert);number(Convert)),!.% Check if Convert is a variable
+f2p(_HeadIs,Converted, ResultLazy, Convert, []) :-
+   (is_ftVar(Convert);number(Convert)),!, % Check if Convert is a variable
+   (ResultLazy -> Converted=Convert ; Converted=is_p1(true,Convert)).
 
-f2p(_HeadIs, X, ResultEvaluted, '#\\'(X), []).
+f2p(_HeadIs, Converted, ResultLazy, '#\\'(X), []) :-
+      (ResultLazy -> Converted=X ; Converted=is_p1(true,X)).
 
 % If Convert is a number or an atom, it is considered as already converted.
-f2p(_HeadIs,RetResult, ResultEvaluted, Convert, Converted) :- % HeadIs\=@=Convert,
-    Converted=[[assign,RetResult,Convert]],
+f2p(_HeadIs,RetResult, ResultLazy, Convert, Converted) :- % HeadIs\=@=Convert,
     once(number(Convert); atom(Convert); data_term(Convert)),  % Check if Convert is a number or an atom
+   (ResultLazy -> C2=Convert ; C2=is_p1(true,Convert)).
+    Converted=[[assign,RetResult,C2]],
     % For OVER-REACHING categorization of dataobjs %
     % wdmsg(data_term(Convert)),
     %trace_break,
     !.  % Set RetResult to Convert as it is already in predicate form
 
-f2p(HeadIs,RetResult, ResultEvaluted, Convert, Converted):-
+f2p(HeadIs,RetResult, ResultLazy, Convert, Converted):-
    Convert=[Fn|_],
    atom(Fn),
-   compile_flow_control(HeadIs,RetResult,ResultEvaluted, Convert, Converted),!.
+   compile_flow_control(HeadIs,RetResult,ResultLazy, Convert, Converted),!.
 
-f2p(HeadIs,RetResult, ResultEvaluted, Convert, Converted) :- HeadIs\=@=Convert,
+f2p(HeadIs,RetResult, ResultLazy, Convert, Converted) :- HeadIs\=@=Convert,
    Convert=[Fn|Args],
    atom(Fn),!,
    length(Args,Largs),
    get_operator_typedef(_,Fn,Largs,Types,RetType),
    maplist(arg_eval_props,Types,EvalArgs),
-   arg_eval_props(RetType,_LazyRet),
+   arg_eval_props(RetType,_-RetEvalLazy),
    maplist(do_arg_eval(HeadIs),Args,EvalArgs,NewArgs,NewCodes),
    append(NewCodes,CombinedNewCode),
-   %into_x_assign([Fn|NewArgs],RetResult,Code),
+   %into_x_assign([Fn|NewArgs],RetResult0,Code),
    Code=[assign,RetResult,[call(Fn)|NewArgs]],
-   append(CombinedNewCode,[Code],Converted).
+   append(CombinedNewCode,[Code],Converted0),
+   lazy_impedance_match(RetEvalLazy,ResultLazy,RetResult0,Converted0,RetResult,Converted).
    %combine_code_list(CombinedNewCode1,Converted).
+
+lazy_impedance_match(L,L,RetResult0,Converted0,RetResult0,Converted0).
+lazy_impedance_match(no,yes,RetResult0,Converted0,RetResult0,Converted0).
 
 % temporary placeholder
 %is_arg_eval('Number',yes) :- !.
@@ -549,6 +557,7 @@ f2p(HeadIs,RetResult, ResultEvaluted, Convert, Converted) :- HeadIs\=@=Convert,
 
 arg_eval_props('Number',yes-no) :- !.
 arg_eval_props('Bool',yes-no) :- !.
+arg_eval_props('LazyBool',yes-yes) :- !.
 arg_eval_props('Any',yes-no) :- !.
 arg_eval_props('Atom',yes-yes) :- !.
 arg_eval_props(_,no-no).
@@ -563,8 +572,11 @@ do_arg_eval(HeadIs,Arg,yes-no,NewArg,Code) :- f2p(HeadIs,NewArg,Arg,Code).
 %f2p(_HeadIs,_RetResult,x_assign(Convert,Res), x_assign(Convert,Res)):- !.
 %f2p(_HeadIs,RetResult,Convert, Code):- into_x_assign(Convert,RetResult,Code).
 
-f2p(HeadIs,list(Convert), Convert, []) :- HeadIs\=@=Convert,
-   is_list(Convert).
+%f2p(HeadIs,list(Convert), Convert, []) :- trace,HeadIs\=@=Convert,
+%   is_list(Convert),!.
+f2p(HeadIs,list(Converted), Convert, Codes) :- HeadIs\=@=Convert, is_list(Convert),!,
+   maplist(f2p(HeadIs),Converted,Convert,Allcodes),
+   append(Allcodes,Codes).
 
 f2p(HeadIs,_RetResult,Convert,_Code):-
    format("Error in f2p ~w ~w\n",[HeadIs,Convert]),
