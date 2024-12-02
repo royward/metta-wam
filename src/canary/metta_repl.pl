@@ -921,7 +921,7 @@ eval(Form) :-
     % Execute the form and generate the output using do_metta/5.
     do_metta(true, exec, Self, Form, Out),
     % Write the result to the source.
-    write_src(Out).
+    output_language(metta_answers, write_src(Out)).
 
 %! eval(+Form, -Out) is det.
 %   Evaluates a form and returns the output.
@@ -1109,6 +1109,7 @@ interactively_do_metta_exec01(file(_), Self, _TermV, Term, X, _NamedVarsList, _W
 
 % Reset evaluation counter
 interactively_do_metta_exec01(From,Self,_TermV,Term,X,NamedVarsList,Was,VOutput,FOut):-
+    %format("%%%%%%%%%%%%%%%%%%%%%%%%%2 ~w\n",[Term]),
     notrace((
 
     % Reset evaluation counters for a fresh start
@@ -1179,6 +1180,7 @@ interactively_do_metta_exec01(From,Self,_TermV,Term,X,NamedVarsList,Was,VOutput,
       % Debug output in interactive mode, showing evaluated terms and results
       prolog_only((color_g_mesg('#da70d6', (write('% DEBUG:   '), writeq(PL),writeln('.'))))),
       true))))),
+
    % Print formatted answer output
    in_answer_io(format('~N[')),!,
 
@@ -1203,21 +1205,23 @@ interactively_do_metta_exec01(From,Self,_TermV,Term,X,NamedVarsList,Was,VOutput,
           nb_setarg(1,Prev,Output))),
 
 
-     if_t(ResNum=<Max,
-         ((((ResNum==1,Complete==true)->(not_compatio(format('~N~nDeterministic: ',  [])), !);          %or Nondet
+     output_language(answers,(if_t(ResNum=<Max,
+         (
+         (((ResNum==1,Complete==true)->(old_not_compatio(format('~N~nDeterministic: ',  [])), !);          %or Nondet
          /* previously: handle deterministic result output */
-         (Complete==true -> (not_compatio(format('~N~nLast Result(~w): ',[ResNum])),! );
-          not_compatio(format('~N~nNDet Result(~w): ',[ResNum]))))),
-      ignore(((
-            not_compatio(if_t( \+ symbolic(Output), nop(nl))),
+         (Complete==true -> (old_not_compatio(format('~N~nLast Result(~w): ',[ResNum])),! );
+          old_not_compatio(format('~N~nNDet Result(~w): ',[ResNum]))))),
+       ignore(((
+            if_t( \+ symbolic(Output), not_compatio(nop(nl))),
             %if_t(ResNum==1,in_answer_io(format('~N['))),
-             user_io(with_indents(is_mettalog,
-             color_g_mesg_ok(yellow,
-              \+ \+
+            % user_io
+            (with_indents(is_mettalog,
+              color_g_mesg_ok(yellow,
+               \+ \+
                (maybe_name_vars(NamedVarsList),
-                not_compatio(write_bsrc(Output)),
-                true)))) )) ))),
-     in_answer_io(write_asrc(Output)),
+                old_not_compatio(write_bsrc(Output)),
+                true)))) )) ))))),
+     in_answer_io(write_asrc((Output))),
 
        not_compatio(extra_answer_padding(format('~N'))),  % Just in case, add some virt space between answers
 
@@ -1235,8 +1239,8 @@ interactively_do_metta_exec01(From,Self,_TermV,Term,X,NamedVarsList,Was,VOutput,
                 maplist(print_var,NamedVarsListR), nop(nl)))) ; true))))),
        (
          (Stepping==true) ->
-         (write("~npress ';' for more solutions "),get_single_char_key(C),
-           not_compatio((writeq(key=C),nl)),
+         (old_not_compatio(write("~npress ';' for more solutions ")),get_single_char_key(C),
+           old_not_compatio((writeq(key=C),nl)),
          (C=='b' -> (once(repl),fail) ;
          (C=='m' -> make ;
          (C=='t' -> (nop(set_debug(eval,true)),rtrace) ;
@@ -1252,10 +1256,11 @@ interactively_do_metta_exec01(From,Self,_TermV,Term,X,NamedVarsList,Was,VOutput,
         (((Complete==true ->! ; true))))), not_compatio(extra_answer_padding(format('~N~n')))))
                     *-> (ignore(Result = res(FOut)),ignore(Output = (FOut)))
                     ; (flag(result_num,ResNum,ResNum),(ResNum==0->
-      (in_answer_io(nop(write('['))),not_compatio(format('~N<no-results>~n~n')),!,true);true))),
+      (in_answer_io(nop(write('['))),old_not_compatio(format('~N<no-results>~n~n')),!,true);true))),
                     in_answer_io(write(']\n')),
    ignore(Result = res(FOut)).
 
+old_not_compatio(G):- call(G),ttyflush.
 
 %! maybe_assign(+N_V) is det.
 %
@@ -1347,12 +1352,14 @@ get_single_char_key(C, A):- name(A, [C]).
 forall_interactive(file(_), false, Complete, Goal, After) :-
     !,
     % Execute the goal.
+    %format("%%%%%%%%%%%%%%%%%%%%%%%%%0 ~w\n",[Goal]),
     Goal,
     % If the goal is complete, execute 'After', otherwise skip it.
     (Complete == true -> (After, !) ; (\+ After)).
 forall_interactive(prolog, false, Complete, Goal, After) :-
     !,
     % Execute the goal.
+    %format("%%%%%%%%%%%%%%%%%%%%%%%%%1 ~w\n",[Goal]),
     Goal,
     % If the goal is complete, succeed, otherwise continue.
     (Complete == true -> ! ; true),
@@ -1783,7 +1790,10 @@ write_compiled_exec(Exec, Goal):-
     % Compile the goal for execution and store the result in Res.
     compile_for_exec(Res, Exec, Goal),
     % Print the compiled goal with formatting.
-    notrace((color_g_mesg('#114411', print_pl_source(answer2(Res) :- Goal)))).
+    Call = do_metta_runtime(Res, Goal),
+    output_language(prolog, notrace((color_g_mesg('#114411', print_pl_source(:- Call))))),
+    call(Call).
+
 
 %!  verbose_unify(+Term) is det.
 %
