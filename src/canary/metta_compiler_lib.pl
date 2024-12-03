@@ -45,4 +45,3 @@ mc__or(_,_,'True').
 'mc__charsToString'(C,S) :- string_chars(S,C).
 
 mc__assertEqualToResult(A, B, C) :- u_assign([assertEqualToResult, A, B], C).
-

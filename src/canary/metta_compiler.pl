@@ -140,7 +140,7 @@ strip_m(BB,BB).
 % ?- compile_for_exec(RetResult, is(pi+pi), Converted).
 
 compile_for_exec(Res,I,O):-
-   %ignore(Res='$VAR'('RetResult')),
+   %ignore(Res='$VAR'('RetResult')),`
    compile_for_exec0(Res,I,O),!.
 
 compile_for_exec0(Res,I,eval_args(I,Res)):- is_ftVar(I),!.
@@ -157,9 +157,9 @@ compile_for_exec0(Res,I,BB):- fail,
 
 %compile_for_exec0(Res,I,O):- f2p(exec(),Res,I,O).
 
-compile_for_exec1(AsBodyFn, Converted) :-
+compile_for_exec1(AsBodyFn, Converted) :- trace,
    Converted = (HeadC :- NextBodyC),  % Create a rule with Head as the converted AsFunction and NextBody as the converted AsBodyFn
-   f2p([exec0],HResult,_ResultEvaluated,AsBodyFn,NextBody),
+   f2p([exec0],HResult,no,AsBodyFn,NextBody),
    %optimize_head_and_body(x_assign([exec0],HResult),NextBody,HeadC,NextBodyB),
    ast_to_prolog_aux([],[native(exec0),HResult],HeadC),
    %ast_to_prolog([],[[native(trace)]|NextBody],NextBodyC).
@@ -173,7 +173,7 @@ compile_for_assert(HeadIs, AsBodyFn, Converted) :-
    must_det_ll((
       Converted = (HeadC :- NextBodyC),  % Create a rule with Head as the converted AsFunction and NextBody as the converted AsBodyFn
       %leash(-all),trace,
-      f2p(HeadIs,HResult,_ResultEvaluated,AsBodyFn,NextBody),
+      f2p(HeadIs,HResult,no,AsBodyFn,NextBody),
 
       %format("HeadIs:~w HResult:~w AsBodyFn:~w NextBody:~w\n",[HeadIs,HResult,AsBodyFn,NextBody]),
       %format("HERE\n"),
@@ -181,9 +181,24 @@ compile_for_assert(HeadIs, AsBodyFn, Converted) :-
       %(var(HResult) -> (Result = HResult, HHead = Head) ;
       %   funct_with_result_is_nth_of_pred(HeadIs,AsFunction, Result, _Nth, Head)),
       ast_to_prolog_aux([FnName/LenArgsPlus1],[assign,HResult,[call(FnName)|Args]],HeadC),
-      format("~w",[NextBody]),
-      ast_to_prolog([FnName/LenArgsPlus1],NextBody,NextBodyC)
+
+      output_language( ast, ((
+       \+ \+ ((   no_conflict_numbervars(HeadC + NextBody),
+                  %write_src_wi([=,HeadC,NextBody]),
+                  print_tree_nl([=,HeadC,NextBody]),
+                  true))))),
+
+
+      ast_to_prolog([FnName/LenArgsPlus1],NextBody,NextBodyC),
+      output_language(prolog, (print_pl_source(Converted))),
+      true
    )).
+
+
+no_conflict_numbervars(Term):-
+    findall(N,(sub_term(E,Term),compound(E), '$VAR'(N)=E, integer(N)),NL),!,
+    max_list([-1|NL],Max),Start is Max + 1,!,
+    numbervars(Term,Start,_,[attvar(skip),singletons(true)]).
 
 %compile_for_assert(HeadIs, AsBodyFn, Converted) :-
 %   format("compile_for_assert: ~w ~w\n",[HeadIs, AsBodyFn]),
@@ -427,7 +442,7 @@ check_supporting_predicates(Space,F/A) :- % already exists
          findall(Atom1, (between(1, Am1, I1), Atom1='$VAR'(I1)), AtomList1),
          B=..[u_assign,[F|AtomList1],'$VAR'(A)],
          (enable_interpreter_calls -> G=true;G=fail),
-         create_and_consult_temp_file(Space,Fp/A,[H:-(format("######### warning: using stub for:~w\n",[F]),G,B)]))).
+         create_and_consult_temp_file(Space,Fp/A,[H:-(format("; % ######### warning: using stub for:~w\n",[F]),G,B)]))).
 
 % Predicate to create a temporary file and write the tabled predicate
 create_and_consult_temp_file(Space,F/A, PredClauses) :-
@@ -435,6 +450,10 @@ create_and_consult_temp_file(Space,F/A, PredClauses) :-
     % Generate a unique temporary memory buffer
     tmp_file_stream(text, TempFileName, TempFileStream),
     % Write the tabled predicate to the temporary file
+    format(TempFileStream, ':- multifile((~q)/~w).~n', [metta_compiled_predicate, 3]),
+    format(TempFileStream, ':- dynamic((~q)/~w).~n', [metta_compiled_predicate, 3]),
+    format(TempFileStream, '~N~q.~n',[metta_compiled_predicate(Space,F,A)]),
+
     format(TempFileStream, ':- multifile((~q)/~w).~n', [F, A]),
     format(TempFileStream, ':- dynamic((~q)/~w).~n', [F, A]),
     %if_t( \+ option_value('tabling',false),
@@ -445,15 +464,25 @@ create_and_consult_temp_file(Space,F/A, PredClauses) :-
     % Consult the temporary file
     % abolish(F/A),
     /*'&self':*/
+    % sformat(CAT,'cat ~w',[TempFileName]), shell(CAT),
     consult(TempFileName),
 
-    listing(F/A),
+    % listing(F/A),
     % Delete the temporary file after consulting
     %delete_file(TempFileName),
-    asserta(metta_compiled_predicate(Space,F,A)),
     current_predicate(F/A),
-    listing(metta_compiled_predicate/3),
+    %listing(metta_compiled_predicate/3),
     true)).
+
+
+write_to_streams(StreamList, Format, Args) :-
+    % Write to each stream in the list
+    forall(member(Stream, StreamList),
+           format(Stream, Format, Args)),
+    % Write to stdout
+    format(user_output, Format, Args),
+    flush_output(user_output). % Ensure output is displayed immediately
+
 
 %metta_compiled_predicate(_,F,A):- metta_compiled_predicate(F,A).
 
@@ -505,27 +534,46 @@ quietlY(G):- call(G).
 
 :- discontiguous f2p/5.
 
-f2p(_HeadIs,Converted, ResultLazy, Convert, []) :-
+f2p(_HeadIs,RetResult, ResultLazy, Convert, Converted) :-
    (is_ftVar(Convert);number(Convert)),!, % Check if Convert is a variable
-   (ResultLazy -> Converted=Convert ; Converted=is_p1(true,Convert)).
+   (ResultLazy=no ->
+      RetResult=Convert,
+      Converted=[]
+   ;  Converted=[assign,RetResult,[native(is_p1),true,Convert]]).
 
-f2p(_HeadIs, Converted, ResultLazy, '#\\'(X), []) :-
-      (ResultLazy -> Converted=X ; Converted=is_p1(true,X)).
+f2p(_HeadIs, RetResult, ResultLazy, '#\\'(Convert), Converted) :-
+   (ResultLazy=no ->
+      RetResult=Convert,
+      Converted=[]
+   ;  Converted=[assign,RetResult,[native(is_p1),true,Convert]]).
 
 % If Convert is a number or an atom, it is considered as already converted.
 f2p(_HeadIs,RetResult, ResultLazy, Convert, Converted) :- % HeadIs\=@=Convert,
     once(number(Convert); atom(Convert); data_term(Convert)),  % Check if Convert is a number or an atom
-   (ResultLazy -> C2=Convert ; C2=is_p1(true,Convert)).
+   (ResultLazy=no -> C2=Convert ; C2=[native(is_p1),true,Convert]),
     Converted=[[assign,RetResult,C2]],
     % For OVER-REACHING categorization of dataobjs %
     % wdmsg(data_term(Convert)),
     %trace_break,
     !.  % Set RetResult to Convert as it is already in predicate form
 
-f2p(HeadIs,RetResult, ResultLazy, Convert, Converted):-
-   Convert=[Fn|_],
-   atom(Fn),
-   compile_flow_control(HeadIs,RetResult,ResultLazy, Convert, Converted),!.
+%f2p(HeadIs,RetResult, ResultLazy, Convert, Converted):-
+%   Convert=[Fn|_],
+%   atom(Fn),
+%   compile_flow_control(HeadIs,RetResult,ResultLazy, Convert, Converted),!.
+
+f2p(HeadIs,RetResult, ResultLazy, Convert, Converted) :- HeadIs\=@=Convert,
+   Convert=[Fn|_], \+ atom(Fn),
+    Args = Convert,
+    length(Args, N),
+    % create an eval-args list. TODO FIXME revisit this after working out how lists handle evaluation
+    length(EvalArgs, N),
+    maplist(=(yes-no), EvalArgs),
+    maplist(f2p(HeadIs),NewArgs, EvalArgs, Args, NewCodes),
+    append(NewCodes,CombinedNewCode),
+    Code=[assign,RetResult0,list(NewArgs)],
+    append(CombinedNewCode,[Code],Converted0),
+    lazy_impedance_match(no,ResultLazy,RetResult0,Converted0,RetResult,Converted).
 
 f2p(HeadIs,RetResult, ResultLazy, Convert, Converted) :- HeadIs\=@=Convert,
    Convert=[Fn|Args],
@@ -537,13 +585,17 @@ f2p(HeadIs,RetResult, ResultLazy, Convert, Converted) :- HeadIs\=@=Convert,
    maplist(do_arg_eval(HeadIs),Args,EvalArgs,NewArgs,NewCodes),
    append(NewCodes,CombinedNewCode),
    %into_x_assign([Fn|NewArgs],RetResult0,Code),
-   Code=[assign,RetResult,[call(Fn)|NewArgs]],
+   Code=[assign,RetResult0,[call(Fn)|NewArgs]],
    append(CombinedNewCode,[Code],Converted0),
    lazy_impedance_match(RetEvalLazy,ResultLazy,RetResult0,Converted0,RetResult,Converted).
    %combine_code_list(CombinedNewCode1,Converted).
 
 lazy_impedance_match(L,L,RetResult0,Converted0,RetResult0,Converted0).
-lazy_impedance_match(no,yes,RetResult0,Converted0,RetResult0,Converted0).
+lazy_impedance_match(no,yes,RetResult0,Converted0,RetResult,Converted) :-
+   append(Converted0,[[native(as_p1),RetResult0,RetResult]],Converted).
+lazy_impedance_match(yes,no,RetResult0,Converted0,RetResult,Converted) :-
+   append(Converted0,[[assign,RetResult,[native(is_p1),true,RetResult0]]],Converted).
+
 
 % temporary placeholder
 %is_arg_eval('Number',yes) :- !.
