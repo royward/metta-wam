@@ -100,6 +100,8 @@ transpile_prefix('mc__').
 %enable_interpreter_calls.
 enable_interpreter_calls :- fail.
 
+as_p1(is_p1(Code,Ret),Ret):- !, call(Code).
+
 % Meta-predicate that ensures that for every instance where G1 holds, G2 also holds.
 :- meta_predicate(for_all(0,0)).
 for_all(G1,G2):- forall(G1,G2).
@@ -157,23 +159,36 @@ compile_for_exec0(Res,I,BB):- fail,
 
 %compile_for_exec0(Res,I,O):- f2p(exec(),Res,I,O).
 
-compile_for_exec1(AsBodyFn, Converted) :- trace,
+compile_for_exec1(AsBodyFn, Converted) :-
    Converted = (HeadC :- NextBodyC),  % Create a rule with Head as the converted AsFunction and NextBody as the converted AsBodyFn
-   f2p([exec0],HResult,no,AsBodyFn,NextBody),
+   f2p([exec0],[],HResult,no,AsBodyFn,NextBody),
    %optimize_head_and_body(x_assign([exec0],HResult),NextBody,HeadC,NextBodyB),
    ast_to_prolog_aux([],[native(exec0),HResult],HeadC),
    %ast_to_prolog([],[[native(trace)]|NextBody],NextBodyC).
    ast_to_prolog([],NextBody,NextBodyC).
 
+arrange_lazy_args(N,_-Y,N-Y).
+
+get_operator_typedef_props(X,FnName,Largs,Types1,RetType) :-
+   get_operator_typedef(X,FnName,Largs,Types0,RetType0),!,
+   maplist(arg_eval_props,Types0,Types1),
+   arg_eval_props(RetType0,RetType).
+get_operator_typedef_props(_,_,Largs,Types,yes-no) :-
+    length(Types,Largs),
+    maplist(=(yes-no), Types).
+
 compile_for_assert(HeadIs, AsBodyFn, Converted) :-
+   %leash(-all),
+   %trace,
    HeadIs=[FnName|Args],
    length(Args,LenArgs),
    LenArgsPlus1 is LenArgs+1,
    %AsFunction = HeadIs,
    must_det_ll((
       Converted = (HeadC :- NextBodyC),  % Create a rule with Head as the converted AsFunction and NextBody as the converted AsBodyFn
-      %leash(-all),trace,
-      f2p(HeadIs,HResult,no,AsBodyFn,NextBody),
+      get_operator_typedef_props(_,FnName,LenArgs,Types1,_-RetLazy),
+      maplist(arrange_lazy_args,Args,Types1,LazyArgs),
+      f2p(HeadIs,LazyArgs,HResult,RetLazy,AsBodyFn,NextBody),
 
       %format("HeadIs:~w HResult:~w AsBodyFn:~w NextBody:~w\n",[HeadIs,HResult,AsBodyFn,NextBody]),
       %format("HERE\n"),
@@ -249,7 +264,7 @@ functs_to_preds0(EqHB,OO):- compile_head_for_assert(EqHB,OO),!.
 
 functs_to_preds0(I,OO):-
    sexpr_s2p(I, M),
-   f2p(_,_,_Evaluated,M,O),
+   f2p(_,[],_,_Evaluated,M,O),
    expand_to_hb(O,H,B),
    head_preconds_into_body(H,B,HH,BB),!,
    OO = ':-'(HH,BB).
@@ -391,6 +406,7 @@ ast_to_prolog_aux(DontStub,[prolog_if,If,Then,Else],R) :- !,
    ast_to_prolog(DontStub,Then,Then2),
    ast_to_prolog(DontStub,Else,Else2),
    R=((If2) *-> (Then2);(Else2)).
+ast_to_prolog_aux(DontStub,[is_p1,Code0,R],is_p1(Code1,R)) :- !,ast_to_prolog(DontStub,Code0,Code1).
 ast_to_prolog_aux(DontStub,[native(F)|Args0],A) :- !,
    maplist(ast_to_prolog_aux(DontStub),Args0,Args1),
    A=..[F|Args1].
@@ -429,7 +445,6 @@ combine_code_list_aux([],[]).
 combine_code_list_aux([true|T],R) :- !,combine_code_list_aux(T,R).
 combine_code_list_aux([H|T],R) :- H=..[','|H0],!,append(H0,T,T0),combine_code_list_aux(T0,R).
 combine_code_list_aux([H|T],[H|R]) :- combine_code_list_aux(T,R).
-
 
 check_supporting_predicates(Space,F/A) :- % already exists
    transpile_prefix(Prefix),
@@ -532,57 +547,58 @@ u_assign_c(FList,R):- compound(FList), !, FList=~R.
 
 quietlY(G):- call(G).
 
-:- discontiguous f2p/5.
+var_prop_lookup(_,[],no).
+var_prop_lookup(X,[H-R|T],S) :-
+   X == H,S=R;  % Test if X and H are the same variable
+   var_prop_lookup(X,T,S).  % Recursively check the tail of the list
 
-f2p(_HeadIs,RetResult, ResultLazy, Convert, Converted) :-
+:- discontiguous f2p/6.
+
+f2p(_HeadIs, LazyVars, RetResult, ResultLazy, Convert, Converted) :-
    (is_ftVar(Convert);number(Convert)),!, % Check if Convert is a variable
-   (ResultLazy=no ->
-      RetResult=Convert,
-      Converted=[]
-   ;  Converted=[assign,RetResult,[native(is_p1),true,Convert]]).
+   var_prop_lookup(Convert,LazyVars,L),
+   lazy_impedance_match(L,ResultLazy,Convert,[],RetResult,Converted).
 
-f2p(_HeadIs, RetResult, ResultLazy, '#\\'(Convert), Converted) :-
+f2p(_HeadIs, _LazyVars, RetResult, ResultLazy, '#\\'(Convert), Converted) :-
    (ResultLazy=no ->
       RetResult=Convert,
       Converted=[]
-   ;  Converted=[assign,RetResult,[native(is_p1),true,Convert]]).
+   ;  Converted=[assign,RetResult,[is_p1,[],Convert]]).
 
 % If Convert is a number or an atom, it is considered as already converted.
-f2p(_HeadIs,RetResult, ResultLazy, Convert, Converted) :- % HeadIs\=@=Convert,
+f2p(_HeadIs, _LazyVars, RetResult, ResultLazy, Convert, Converted) :- % HeadIs\=@=Convert,
     once(number(Convert); atom(Convert); data_term(Convert)),  % Check if Convert is a number or an atom
-   (ResultLazy=no -> C2=Convert ; C2=[native(is_p1),true,Convert]),
+    (ResultLazy=no -> C2=Convert ; C2=[is_p1,[],Convert]),
     Converted=[[assign,RetResult,C2]],
     % For OVER-REACHING categorization of dataobjs %
     % wdmsg(data_term(Convert)),
     %trace_break,
     !.  % Set RetResult to Convert as it is already in predicate form
 
-%f2p(HeadIs,RetResult, ResultLazy, Convert, Converted):-
-%   Convert=[Fn|_],
-%   atom(Fn),
-%   compile_flow_control(HeadIs,RetResult,ResultLazy, Convert, Converted),!.
+f2p(HeadIs, LazyVars, RetResult, ResultLazy, Convert, Converted):-
+   Convert=[Fn|_],
+   atom(Fn),
+   compile_flow_control(HeadIs,LazyVars,RetResult,ResultLazy, Convert, Converted),!.
 
-f2p(HeadIs,RetResult, ResultLazy, Convert, Converted) :- HeadIs\=@=Convert,
+f2p(HeadIs, LazyVars, RetResult, ResultLazy, Convert, Converted) :- HeadIs\=@=Convert,
    Convert=[Fn|_], \+ atom(Fn),
     Args = Convert,
     length(Args, N),
     % create an eval-args list. TODO FIXME revisit this after working out how lists handle evaluation
     length(EvalArgs, N),
-    maplist(=(yes-no), EvalArgs),
-    maplist(f2p(HeadIs),NewArgs, EvalArgs, Args, NewCodes),
+    maplist(=(no), EvalArgs),
+    maplist(f2p(HeadIs, LazyVars),NewArgs, EvalArgs, Args, NewCodes),
     append(NewCodes,CombinedNewCode),
     Code=[assign,RetResult0,list(NewArgs)],
     append(CombinedNewCode,[Code],Converted0),
     lazy_impedance_match(no,ResultLazy,RetResult0,Converted0,RetResult,Converted).
 
-f2p(HeadIs,RetResult, ResultLazy, Convert, Converted) :- HeadIs\=@=Convert,
+f2p(HeadIs, LazyVars, RetResult, ResultLazy, Convert, Converted) :- HeadIs\=@=Convert,
    Convert=[Fn|Args],
    atom(Fn),!,
    length(Args,Largs),
-   get_operator_typedef(_,Fn,Largs,Types,RetType),
-   maplist(arg_eval_props,Types,EvalArgs),
-   arg_eval_props(RetType,_-RetEvalLazy),
-   maplist(do_arg_eval(HeadIs),Args,EvalArgs,NewArgs,NewCodes),
+   get_operator_typedef_props(_,Fn,Largs,EvalArgs,_-RetEvalLazy),
+   maplist(do_arg_eval(HeadIs,LazyVars),Args,EvalArgs,NewArgs,NewCodes),
    append(NewCodes,CombinedNewCode),
    %into_x_assign([Fn|NewArgs],RetResult0,Code),
    Code=[assign,RetResult0,[call(Fn)|NewArgs]],
@@ -590,12 +606,29 @@ f2p(HeadIs,RetResult, ResultLazy, Convert, Converted) :- HeadIs\=@=Convert,
    lazy_impedance_match(RetEvalLazy,ResultLazy,RetResult0,Converted0,RetResult,Converted).
    %combine_code_list(CombinedNewCode1,Converted).
 
-lazy_impedance_match(L,L,RetResult0,Converted0,RetResult0,Converted0).
-lazy_impedance_match(no,yes,RetResult0,Converted0,RetResult,Converted) :-
-   append(Converted0,[[native(as_p1),RetResult0,RetResult]],Converted).
-lazy_impedance_match(yes,no,RetResult0,Converted0,RetResult,Converted) :-
-   append(Converted0,[[assign,RetResult,[native(is_p1),true,RetResult0]]],Converted).
+% The catch-all If no specific case is matched, consider Convert as already converted.
+%f2p(_HeadIs,_RetResult,x_assign(Convert,Res), x_assign(Convert,Res)):- !.
+%f2p(_HeadIs,RetResult,Convert, Code):- into_x_assign(Convert,RetResult,Code).
 
+%f2p(HeadIs, list(Convert), Convert, []) :- trace,HeadIs\=@=Convert,
+%   is_list(Convert),!.
+f2p(HeadIs, LazyVars, list(Converted), _ResultLazy, Convert, Codes) :- HeadIs\=@=Convert, is_list(Convert),!,
+   length(Convert, N),
+   % create an eval-args list. TODO FIXME revisit this after working out how lists handle evaluation
+   length(EvalArgs, N),
+   maplist(=(no), EvalArgs),
+   maplist(f2p(HeadIs, LazyVars),Converted,EvalArgs,Convert,Allcodes),
+   append(Allcodes,Codes).
+
+f2p(HeadIs,LazyVars,_RetResult,EvalArgs,Convert,_Code):-
+   format("Error in f2p ~w ~w ~w ~w\n",[HeadIs,LazyVars,Convert,EvalArgs]),
+   throw(0).
+
+lazy_impedance_match(L,L,RetResult0,Converted0,RetResult0,Converted0).
+lazy_impedance_match(yes,no,RetResult0,Converted0,RetResult,Converted) :-
+   append(Converted0,[[native(as_p1),RetResult0,RetResult]],Converted).
+lazy_impedance_match(no,yes,RetResult0,Converted0,RetResult,Converted) :-
+   append(Converted0,[[assign,RetResult,[is_p1,[],RetResult0]]],Converted).
 
 % temporary placeholder
 %is_arg_eval('Number',yes) :- !.
@@ -614,27 +647,13 @@ arg_eval_props('Any',yes-no) :- !.
 arg_eval_props('Atom',yes-yes) :- !.
 arg_eval_props(_,no-no).
 
-do_arg_eval(_,Arg,no-_,Arg,[]).
-do_arg_eval(HeadIs,Arg,yes-yes,[is_p1,SubCode,SubArg],Code) :-
-   f2p(HeadIs,SubArg,Arg,SubCode),
+do_arg_eval(_,_,Arg,no-_,Arg,[]).
+do_arg_eval(HeadIs,LazyVars,Arg,yes-yes,[is_p1,SubCode,SubArg],Code) :-
+   f2p(HeadIs,LazyVars,SubArg,no,Arg,SubCode),
    Code=[].
-do_arg_eval(HeadIs,Arg,yes-no,NewArg,Code) :- f2p(HeadIs,NewArg,Arg,Code).
+do_arg_eval(HeadIs,LazyVars,Arg,yes-no,NewArg,Code) :- f2p(HeadIs,LazyVars,NewArg,no,Arg,Code).
 
-% The catch-all If no specific case is matched, consider Convert as already converted.
-%f2p(_HeadIs,_RetResult,x_assign(Convert,Res), x_assign(Convert,Res)):- !.
-%f2p(_HeadIs,RetResult,Convert, Code):- into_x_assign(Convert,RetResult,Code).
-
-%f2p(HeadIs,list(Convert), Convert, []) :- trace,HeadIs\=@=Convert,
-%   is_list(Convert),!.
-f2p(HeadIs,list(Converted), Convert, Codes) :- HeadIs\=@=Convert, is_list(Convert),!,
-   maplist(f2p(HeadIs),Converted,Convert,Allcodes),
-   append(Allcodes,Codes).
-
-f2p(HeadIs,_RetResult,Convert,_Code):-
-   format("Error in f2p ~w ~w\n",[HeadIs,Convert]),
-   throw(0).
-
-:- discontiguous(compile_flow_control/4).
+:- discontiguous(compile_flow_control/6).
 
 add_assignment(A,B,CodeOld,CodeNew) :-
    (fullvar(A),var(B) ->
@@ -643,38 +662,38 @@ add_assignment(A,B,CodeOld,CodeNew) :-
       A=B,CodeNew=CodeOld
    ;  append(CodeOld,[[assign,A,B]],CodeNew)).
 
-compile_flow_control(HeadIs,RetResult,Convert, Converted) :-
+compile_flow_control(HeadIs,LazyVars,RetResult,LazyEval,Convert, Converted) :-
   Convert = ['if',Cond,Then,Else],!,
   %Test = is_True(CondResult),
-  f2p(HeadIs,CondResult,Cond,CondCode),
+  f2p(HeadIs,LazyVars,CondResult,no,Cond,CondCode),
   append(CondCode,[[native(is_True),CondResult]],If),
-  compile_test_then_else(RetResult,If,Then,Else,Converted).
+  compile_test_then_else(RetResult,LazyVars,LazyEval,If,Then,Else,Converted).
 
-compile_test_then_else(RetResult,If,Then,Else,Converted):-
-  f2p(HeadIs,ThenResult,Then,ThenCode),
-  f2p(HeadIs,ElseResult,Else,ElseCode),
+compile_test_then_else(RetResult,LazyVars,LazyEval,If,Then,Else,Converted):-
+  f2p(HeadIs,LazyVars,ThenResult,LazyEval,Then,ThenCode),
+  f2p(HeadIs,LazyVars,ElseResult,LazyEval,Else,ElseCode),
   % cannnot use add_assignment here as might not want to unify ThenResult and ElseResult
   append(ThenCode,[[assign,RetResult,ThenResult]],T),
   append(ElseCode,[[assign,RetResult,ElseResult]],E),
   Converted=[[prolog_if,If,T,E]].
 
-compile_flow_control(HeadIs,RetResult,Convert, Converted) :- % dif_functors(HeadIs,Convert),
+compile_flow_control(HeadIs,LazyVars,RetResult,LazyEval,Convert, Converted) :- % dif_functors(HeadIs,Convert),
   Convert = ['let',Var,Value1,Body],!,
-  f2p(HeadIs,ResValue1,Value1,CodeForValue1),
+  f2p(HeadIs,LazyVars,ResValue1,no,Value1,CodeForValue1),
   add_assignment(Var,ResValue1,CodeForValue1,CodeForValue2),
-  f2p(HeadIs,RetResult,Body,BodyCode),
+  f2p(HeadIs,LazyVars,RetResult,LazyEval,Body,BodyCode),
   append(CodeForValue2,BodyCode,Converted).
 
-compile_flow_control(HeadIs,RetResult,Convert, Converted) :- %dif_functors(HeadIs,Convert),
+compile_flow_control(HeadIs,LazyVars,RetResult,LazyEval,Convert, Converted) :- %dif_functors(HeadIs,Convert),
   Convert =~ ['let*',Bindings,Body],!,
    must_det_ll((
-    maplist(compile_let_star(HeadIs),Bindings,CodeList),
+    maplist(compile_let_star(HeadIs,LazyVars),Bindings,CodeList),
     append(CodeList,Code),
-    f2p(HeadIs,RetResult,Body,BodyCode),
+    f2p(HeadIs,LazyVars,RetResult,LazyEval,Body,BodyCode),
     append(Code,BodyCode,Converted))).
 
-compile_let_star(HeadIs,[Var,Value1],Code) :-
-  f2p(HeadIs,ResValue1,Value1,CodeForValue1),
+compile_let_star(HeadIs,LazyVars,[Var,Value1],Code) :-
+  f2p(HeadIs,LazyVars,ResValue1,no,Value1,CodeForValue1),
   add_assignment(Var,ResValue1,CodeForValue1,Code).
 
 unnumbervars_clause(Cl,ClU):-

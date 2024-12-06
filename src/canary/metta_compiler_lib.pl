@@ -34,7 +34,7 @@ mc__or(_,_,'True').
 
 'mc__cdr-atom'([_|T],T).
 
-'mc__cons-atom'(A,B,[A|B]).
+'mc__cons-atom'(A,B,[AA|B]) :- as_p1(A,AA).
 
 %%%%%%%%%%%%%%%%%%%%% misc
 
