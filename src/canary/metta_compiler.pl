@@ -97,8 +97,8 @@
 %transpile_prefix('').
 transpile_prefix('mc__').
 
-%transpiler_enable_interpreter_calls.
-transpiler_enable_interpreter_calls :- fail.
+transpiler_enable_interpreter_calls.
+%transpiler_enable_interpreter_calls :- fail.
 
 transpiler_show_debug_messages.
 %transpiler_show_debug_messages :- fail.
@@ -183,7 +183,7 @@ compile_for_exec1(AsBodyFn, Converted) :-
    %ast_to_prolog(no_caller,[],[[native(trace)]|NextBody],NextBodyC).
    ast_to_prolog(no_caller,[],NextBody,NextBodyC).
 
-arrange_lazy_args(N,_-Y,N-Y).
+arrange_lazy_args(N,Y,N-Y).
 
 get_operator_typedef_props(X,FnName,Largs,Types,RetType) :-
    get_operator_typedef(X,FnName,Largs,Types,RetType),!.
@@ -213,13 +213,13 @@ determine_eager_vars(Lin,Lout,[if,If,Then,Else],EagerVars) :- !,
    union_var(EagerVarsIf,EagerVars0,EagerVars),
    (LoutThen=eager,LoutElse=eager -> Lout=eager ; Lout=lazy).
 determine_eager_vars(Lin,Lout,[let,V,Vbind,Body],EagerVars) :- !,
-   determine_eager_vars(eager,Vbind,EagerVarsVbind),
+   determine_eager_vars(eager,eager,Vbind,EagerVarsVbind),
    determine_eager_vars(Lin,Lout,Body,EagerVarsBody),
    union_var([V],EagerVarsVbind,EagerVars0),
    union_var(EagerVars0,EagerVarsBody,EagerVars).
 determine_eager_vars(Lin,Lout,['let*',[],Body],EagerVars) :- !,determine_eager_vars(Lin,Lout,Body,EagerVars).
 determine_eager_vars(Lin,Lout,['let*',[[V,Vbind]|T],Body],EagerVars) :- !,
-   determine_eager_vars(eager,Vbind,EagerVarsVbind),
+   determine_eager_vars(eager,eager,Vbind,EagerVarsVbind),
    determine_eager_vars(Lin,Lout,['let*',T,Body],EagerVarsBody),
    union_var([V],EagerVarsVbind,EagerVars0),
    union_var(EagerVars0,EagerVarsBody,EagerVars).
@@ -241,9 +241,10 @@ determine_eager_vars(_,eager,_,[]).
 
 set_eager_or_lazy(Vlist,V,R) :- (member_var(V,Vlist) -> R=eager ; R=lazy).
 
+combine_lazy_types_props(lazy,_-lazy,lazy) :- !.
+combine_lazy_types_props(_,_,eager).
+
 compile_for_assert(HeadIs, AsBodyFn, Converted) :-
-   %leash(-all),
-   %trace,
    HeadIs=[FnName|Args],
    length(Args,LenArgs),
    LenArgsPlus1 is LenArgs+1,
@@ -261,15 +262,19 @@ compile_for_assert(HeadIs, AsBodyFn, Converted) :-
    must_det_ll((
       Converted = (HeadC :- NextBodyC),  % Create a rule with Head as the converted AsFunction and NextBody as the converted AsBodyFn
       get_operator_typedef_props(_,FnName,LenArgs,Types0,RetType0),
-      maplist(arg_eval_props,Types0,Types1),
-      arg_eval_props(RetType0,_-RetLazy),
+      maplist(arg_eval_props,Types0,TypeProps),
+      arg_eval_props(RetType0,RetProps),
       determine_eager_vars(lazy,ResultEager,AsBodyFn,EagerArgList),
       maplist(set_eager_or_lazy(EagerArgList),Args,EagerLazyList),
-      format("\n##################################Eager args ~w ~w ~w\n\n",[EagerArgList,EagerLazyList,ResultEager]),
+      maplist(combine_lazy_types_props,EagerLazyList,TypeProps,FinalLazyArgs),
+      combine_lazy_types_props(ResultEager,RetProps,FinalLazyRet),
+      %format("\n##################################Eager args ~w ~w ~w\n\n",[EagerArgList,FinalLazyArgs,FinalLazyRet]),
       %maplist(determine_eager(AsBodyFn),Args,)
-      assertz(transpiler_clause_store(FnName,LenArgsPlus1,Types0,RetType0,EagerLazyList,ResultEager,HeadIs,AsBodyFn)),
-      maplist(arrange_lazy_args,Args,Types1,LazyArgs),
-      f2p(HeadIs,LazyArgs,HResult,RetLazy,AsBodyFn,NextBody),
+      assertz(transpiler_clause_store(FnName,LenArgsPlus1,Types0,RetType0,FinalLazyArgs,FinalLazyRet,HeadIs,AsBodyFn)),
+      maplist(arrange_lazy_args,Args,FinalLazyArgs,LazyArgsList),
+      %leash(-all),
+      %trace,
+      f2p(HeadIs,LazyArgsList,HResult,FinalLazyRet,AsBodyFn,NextBody),
 
       %format("HeadIs:~w HResult:~w AsBodyFn:~w NextBody:~w\n",[HeadIs,HResult,AsBodyFn,NextBody]),
       %format("HERE\n"),
@@ -670,21 +675,29 @@ f2p(HeadIs, LazyVars, RetResult, ResultLazy, Convert, Converted) :- HeadIs\=@=Co
     append(CombinedNewCode,[Code],Converted0),
     lazy_impedance_match(eager,ResultLazy,RetResult0,Converted0,RetResult,Converted).
 
+update_laziness(X-_,Y,X-Y).
+
 f2p(HeadIs, LazyVars, RetResult, ResultLazy, Convert, Converted) :- HeadIs\=@=Convert,
    Convert=[Fn|Args],
    atom(Fn),!,
    length(Args,Largs),
-   %get_operator_typedef_props(_,Fn,Largs,EvalArgs,_-RetEvalLazy),
-   get_operator_typedef_props(_,Fn,Largs,Types0,RetType0),
-   maplist(arg_eval_props,Types0,EvalArgs),
-   arg_eval_props(RetType0,_-RetEvalLazy),
+   LenArgsPlus1 is Largs+1,
+   (transpiler_clause_store(Fn,LenArgsPlus1,_,_,ArgsLazy0,RetLazy0,_,_) ->
+      UpToDateArgsLazy=ArgsLazy0,
+      RetLazy=RetLazy0
+   ;
+      RetLazy=eager,
+      length(UpToDateArgsLazy, Largs),
+      maplist(=(eager), UpToDateArgsLazy)),
+   % get the evaluation/laziness based on the types, but then update from the actual signature using 'update_laziness'
+   get_operator_typedef_props(_,Fn,Largs,Types0,_RetType0),
+   maplist(arg_eval_props,Types0,EvalArgs0),
+   maplist(update_laziness,EvalArgs0,UpToDateArgsLazy,EvalArgs),
    maplist(do_arg_eval(HeadIs,LazyVars),Args,EvalArgs,NewArgs,NewCodes),
    append(NewCodes,CombinedNewCode),
-   %into_x_assign([Fn|NewArgs],RetResult0,Code),
    Code=[assign,RetResult0,[call(Fn)|NewArgs]],
    append(CombinedNewCode,[Code],Converted0),
-   lazy_impedance_match(RetEvalLazy,ResultLazy,RetResult0,Converted0,RetResult,Converted).
-   %combine_code_list(CombinedNewCode1,Converted).
+   lazy_impedance_match(RetLazy,ResultLazy,RetResult0,Converted0,RetResult,Converted).
 
 % The catch-all If no specific case is matched, consider Convert as already converted.
 %f2p(_HeadIs,_RetResult,x_assign(Convert,Res), x_assign(Convert,Res)):- !.
@@ -710,19 +723,13 @@ lazy_impedance_match(lazy,eager,RetResult0,Converted0,RetResult,Converted) :-
 lazy_impedance_match(eager,lazy,RetResult0,Converted0,RetResult,Converted) :-
    append(Converted0,[[assign,RetResult,[is_p1,[],RetResult0]]],Converted).
 
-% temporary placeholder
-%is_arg_eval('Number',doeval) :- !.
-%is_arg_eval('Bool',doeval) :- !.
-%is_arg_eval('Any',doeval) :- !.
-%is_arg_eval('Atom',doeval) :- !.
-%is_arg_eval(_,noeval).
-
 arg_eval_props('Number',doeval-eager) :- !.
 arg_eval_props('Bool',doeval-eager) :- !.
 arg_eval_props('LazyBool',doeval-lazy) :- !.
 arg_eval_props('Any',doeval-eager) :- !.
 arg_eval_props('Atom',doeval-lazy) :- !.
-arg_eval_props(_,noeval-eager).
+arg_eval_props('Expression',noeval-lazy) :- !.
+arg_eval_props(_,doeval-eager).
 
 do_arg_eval(_,_,Arg,noeval-_,Arg,[]).
 do_arg_eval(HeadIs,LazyVars,Arg,doeval-lazy,[is_p1,SubCode,SubArg],Code) :-

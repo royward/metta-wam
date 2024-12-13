@@ -28,13 +28,17 @@ mc__or(_,_,'True').
 'mc__<'(A,B,R) :- number(A),number(B),!,(A<B -> R=1 ; R=0).
 'mc__<'(A,B,['<',A,B]).
 
+'mc__>'(A,B,R) :- number(A),number(B),!,(A>B -> R=1 ; R=0).
+'mc__>'(A,B,['>',A,B]).
+
 %%%%%%%%%%%%%%%%%%%%% lists
 
 'mc__car-atom'([H|_],H).
 
 'mc__cdr-atom'([_|T],T).
 
-'mc__cons-atom'(A,B,[AA|B]) :- as_p1(A,AA).
+%'mc__cons-atom'(A,B,[AA|B]) :- as_p1(A,AA).
+'mc__cons-atom'(A,B,[A|B]).
 
 %%%%%%%%%%%%%%%%%%%%% misc
 
