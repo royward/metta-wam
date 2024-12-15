@@ -97,8 +97,8 @@
 %transpile_prefix('').
 transpile_prefix('mc__').
 
-transpiler_enable_interpreter_calls.
-%transpiler_enable_interpreter_calls :- fail.
+%transpiler_enable_interpreter_calls.
+transpiler_enable_interpreter_calls :- fail.
 
 transpiler_show_debug_messages.
 %transpiler_show_debug_messages :- fail.
@@ -537,9 +537,14 @@ check_supporting_predicates(Space,F/A) :- % already exists
          Am1 is A-1,
          findall(Atom1, (between(1, Am1, I1), Atom1='$VAR'(I1)), AtomList1),
          B=..[u_assign,[F|AtomList1],'$VAR'(A)],
-         (transpiler_enable_interpreter_calls -> G=true;G=fail),
          assertz(transpiler_stub_created(F/A)),
-         create_and_consult_temp_file(Space,Fp/A,[H:-(format("; % ######### warning: using stub for:~w\n",[F]),G,B)]))).
+         (transpiler_enable_interpreter_calls ->
+            create_and_consult_temp_file(Space,Fp/A,[H:-(format("; % ######### warning: using stub for:~w\n",[F]),B)])
+         ;
+            create_and_consult_temp_file(Space,Fp/A,[H:-'$VAR'(A)=[F|AtomList1]])
+         )
+      )
+   ).
 
 % Predicate to create a temporary file and write the tabled predicate
 create_and_consult_temp_file(Space,F/A, PredClauses) :-
