@@ -37,8 +37,12 @@ mc__or(_,_,'True').
 
 'mc__cdr-atom'([_|T],T).
 
-%'mc__cons-atom'(A,B,[AA|B]) :- as_p1(A,AA).
 'mc__cons-atom'(A,B,[A|B]).
+
+%%%%%%%%%%%%%%%%%%%%% superpose, collapse
+
+'mc__superpose'([H|_],H).
+'mc__superpose'([_|T],R) :- 'mc__superpose'(T,R).
 
 %%%%%%%%%%%%%%%%%%%%% misc
 
