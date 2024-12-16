@@ -41,8 +41,7 @@ mc__or(_,_,'True').
 
 %%%%%%%%%%%%%%%%%%%%% superpose, collapse
 
-'mc__superpose'([H|_],H).
-'mc__superpose'([_|T],R) :- 'mc__superpose'(T,R).
+'mc__superpose'([H|T],R) :- (R=H ; 'mc__superpose'(T,R)).
 
 %%%%%%%%%%%%%%%%%%%%% misc
 
