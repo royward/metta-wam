@@ -95,9 +95,6 @@
 :- initialization(mutex_create(transpiler_mutex_lock)).
 :- at_halt(mutex_destroy(transpiler_mutex_lock)).
 
-%transpile_prefix('').
-transpile_prefix('mc__').
-
 %transpiler_enable_interpreter_calls.
 transpiler_enable_interpreter_calls :- fail.
 
@@ -252,8 +249,7 @@ compile_for_assert(HeadIs, AsBodyFn, Converted) :-
    % retract any stubs
    (transpiler_stub_created(FnName/LenArgsPlus1) ->
       retract(transpiler_stub_created(FnName/LenArgsPlus1)),
-      transpile_prefix(Prefix),
-      atom_concat(Prefix,FnName,FnNameWPrefix),
+      atomic_list_concat(['mc_',LenArgs,'__',FnName],FnNameWPrefix),
       findall(Atom0, (between(1, LenArgsPlus1, I0) ,Atom0='$VAR'(I0)), AtomList0),
       H=..[FnNameWPrefix|AtomList0],
       (transpiler_show_debug_messages -> format("Retracting stub: ~w\n",[H]) ; true),
@@ -498,9 +494,8 @@ ast_to_prolog_aux(Caller,DontStub,[native(F)|Args0],A) :- !,
    A=..[F|Args1].
 ast_to_prolog_aux(Caller,DontStub,[assign,A,[call(F)|Args0]],R) :- (fullvar(A);\+ compound(A)),atom(F),!,
    maplist(ast_to_prolog_aux(Caller,DontStub),Args0,Args1),
-   transpile_prefix(Prefix),
-   atom_concat(Prefix,F,Fp),
    length(Args0,LArgs),
+   atomic_list_concat(['mc_',LArgs,'__',F],Fp),
    LArgs1 is LArgs+1,
    append(Args1,[A],Args2),
    R=..[Fp|Args2],
@@ -529,8 +524,8 @@ combine_code_list_aux([H|T],R) :- H=..[','|H0],!,append(H0,T,T0),combine_code_li
 combine_code_list_aux([H|T],[H|R]) :- combine_code_list_aux(T,R).
 
 check_supporting_predicates(Space,F/A) :- % already exists
-   transpile_prefix(Prefix),
-   atom_concat(Prefix,F,Fp),
+   A1 is A-1,
+   atomic_list_concat(['mc_',A1,'__',F],Fp),
    with_mutex(transpiler_mutex_lock,
       (current_predicate(Fp/A) -> true ;
          findall(Atom0, (between(1, A, I0) ,Atom0='$VAR'(I0)), AtomList0),
@@ -797,8 +792,9 @@ unnumbervars_clause(Cl,ClU):-
 is_clause_asserted(AC):- unnumbervars_clause(AC,UAC),
   expand_to_hb(UAC,H,B),
   H=..[Fh|Args],
-  transpile_prefix(Prefix),
-  atom_concat(Prefix,Fh,FPrefixed),
+  length(Args,N),
+  N1 is N-1,
+  atomic_list_concat(['mc_',N1,'__',Fh],FPrefixed),
   H2=..[FPrefixed|Args],
   clause(H2,B,Ref),clause(HH,BB,Ref),
   strip_m(HH,HHH),HHH=@=H2,
@@ -1441,7 +1437,7 @@ compile_case_bodies(HeadIs,MatchBody,CS):- compound(MatchBody), MatchBody =~ MB,
 
 compile_flow_control(HeadIs,RetResult,Convert,CodeForValueConverted) :-
     % TODO: Plus seems an odd name for a variable - get an idea why?
-    transpile_prefix(Prefix),
+    %transpile_prefix(Prefix),
     Convert =~ [Plus,N,Value], atom(Plus),
     atom_concat(Prefix,Plus,PrefixPlus),
     current_predicate(PrefixPlus/3), number(N),
