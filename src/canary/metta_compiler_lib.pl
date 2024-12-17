@@ -1,8 +1,7 @@
-:- discontiguous get_type_sig/3.
+:- dynamic(transpiler_clause_store/8).
 
 %%%%%%%%%%%%%%%%%%%%% arithmetic
 
-% get_type_sig('+',['Number','Number'],'Number').
 'mc__+'(A,B,R) :- number(A),number(B),!,plus(A,B,R).
 'mc__+'(A,B,['+',A,B]).
 
@@ -41,11 +40,26 @@ mc__or(_,_,'True').
 
 %%%%%%%%%%%%%%%%%%%%% superpose, collapse
 
-'mc__superpose'([H|T],R) :- (R=H ; 'mc__superpose'(T,R)).
+'mc__superpose'(S,R) :- member(R,S).
+
+% put a fake transpiler_clause_store here, just to force the argument to be lazy
+transpiler_clause_store(collapse, 2, ['Atom'], 'Expression', [lazy], eager, [], []).
+'mc__collapse'(is_p1(Code,Ret),R) :- fullvar(Ret),!,findall(Ret,Code,R).
+'mc__collapse'(is_p1(true,X),[X]).
+
+%%%%%%%%%%%%%%%%%%%%% spaces
+
+'mc__add-atom'(Space,PredDecl,'Empty') :- 'add-atom'(Space,PredDecl).
+
+'mc__remove-atom'(Space,PredDecl,'Empty') :- 'remove-atom'(Space,PredDecl).
+
+'mc__get-atoms'(Space,Atoms) :- metta_atom(Space, Atoms).
 
 %%%%%%%%%%%%%%%%%%%%% misc
 
 'mc__empty'(_) :- fail.
+
+'mc__get-metatype'(X,Y) :- 'get-metatype'(X,Y). % use the code in the interpreter for now
 
 'mc__stringToChars'(S,C) :- string_chars(S,C).
 

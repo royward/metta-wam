@@ -72,6 +72,7 @@
 %:- ensure_loaded(metta_reader).
 :- ensure_loaded(metta_interp).
 :- ensure_loaded(metta_space).
+:- dynamic(transpiler_clause_store/8).
 :- ensure_loaded(metta_compiler_lib).
 
 % ==============================
