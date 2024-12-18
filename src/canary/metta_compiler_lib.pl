@@ -49,15 +49,19 @@ transpiler_clause_store(collapse, 2, ['Atom'], 'Expression', [lazy], eager, [], 
 
 %%%%%%%%%%%%%%%%%%%%% spaces
 
-'mc_2__add-atom'(Space,PredDecl,'Empty') :- 'add-atom'(Space,PredDecl).
+'mc_2__add-atom'(Space,PredDecl,[]) :- 'add-atom'(Space,PredDecl).
 
-'mc_2__remove-atom'(Space,PredDecl,'Empty') :- 'remove-atom'(Space,PredDecl).
+'mc_2__remove-atom'(Space,PredDecl,[]) :- 'remove-atom'(Space,PredDecl).
 
 'mc_1__get-atoms'(Space,Atoms) :- metta_atom(Space, Atoms).
+
+'mc_3__match'(Space,Pattern,Template,Template) :- metta_atom(Space, Atom),Atom=Pattern.
 
 %%%%%%%%%%%%%%%%%%%%% misc
 
 'mc_0__empty'(_) :- fail.
+
+'mc_1__eval'(X,R) :- transpile_eval(X,R).
 
 'mc_1__get-metatype'(X,Y) :- 'get-metatype'(X,Y). % use the code in the interpreter for now
 

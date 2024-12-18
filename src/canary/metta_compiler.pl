@@ -114,6 +114,9 @@ transpiler_depends_on(dummy,0,dummy,0).
 % transpiler_clause_store(f,arity,types,rettype,lazy,retlazy,head,body)
 transpiler_clause_store(dummy,0,[],'Any',[],eager,dummy,dummy).
 
+:- dynamic(transpiler_stored_eval/3).
+transpiler_stored_eval([],true,0).
+
 as_p1(is_p1(Code,Ret),Ret):- !, call(Code).
 
 % Meta-predicate that ensures that for every instance where G1 holds, G2 also holds.
@@ -241,6 +244,17 @@ set_eager_or_lazy(Vlist,V,R) :- (member_var(V,Vlist) -> R=eager ; R=lazy).
 
 combine_lazy_types_props(lazy,_-lazy,lazy) :- !.
 combine_lazy_types_props(_,_,eager).
+
+transpile_eval(Convert,Converted) :-
+   (transpiler_stored_eval(Convert,PrologCode0,Converted0) ->
+      PrologCode=PrologCode0,
+      Converted=Converted0
+   ;
+      f2p([],[],Converted,eager,Convert,Code),
+      ast_to_prolog(no_caller,[],Code,PrologCode),
+      assertz(transpiler_stored_eval(Convert,PrologCode,Converted))
+   ),
+   call(PrologCode).
 
 compile_for_assert(HeadIs, AsBodyFn, Converted) :-
    HeadIs=[FnName|Args],
@@ -732,7 +746,7 @@ arg_eval_props('Bool',doeval-eager) :- !.
 arg_eval_props('LazyBool',doeval-lazy) :- !.
 arg_eval_props('Any',doeval-eager) :- !.
 arg_eval_props('Atom',doeval-lazy) :- !.
-arg_eval_props('Expression',noeval-lazy) :- !.
+arg_eval_props('Expression',doeval-lazy) :- !.
 arg_eval_props(_,doeval-eager).
 
 do_arg_eval(_,_,Arg,noeval-_,Arg,[]).
