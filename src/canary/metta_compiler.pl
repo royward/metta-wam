@@ -72,7 +72,7 @@
 %:- ensure_loaded(metta_reader).
 :- ensure_loaded(metta_interp).
 :- ensure_loaded(metta_space).
-:- dynamic(transpiler_clause_store/8).
+:- dynamic(transpiler_clause_store/9).
 :- ensure_loaded(metta_compiler_lib).
 
 % ==============================
@@ -109,10 +109,9 @@ transpiler_stub_created(dummy).
 % just so the transpiler_depends_on predicate always exists
 transpiler_depends_on(dummy,0,dummy,0).
 
-:- dynamic(transpiler_clause_store/8).
 % just so the transpiler_clause_store predicate always exists
-% transpiler_clause_store(f,arity,types,rettype,lazy,retlazy,head,body)
-transpiler_clause_store(dummy,0,[],'Any',[],eager,dummy,dummy).
+% transpiler_clause_store(f,arity,clause_number,types,rettype,lazy,retlazy,head,body)
+transpiler_clause_store(dummy,0,0,[],'Any',[],eager,dummy,dummy).
 
 :- dynamic(transpiler_stored_eval/3).
 transpiler_stored_eval([],true,0).
@@ -159,7 +158,7 @@ strip_m(BB,BB).
 % ?- compile_for_exec(RetResult, is(pi+pi), Converted).
 
 compile_for_exec(Res,I,O):-
-   %ignore(Res='$VAR'('RetResult')),`
+   %ignore(Res='$VAR'('RetResult')),
    compile_for_exec0(Res,I,O),!.
 
 compile_for_exec0(Res,I,eval_args(I,Res)):- is_ftVar(I),!.
@@ -184,7 +183,7 @@ compile_for_exec1(AsBodyFn, Converted) :-
    %ast_to_prolog(no_caller,[],[[native(trace)]|NextBody],NextBodyC).
    ast_to_prolog(no_caller,[],NextBody,NextBodyC).
 
-arrange_lazy_args(N,Y,N-Y).
+arrange_lazy_args(N,x(_,Y),N-Y).
 
 get_operator_typedef_props(X,FnName,Largs,Types,RetType) :-
    get_operator_typedef(X,FnName,Largs,Types,RetType),!.
@@ -203,6 +202,10 @@ union_var([],X,X).
 union_var([H|T],X,Y) :-
     union_var(T,X,Y0),
     (member_var(H,X) -> Y=Y0 ; Y=[H|Y0]).
+
+get_property_lazy(x(_,L),L).
+
+get_property_evaluate(x(E,_),E).
 
 determine_eager_vars(lazy,lazy,A,[]) :- fullvar(A),!.
 determine_eager_vars(eager,eager,A,[A]) :- fullvar(A),!.
@@ -227,9 +230,9 @@ determine_eager_vars(Lin,Lout,['let*',[[V,Vbind]|T],Body],EagerVars) :- !,
 determine_eager_vars(_,RetLazy,[Fn|Args],EagerVars) :- atom(Fn),!,
    length(Args,LenArgs),
    LenArgsPlus1 is LenArgs+1,
-   (transpiler_clause_store(Fn,LenArgsPlus1,_,_,ArgsLazy0,RetLazy0,_,_) ->
-      ArgsLazy=ArgsLazy0,
-      RetLazy=RetLazy0
+   (transpiler_clause_store(Fn,LenArgsPlus1,_,_,_,ArgsLazy0,RetLazy0,_,_) ->
+      maplist(get_property_lazy,ArgsLazy0,ArgsLazy),
+      get_property_lazy(RetLazy0,RetLazy)
    ;
       RetLazy=eager,
       length(ArgsLazy, LenArgs),
@@ -242,8 +245,8 @@ determine_eager_vars(_,eager,_,[]).
 
 set_eager_or_lazy(Vlist,V,R) :- (member_var(V,Vlist) -> R=eager ; R=lazy).
 
-combine_lazy_types_props(lazy,_-lazy,lazy) :- !.
-combine_lazy_types_props(_,_,eager).
+combine_lazy_types_props(lazy,x(E,lazy),x(E,lazy)) :- !.
+combine_lazy_types_props(_,x(E,_),x(E,eager)).
 
 transpile_eval(Convert,Converted) :-
    (transpiler_stored_eval(Convert,PrologCode0,Converted0) ->
@@ -257,6 +260,7 @@ transpile_eval(Convert,Converted) :-
    call(PrologCode).
 
 compile_for_assert(HeadIs, AsBodyFn, Converted) :-
+   %leash(-all),trace,
    HeadIs=[FnName|Args],
    length(Args,LenArgs),
    LenArgsPlus1 is LenArgs+1,
@@ -277,19 +281,23 @@ compile_for_assert(HeadIs, AsBodyFn, Converted) :-
       arg_eval_props(RetType0,RetProps),
       determine_eager_vars(lazy,ResultEager,AsBodyFn,EagerArgList),
       maplist(set_eager_or_lazy(EagerArgList),Args,EagerLazyList),
+      % EagerLazyList: eager/lazy
+      % TypeProps: x(doeval/noeval,eager/lazy)
+      % FinalLazyArgs: x(doeval/noeval,eager/lazy)
       maplist(combine_lazy_types_props,EagerLazyList,TypeProps,FinalLazyArgs),
       combine_lazy_types_props(ResultEager,RetProps,FinalLazyRet),
-      %format("\n##################################Eager args ~w ~w ~w\n\n",[EagerArgList,FinalLazyArgs,FinalLazyRet]),
-      %maplist(determine_eager(AsBodyFn),Args,)
-      assertz(transpiler_clause_store(FnName,LenArgsPlus1,Types0,RetType0,FinalLazyArgs,FinalLazyRet,HeadIs,AsBodyFn)),
+      findall(ClauseIDt,transpiler_clause_store(FnName,LenArgsPlus1,ClauseIDt,_,_,_,_,_,_),ClauseIdList),
+      (ClauseIdList=[] ->
+         ClauseId=0
+      ;
+         max_list(ClauseIdList,ClauseIdm1),ClauseId is ClauseIdm1+1
+      ),
+      assertz(transpiler_clause_store(FnName,LenArgsPlus1,ClauseId,Types0,RetType0,FinalLazyArgs,FinalLazyRet,HeadIs,AsBodyFn)),
       maplist(arrange_lazy_args,Args,FinalLazyArgs,LazyArgsList),
-      %leash(-all),
-      %trace,
-      f2p(HeadIs,LazyArgsList,HResult,FinalLazyRet,AsBodyFn,NextBody),
+      get_property_lazy(FinalLazyRet,FinalLazyOnlyRet),
+      f2p(HeadIs,LazyArgsList,HResult,FinalLazyOnlyRet,AsBodyFn,NextBody),
 
       %format("HeadIs:~w HResult:~w AsBodyFn:~w NextBody:~w\n",[HeadIs,HResult,AsBodyFn,NextBody]),
-      %format("HERE\n"),
-      %trace,
       %(var(HResult) -> (Result = HResult, HHead = Head) ;
       %   funct_with_result_is_nth_of_pred(HeadIs,AsFunction, Result, _Nth, Head)),
       ast_to_prolog_aux(no_caller,[FnName/LenArgsPlus1],[assign,HResult,[call(FnName)|Args]],HeadC),
@@ -693,20 +701,20 @@ f2p(HeadIs, LazyVars, RetResult, ResultLazy, Convert, Converted) :- HeadIs\=@=Co
     append(CombinedNewCode,[Code],Converted0),
     lazy_impedance_match(eager,ResultLazy,RetResult0,Converted0,RetResult,Converted).
 
-update_laziness(X-_,Y,X-Y).
+update_laziness(x(X,_),x(_,Y),x(X,Y)).
 
 f2p(HeadIs, LazyVars, RetResult, ResultLazy, Convert, Converted) :- HeadIs\=@=Convert,
    Convert=[Fn|Args],
    atom(Fn),!,
    length(Args,Largs),
    LenArgsPlus1 is Largs+1,
-   (transpiler_clause_store(Fn,LenArgsPlus1,_,_,ArgsLazy0,RetLazy0,_,_) ->
+   (transpiler_clause_store(Fn,LenArgsPlus1,_,_,_,ArgsLazy0,x(_,RetLazy0),_,_) ->
       UpToDateArgsLazy=ArgsLazy0,
       RetLazy=RetLazy0
    ;
       RetLazy=eager,
       length(UpToDateArgsLazy, Largs),
-      maplist(=(eager), UpToDateArgsLazy)),
+      maplist(=(x(doeval,eager)), UpToDateArgsLazy)),
    % get the evaluation/laziness based on the types, but then update from the actual signature using 'update_laziness'
    get_operator_typedef_props(_,Fn,Largs,Types0,_RetType0),
    maplist(arg_eval_props,Types0,EvalArgs0),
@@ -741,19 +749,19 @@ lazy_impedance_match(lazy,eager,RetResult0,Converted0,RetResult,Converted) :-
 lazy_impedance_match(eager,lazy,RetResult0,Converted0,RetResult,Converted) :-
    append(Converted0,[[assign,RetResult,[is_p1,[],RetResult0]]],Converted).
 
-arg_eval_props('Number',doeval-eager) :- !.
-arg_eval_props('Bool',doeval-eager) :- !.
-arg_eval_props('LazyBool',doeval-lazy) :- !.
-arg_eval_props('Any',doeval-eager) :- !.
-arg_eval_props('Atom',doeval-lazy) :- !.
-arg_eval_props('Expression',doeval-lazy) :- !.
-arg_eval_props(_,doeval-eager).
+arg_eval_props('Number',x(doeval,eager)) :- !.
+arg_eval_props('Bool',x(doeval,eager)) :- !.
+arg_eval_props('LazyBool',x(doeval,lazy)) :- !.
+arg_eval_props('Any',x(doeval,eager)) :- !.
+arg_eval_props('Atom',x(doeval,lazy)) :- !.
+arg_eval_props('Expression',x(doeval,lazy)) :- !.
+arg_eval_props(_,x(doeval,eager)).
 
-do_arg_eval(_,_,Arg,noeval-_,Arg,[]).
-do_arg_eval(HeadIs,LazyVars,Arg,doeval-lazy,[is_p1,SubCode,SubArg],Code) :-
+do_arg_eval(_,_,Arg,x(noeval,_),Arg,[]).
+do_arg_eval(HeadIs,LazyVars,Arg,x(doeval,lazy),[is_p1,SubCode,SubArg],Code) :-
    f2p(HeadIs,LazyVars,SubArg,eager,Arg,SubCode),
    Code=[].
-do_arg_eval(HeadIs,LazyVars,Arg,doeval-eager,NewArg,Code) :- f2p(HeadIs,LazyVars,NewArg,eager,Arg,Code).
+do_arg_eval(HeadIs,LazyVars,Arg,x(doeval,eager),NewArg,Code) :- f2p(HeadIs,LazyVars,NewArg,eager,Arg,Code).
 
 :- discontiguous(compile_flow_control/6).
 

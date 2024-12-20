@@ -1,4 +1,4 @@
-:- dynamic(transpiler_clause_store/8).
+:- dynamic(transpiler_clause_store/9).
 
 %%%%%%%%%%%%%%%%%%%%% arithmetic
 
@@ -43,7 +43,7 @@ mc_2__or(_,_,'True').
 'mc_1__superpose'(S,R) :- member(R,S).
 
 % put a fake transpiler_clause_store here, just to force the argument to be lazy
-transpiler_clause_store(collapse, 2, ['Atom'], 'Expression', [lazy], eager, [], []).
+transpiler_clause_store(collapse, 2, 0, ['Atom'], 'Expression', [lazy], eager, [], []).
 'mc_1__collapse'(is_p1(Code,Ret),R) :- fullvar(Ret),!,findall(Ret,Code,R).
 'mc_1__collapse'(is_p1(true,X),[X]).
 
